@@ -9,7 +9,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		
+		//This is just a basic javaFX Project
 		
 		
 	}
