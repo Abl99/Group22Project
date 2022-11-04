@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.Integer?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<VBox prefHeight="339.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProjectController"></VBox>
-
-
-
+<BorderPane prefHeight="426.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProjectController">
+   <left>
+      <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="208.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="199.0" text="Stage 1" />
+            <TextField fx:id="element_to_lookup" layoutX="40.0" layoutY="366.0" prefHeight="25.0" prefWidth="121.0" AnchorPane.bottomAnchor="48.0" AnchorPane.topAnchor="366.0" />
+            <Label alignment="CENTER" layoutX="52.0" layoutY="44.0" prefHeight="24.0" prefWidth="102.0" text="Element Name" />
+            <Label layoutX="14.0" layoutY="87.0" text="Atomic Number:" />
+            <Label layoutX="14.0" layoutY="132.0" text="Atomic Mass:" />
+            <Label layoutX="14.0" layoutY="178.0" text="Molar Heat:" />
+            <Label layoutX="14.0" layoutY="227.0" text="Melting Point:" />
+            <Label layoutX="14.0" layoutY="271.0" text="Phase:" />
+            <Label fx:id="atomic_number_answer" layoutX="140.0" layoutY="87.0" text="Label" />
+            <Label fx:id="atomic_mass_answer" layoutX="140.0" layoutY="132.0" text="Label" />
+            <Label fx:id="molar_hear_answer" layoutX="140.0" layoutY="178.0" text="Label" />
+            <Label fx:id="melting_point_answer" layoutX="140.0" layoutY="227.0" text="Label" />
+            <Label fx:id="phase_answer" layoutX="140.0" layoutY="271.0" text="Label" />
+            <Button fx:id="element_look_up" layoutX="74.0" layoutY="399.0" mnemonicParsing="false" onAction="#confirm_element_lookup" text="Enter" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="400.0" />
+            <Separator layoutX="208.0" orientation="VERTICAL" prefHeight="439.0" prefWidth="0.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="208.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="345.0" text="Stage 2" textAlignment="RIGHT" />
+            <Label layoutX="29.0" layoutY="84.0" prefHeight="23.0" prefWidth="125.0" text="Number of Reactants:" />
+            <Label layoutX="29.0" layoutY="125.0" prefHeight="17.0" prefWidth="125.0" text="Number of Products:" />
+            <TextField fx:id="number_of_reactants" layoutX="154.0" layoutY="83.0" AnchorPane.leftAnchor="154.0" AnchorPane.rightAnchor="46.0" />
+            <TextField fx:id="number_of_products" layoutX="154.0" layoutY="121.0" AnchorPane.leftAnchor="154.0" AnchorPane.rightAnchor="46.0" />
+            <Button fx:id="enter_react_and_product" layoutX="147.0" layoutY="167.0" mnemonicParsing="false" onAction="#enter_number_of_rectants_and_products" text="Enter" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="147.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="167.0" />
+            <Label layoutX="53.0" layoutY="302.0" prefHeight="20.0" prefWidth="247.0" text="Put some sort of Display here" />
+         </children></AnchorPane>
+   </center>
+   <right>
+      <AnchorPane prefHeight="456.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="201.0" text="Stage 3" />
+            <Separator layoutY="-3.0" orientation="VERTICAL" prefHeight="439.0" prefWidth="6.0" />
+            <TextField fx:id="element_to_lookup1" layoutX="54.0" layoutY="362.0" prefHeight="25.0" prefWidth="121.0" />
+            <Button fx:id="element_look_up1" layoutX="92.0" layoutY="393.0" mnemonicParsing="false" onAction="#confirm_element_lookup" text="Enter" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
