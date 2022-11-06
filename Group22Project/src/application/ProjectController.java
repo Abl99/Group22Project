@@ -10,46 +10,65 @@ import javafx.scene.control.TextField;
 public class ProjectController {
 	public Stage applicationStage;
 	
-	    @FXML
-	    private Label atomic_mass_answer;
+    @FXML
+    private TextField element_Input;
 
-	    @FXML
-	    private Label atomic_number_answer;
+    @FXML
+    private Label element_answer_1;
 
-	    @FXML
-	    private Button element_look_up;
+    @FXML
+    private Label element_answer_2;
 
-	    @FXML
-	    private TextField element_to_lookup;
+    @FXML
+    private Label element_answer_3;
 
-	    @FXML
-	    private Button enter_react_and_product;
+    @FXML
+    private Label element_answer_4;
 
-	    @FXML
-	    private Label melting_point_answer;
+    @FXML
+    private Button enter_chemical_equation;
 
-	    @FXML
-	    private Label molar_hear_answer;
+    @FXML
+    private Button enter_element_input;
 
-	    @FXML
-	    private TextField number_of_products;
+    @FXML
+    private Button enter_molecule_input;
 
-	    @FXML
-	    private TextField number_of_reactants;
+    @FXML
+    private Label molecule_answer_1;
 
-	    @FXML
-	    private Label phase_answer;
+    @FXML
+    private Label molecule_answer_2;
 
-	    @FXML
-	    void confirm_element_lookup(ActionEvent event) {
+    @FXML
+    private Label molecule_answer_3;
 
-	    }
+    @FXML
+    private Label molecule_answer_4;
 
-	    @FXML
-	    void enter_number_of_rectants_and_products(ActionEvent event) {
+    @FXML
+    private TextField molecule_input;
 
-	    }
+    @FXML
+    private TextField number_of_products;
 
-	}
+    @FXML
+    private TextField number_of_rectants;
+
+    @FXML
+    void entered_chemical_equation(ActionEvent event) {
+
+    }
+
+    @FXML
+    void entered_element_input(ActionEvent event) {
+
+    }
+
+    @FXML
+    void entered_molecule_input(ActionEvent event) {
+
+    }
+}
 
 
