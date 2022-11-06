@@ -9,6 +9,7 @@ public class ValidatingAtomMoleculeInput {
 		return false;
 	}
 	
+	//TODO test method
 	boolean validateMolecule(String molecule) {
 		boolean valid = true;
 		// the first character of a molecular formula must always be a capital letter
