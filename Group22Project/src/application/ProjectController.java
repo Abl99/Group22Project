@@ -7,8 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import javafx.scene.Scene;
-
 
 public class ProjectController {
 	public Stage applicationStage;
@@ -37,7 +35,7 @@ public class ProjectController {
     @FXML
     void entered_element_input(ActionEvent event) {
     	
-    	Valid_Input Value = new Valid_Input(element_Input.getText());
+    	//Valid_Input Value = new Valid_Input(element_Input.getText());
 
     	
     }
