@@ -1,8 +1,15 @@
 package application;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 //UPDATED
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 //For the controller class, I am trying to check inputs for validity
 //If this belongs in another class, then we can move it
@@ -230,7 +237,54 @@ public class Valid_Input{
 	}
 	
 	
-	
+	protected double getAtomicWeight(String value) {          //WORK IN PROGRESS
+		
+		//needs to be valid element/symbol
+		if (Test(value).equals("invalid element")) {
+			return 0;
+			
+		}else if (value.length() > 3){ //If an element was value
+			value.toLowerCase();
+			
+		
+		}else if (value.length() < 3) { //If a symbol was entered, give me the element of it
+			value = getElement(value);
+		}		
+		
+		//At this point, I will have a lower case element which can be used in the periodic-table-lookup.json file
+		
+		//-------------------------------------------------------------------------------------
+		//JSON ATOMIC WEIGHT LOOKUP (WIP)
+		
+		JSONParser jsonparser = new JSONParser();
+		
+		
+		//BORROWED CODE FROM ATOM, WILL BE ALTERING IT FOR PURPOSES
+		/*
+		try {
+			FileReader reader = new FileReader("src/application/periodic-table-lookup-modified.json");		
+			Object obj = jsonparser.parse(reader);
+			JSONObject jsonObj = (JSONObject) obj;
+			Object value =  jsonObj.get(key);
+			
+			
+			
+		//TODO put useful catch statements
+		}catch(FileNotFoundException e) {
+			e.getMessage();
+			System.out.println("FNF exception");
+		}catch(ParseException e) {
+			e.getMessage();
+			System.out.println("Parse Exception");
+		}catch(IOException e) {
+			e.getMessage();
+			System.out.println("IO Exception");
+		}
+		*/
+
+		return 0;
+		
+	}
 	
 	
 	
