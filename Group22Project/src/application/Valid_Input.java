@@ -158,14 +158,12 @@ public class Valid_Input{
 					return element_to_check;
 				}
 			}
-			
+		
+		//Check as an element
 		}else if (element_to_check.length() > 3) {
-			//will assume this is an element
 			
-			//lower case String
+			//lower case String so as to compare to other lower cased elements in array list
 			element_to_check = element_to_check.toLowerCase();
-			
-			System.out.println(element_to_check);
 			
 			//Look for the element
 			for (int x = 0; x < all_elements.size();x ++) {
@@ -173,11 +171,83 @@ public class Valid_Input{
 				//This should only look at even indexes (in which the elements are)
 				if ((element_to_check.equals(all_elements.get(x))) && (x % 2 == 0)) {
 					
-					//element needs to be upper cased for JSON lookup
+					//element needs to be upper cased for JSON lookup (if possible)
 					return element_to_check.substring(0,1).toUpperCase() + element_to_check.substring(1);
 				}
 			}	
 		}
 		return "invalid element";
 	}
+	
+	
+	protected String getElement(String symbol) {
+		
+		if(symbol.length() > 3) {
+			return "invalid symbol";
+		}
+		
+		if (Test(symbol).equals("invalid element")) {
+			return "invalid element";
+		}
+		
+		//upper case symbol for array list search 
+		symbol = symbol.substring(0,1).toUpperCase() + symbol.substring(1).toLowerCase();
+		
+		//Look for the element symbol
+		for (int x = 0; x < all_elements.size();x ++) {
+			
+			//This should only look at odd indexes (in which the symbols are)
+			if ((symbol.equals(all_elements.get(x))) && !(x % 2 == 0)) {
+				return all_elements.get(x-1);
+			}
+		}
+		
+		//This should not be returned
+		return "ERROR IN GET ELEMENT";
+	}
+	
+	
+	protected String getSymbol(String element) {
+	
+		if (Test(element).equals("invalid element") || element.length() < 3) {
+			return "invalid element";
+		}
+		
+		//lower case for element search 
+		element = element.toLowerCase();
+		
+		//Look for the element symbol
+		for (int x = 0; x < all_elements.size();x ++) {
+			
+			//This should only look at odd indexes (in which the symbols are)
+			if ((element.equals(all_elements.get(x))) && (x % 2 == 0)) {
+				return all_elements.get(x+1);
+			}
+		}
+		
+		//This should not be returned
+		return "ERROR IN GET SYMBOL";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
