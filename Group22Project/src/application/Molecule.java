@@ -5,7 +5,11 @@ import java.util.ArrayList;
 public class Molecule extends Atom{
 	private String molecularFormula;
 	
-	Molecule (String m){
+	public Molecule (){
+		molecularFormula = "";
+	}
+	
+	public Molecule (String m){
 		molecularFormula = m;
 	}
 	
@@ -65,4 +69,28 @@ public class Molecule extends Atom{
 		return sum;
 	}
 
+	// must be given a proper array with atoms at even indexes and numbers at odd indexes
+	protected ArrayList<String> condenseMolecule(ArrayList<String> fullMolecule){
+		// terminating condition
+		if (fullMolecule.size() <= 2) return fullMolecule;
+		
+		// recursive call
+		ArrayList<String> partiallyCondensed = condenseMolecule(new ArrayList<String>(fullMolecule.subList(2,fullMolecule.size())));
+		
+		// use results of recursive call		
+		int index = partiallyCondensed.indexOf(fullMolecule.get(0));
+		if (index >= 0) {
+			int newCoeff = (Integer.parseInt(partiallyCondensed.get(index+1))) + (Integer.parseInt(fullMolecule.get(1)));
+			String newcoeff = Integer.toString(newCoeff);
+			partiallyCondensed.set(index+1, newcoeff);
+
+		}else {
+			partiallyCondensed.add(0, fullMolecule.get(1));
+			partiallyCondensed.add(0, fullMolecule.get(0));
+		}
+		return partiallyCondensed;
+	}
+	
+
+	
 }
