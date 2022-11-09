@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-
 //For the controller class, I am trying to check inputs for validity
 //If this belongs in another class, then we can move it
 
