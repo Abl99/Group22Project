@@ -27,21 +27,21 @@ public class Reaction extends Molecule {
 		ArrayList<ArrayList<String>> condensedMol = new ArrayList<ArrayList<String>>();
 		for (String mol : molecules) {
 			Molecule m = new Molecule(mol);
-			condensedMol.add( condenseMolecule(m.getMoleculeArray()));
+			condensedMol.add(m.getMoleculeArray());
 		}
+		// each molecule needs to be multiplied by its coefficient (which is the number of that molecule)
+		// to get the correct number of each atom in that molecule. Then everything is added to a single string.
+		String reactionstring = "";
 		for (int index = 0;index < condensedMol.size();index++) {
 			int coeff = coefficient.get(index);
 			ArrayList<String> mol = condensedMol.get(index);
 			for(int num = 1;num < mol.size();num = num+2) {
 				int newnumber = (Integer.parseInt(mol.get(num)))*coeff;
-				mol.set(num, Integer.toString(newnumber));		
+				mol.set(num, Integer.toString(newnumber));
+				reactionstring = reactionstring + mol.get(num-1) + mol.get(num);
 			}
 		}
-		String combinedMolecule = "";
-		for (ArrayList<String> mol : condensedMol) {
-			combinedMolecule = combinedMolecule + mol;
-		}
-		Molecule c = new Molecule(combinedMolecule);
+		Molecule c = new Molecule(reactionstring);
 		return condenseMolecule(c.getMoleculeArray());
 	}
 

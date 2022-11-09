@@ -24,9 +24,9 @@ public class ReactionTester extends Reaction{
 		PCoeff.add(2);
 		
 		ArrayList<String> RMol = new ArrayList<String>();
-		RMol.add("C");
-		RMol.add("C");
-		RMol.add("CH3");
+		RMol.add("CCC");
+		RMol.add("CCO");
+		RMol.add("CH3HH");
 		RMol.add("CH3");
 
 		ArrayList<String> PMol = new ArrayList<String>();
