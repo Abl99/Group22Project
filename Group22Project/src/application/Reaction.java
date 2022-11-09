@@ -23,12 +23,26 @@ public class Reaction extends Molecule {
 		this.productMolecules = productMolecules;
 	}
 	
-	private ArrayList<String> condenseReaction(ArrayList<Integer> coeff, ArrayList<String> molecules){
-		
-		
-		
-		
-		return reactantMolecules;
+	protected ArrayList<String> condenseReaction(ArrayList<Integer> coefficient, ArrayList<String> molecules){
+		ArrayList<ArrayList<String>> condensedMol = new ArrayList<ArrayList<String>>();
+		for (String mol : molecules) {
+			Molecule m = new Molecule(mol);
+			condensedMol.add( condenseMolecule(m.getMoleculeArray()));
+		}
+		for (int index = 0;index < condensedMol.size();index++) {
+			int coeff = coefficient.get(index);
+			ArrayList<String> mol = condensedMol.get(index);
+			for(int num = 1;num < mol.size();num = num+2) {
+				int newnumber = (Integer.parseInt(mol.get(num)))*coeff;
+				mol.set(num, Integer.toString(newnumber));		
+			}
+		}
+		String combinedMolecule = "";
+		for (ArrayList<String> mol : condensedMol) {
+			combinedMolecule = combinedMolecule + mol;
+		}
+		Molecule c = new Molecule(combinedMolecule);
+		return condenseMolecule(c.getMoleculeArray());
 	}
 
 
