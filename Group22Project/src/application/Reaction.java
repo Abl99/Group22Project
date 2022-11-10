@@ -226,7 +226,15 @@ public class Reaction extends Molecule {
 		}else return productYieldPercent;
 	}
 
-	
+	public String toString() {
+		String reactants = reactantCoeff.get(0)+ " " + reactantMolecules.get(0);
+		String products = productCoeff.get(0) + " " + productMolecules.get(0);
+		for (int index = 1; index < reactantMolecules.size(); index ++) {
+			reactants = reactants + " + " + reactantCoeff.get(index)+ " " + reactantMolecules.get(index);
+			products = products + " + " + productCoeff.get(index) + " " + productMolecules.get(index);
+		}
+		return reactants + " --> " + products;
+	}
 	
 	
 }
