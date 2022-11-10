@@ -45,10 +45,21 @@ public class Valid_Molecules extends Valid_Atoms{
 		return Double.toString(molecule_weight);
 	}
 	
-	
-	
-	
-	
-	
-	
+	protected String getMoleculeName() {
+		
+		String molecule_name = "";
+		
+		for (int x = 0; x < atoms.length;x++) {
+			Valid_Atoms test_me = new Valid_Atoms();
+			String to_test = atoms[x];
+			
+			if (test_me.Test(to_test).equals("invalid element")) {
+				return "invalid element";
+			}else {
+				molecule_name += atoms[x] + " " + atom_numbers[x] + " ";
+			}
+		}
+		return molecule_name;
+	}
+
 }
