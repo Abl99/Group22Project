@@ -42,7 +42,7 @@ public class ProjectController {
     @FXML
     void entered_element_input(ActionEvent event) {
     	
-    	Valid_Input element_information = new Valid_Input();
+    	Valid_Atoms element_information = new Valid_Atoms();
     	
     	if (element_information.Test(element_Input.getText()).equals("invalid element")) {
     		error_element_label.setText("Invalid Element");
@@ -54,6 +54,8 @@ public class ProjectController {
     		element_answer_3.setText("");
     		element_answer_4.setText("");
     		return;
+    	}else {
+    		error_element_label.setText("");
     	}
 
     	//Input should be valid beyond this
