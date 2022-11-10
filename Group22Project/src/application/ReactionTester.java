@@ -48,6 +48,8 @@ public class ReactionTester{
 		System.out.println(reaction.getLimitingReagent());
 		System.out.println(reaction.theoreticalYield());
 		System.out.println(reaction.yieldPercent());
+		
+		System.out.println(reaction.toString());
 
 	}
 
