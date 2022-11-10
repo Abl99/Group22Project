@@ -286,7 +286,6 @@ public class Valid_Input{
 		return null;
 	}
 	
-	
 	//It makes sense to have these all return a string, since labels only accept strings
 	
 	protected String getAtomicWeight(String element) {
