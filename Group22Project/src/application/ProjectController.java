@@ -33,11 +33,55 @@ public class ProjectController {
     private Button enter_element_input;
     
     @FXML
+    private Label error_element_label;
+    
+    @FXML
+    private Label element_NAME;
+
+    
+    @FXML
     void entered_element_input(ActionEvent event) {
     	
-    	//Valid_Input Value = new Valid_Input(element_Input.getText());
-
+    	Valid_Input element_information = new Valid_Input();
     	
+    	if (element_information.Test(element_Input.getText()).equals("invalid element")) {
+    		error_element_label.setText("Invalid Element");
+    		
+    		//clear inputs
+    		element_NAME.setText("");
+    		element_answer_1.setText("");
+    		element_answer_2.setText("");
+    		element_answer_3.setText("");
+    		element_answer_4.setText("");
+    		return;
+    	}
+
+    	//Input should be valid beyond this
+    	String element = element_Input.getText();
+    	
+    	//Atomic Symbol
+    	if (element_information.getSymbol(element).equals("invalid element")) {
+    		
+    		element = element.substring(0,1).toUpperCase() + element.substring(1).toLowerCase();
+    		element_NAME.setText(element);
+    		
+    	}else {
+    		element_NAME.setText(element_information.getSymbol(element));
+    	}
+    	
+    	//Atomic Number
+    	element_answer_1.setText(element_information.getAtomicNumber(element));
+    	
+    	//Atomic Weight
+    	element_answer_2.setText(element_information.getAtomicWeight(element));
+    	
+    	//Category (Sample)
+    	String category = element_information.getCategory(element);
+    	category = category.substring(0,1).toUpperCase() + category.substring(1).toLowerCase();
+    	element_answer_3.setText(category);
+    	
+    	//Density (Sample)
+    	element_answer_4.setText(element_information.getDensity(element));
     }
 
 	//---------------------------------------------------------
@@ -58,6 +102,12 @@ public class ProjectController {
 
     @FXML
     private Label molecule_answer_4;
+    
+    @FXML
+    private Label error_molecule_label;
+    
+    @FXML
+    private Label molecule_NAME;
     
     @FXML
     void entered_molecule_input(ActionEvent event) {

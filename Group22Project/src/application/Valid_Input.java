@@ -236,72 +236,99 @@ public class Valid_Input{
 		return "ERROR IN GET SYMBOL";
 	}
 	
-	
-	protected double getAtomicWeight(String value) {          //WORK IN PROGRESS
-		
+	private String get_Element_Traits (String value, String selected_trait) {
 		//needs to be valid element/symbol
 		if (Test(value).equals("invalid element")) {
-			return 0;
+			return null;
 			
 		}else if (value.length() > 3){ //If an element was value
-			value.toLowerCase();
+			value = value.toLowerCase();
 			
 		
 		}else if (value.length() < 3) { //If a symbol was entered, give me the element of it
 			value = getElement(value);
-		}		
-		
-		//At this point, I will have a lower case element which can be used in the periodic-table-lookup.json file
-		
-		//-------------------------------------------------------------------------------------
-		//JSON ATOMIC WEIGHT LOOKUP (WIP)
+		}	
 		
 		JSONParser jsonparser = new JSONParser();
 		
-		
-		//BORROWED CODE FROM ATOM, WILL BE ALTERING IT FOR PURPOSES
-		/*
 		try {
-			FileReader reader = new FileReader("src/application/periodic-table-lookup-modified.json");		
-			Object obj = jsonparser.parse(reader);
-			JSONObject jsonObj = (JSONObject) obj;
-			Object value =  jsonObj.get(key);
+			FileReader reader = new FileReader("src/application/periodic-table-lookup-modified.json");
+			JSONObject obj = (JSONObject) jsonparser.parse(reader);
+			JSONObject element_traits =  (JSONObject) obj.get(value);
 			
+			//Since is instance doesn't really exist in java
+			//I just try to figure out what type of object element_traits will be
+			//If its a double, I convert it to string, etc.
 			
+			try {
+				return (String) element_traits.get(selected_trait);
 			
-		//TODO put useful catch statements
+			}catch (ClassCastException x) {
+				
+				try {
+					
+					return Double.toString( (double) element_traits.get(selected_trait));
+				
+				}catch (ClassCastException y) {
+					
+					return Long.toString((long) element_traits.get(selected_trait));
+				}
+			}
+
 		}catch(FileNotFoundException e) {
 			e.getMessage();
-			System.out.println("FNF exception");
 		}catch(ParseException e) {
 			e.getMessage();
-			System.out.println("Parse Exception");
 		}catch(IOException e) {
 			e.getMessage();
-			System.out.println("IO Exception");
 		}
-		*/
-
-		return 0;
 		
+		return null;
 	}
 	
 	
+	//It makes sense to have these all return a string, since labels only accept strings
 	
+	protected String getAtomicWeight(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return get_Element_Traits(element, "atomic_mass");
+	}
 	
+	protected String getAtomicNumber(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return get_Element_Traits(element, "number");
+	}
 	
+	protected String getCategory(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return get_Element_Traits(element, "category");
+	}
 	
+	protected String getBoil(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return  get_Element_Traits(element, "boil");
+	}
 	
+	protected String getDensity (String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return get_Element_Traits(element, "density");
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	protected String getPhase(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return (String) get_Element_Traits(element, "phase");
+	}
 	
 }

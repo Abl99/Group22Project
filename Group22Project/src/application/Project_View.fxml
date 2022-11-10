@@ -14,17 +14,19 @@
       <Separator layoutX="301.0" layoutY="4.0" orientation="VERTICAL" prefHeight="456.0" prefWidth="0.0" />
       <AnchorPane layoutY="2.0" prefHeight="450.0" prefWidth="300.0">
          <children>
-            <Label fx:id="element_answer_1" layoutX="150.0" layoutY="50.0" prefHeight="17.0" prefWidth="128.0" text="XXXXXXXXXXXXXX" />
-            <Label fx:id="element_answer_2" layoutX="150.0" layoutY="85.0" prefHeight="17.0" prefWidth="128.0" text="XXXXXXXXXXXXXX" />
-            <Label fx:id="element_answer_3" layoutX="150.0" layoutY="120.0" prefHeight="17.0" prefWidth="128.0" text="XXXXXXXXXXXXXX" />
-            <Label fx:id="element_answer_4" layoutX="150.0" layoutY="155.0" prefHeight="17.0" prefWidth="128.0" text="XXXXXXXXXXXXXX" />
+            <Label fx:id="element_answer_1" layoutX="150.0" layoutY="50.0" prefHeight="17.0" prefWidth="128.0" />
+            <Label fx:id="element_answer_2" layoutX="150.0" layoutY="85.0" prefHeight="17.0" prefWidth="128.0" />
+            <Label fx:id="element_answer_3" layoutX="150.0" layoutY="120.0" prefHeight="17.0" prefWidth="128.0" />
+            <Label fx:id="element_answer_4" layoutX="150.0" layoutY="155.0" prefHeight="17.0" prefWidth="128.0" />
             <Label layoutX="14.0" layoutY="50.0" prefHeight="17.0" prefWidth="128.0" text="ATOMIC NUMBER:" />
             <Label layoutX="14.0" layoutY="86.0" prefHeight="17.0" prefWidth="128.0" text="ATOMIC WEIGHT:" />
-            <Label layoutX="14.0" layoutY="121.0" prefHeight="17.0" prefWidth="128.0" text="ATOMIC VALUE:" />
-            <Label layoutX="14.0" layoutY="156.0" prefHeight="17.0" prefWidth="128.0" text="ATOMIC VALUE:" />
-            <Label layoutX="57.0" layoutY="14.0" prefHeight="17.0" prefWidth="149.0" text="ELEMENT NAME (HERE)" />
+            <Label layoutX="14.0" layoutY="121.0" prefHeight="17.0" prefWidth="128.0" text="CATEGORY:" />
+            <Label layoutX="14.0" layoutY="156.0" prefHeight="17.0" prefWidth="128.0" text="DENSITY:" />
             <TextField fx:id="element_Input" layoutX="68.0" layoutY="355.0" />
             <Button fx:id="enter_element_input" layoutX="116.0" layoutY="391.0" mnemonicParsing="false" onAction="#entered_element_input" text="Enter" />
+            <Label fx:id="error_element_label" layoutX="68.0" layoutY="428.0" prefHeight="17.0" prefWidth="149.0" textFill="RED" />
+            <Label fx:id="element_NAME" layoutX="150.0" layoutY="14.0" prefHeight="17.0" prefWidth="128.0" />
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="128.0" text="SYMBOL:" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="306.0" layoutY="2.0" prefHeight="450.0" prefWidth="300.0">
@@ -54,7 +56,8 @@
             <Label layoutX="28.0" layoutY="86.0" prefHeight="17.0" prefWidth="128.0" text="ATOMIC WEIGHT:" />
             <Label layoutX="28.0" layoutY="121.0" prefHeight="17.0" prefWidth="128.0" text="ATOMIC VALUE:" />
             <Label layoutX="28.0" layoutY="156.0" prefHeight="17.0" prefWidth="128.0" text="ATOMIC VALUE:" />
-            <Label layoutX="71.0" layoutY="14.0" prefHeight="17.0" prefWidth="149.0" text="MOLECULE NAME (HERE)" />
+            <Label fx:id="molecule_NAME" layoutX="71.0" layoutY="14.0" prefHeight="17.0" prefWidth="149.0" text="MOLECULE NAME (HERE)" />
+            <Label fx:id="error_molecule_label" layoutX="72.0" layoutY="428.0" prefHeight="17.0" prefWidth="149.0" textFill="RED" />
          </children>
       </AnchorPane>
    </children>

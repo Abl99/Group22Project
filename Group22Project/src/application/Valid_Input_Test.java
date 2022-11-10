@@ -17,8 +17,6 @@ public class Valid_Input_Test {
 		//getSymbol will get the symbol of a real element
 		//getElement will het the element of a real symbol 
 		
-		
-		
 		System.out.println(test_me.getElement("FE"));
 		
 		System.out.println(test_me.getElement("MG"));
@@ -33,6 +31,9 @@ public class Valid_Input_Test {
 		
 		System.out.println(test_me.getSymbol("Nothing"));
 		
+		System.out.println(test_me.getAtomicWeight("Fe"));
+		
+		System.out.println(test_me.getAtomicWeight("mAGnesium"));
 		
 	}
 
