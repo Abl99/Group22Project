@@ -165,8 +165,20 @@ public class ProjectController {
     private Button enter_chemical_equation;
     
     @FXML
+    private Label reaction_error_label;
+    
+    @FXML
     void entered_chemical_equation(ActionEvent event) {
 
+    	String amount_of_reactants = number_of_rectants.getText().toLowerCase().replaceAll("[a-z]", "");
+    	String amount_of_products = number_of_products.getText().toLowerCase().replaceAll("[a-z]", "");
+    	
+    	System.out.println(amount_of_reactants);
+    	
+    	if (amount_of_reactants.isEmpty() || amount_of_products.isEmpty()) {
+    		reaction_error_label.setText("Add Inputs");
+    		return;
+    	}
     	
     	
     	
