@@ -1,6 +1,6 @@
 package application;
 
-public class Valid_Atoms_Test {
+public class Atom_Test {
 
 	public static void main(String[] args) {
 		

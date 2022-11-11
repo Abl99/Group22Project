@@ -1,11 +1,17 @@
 package application;
 
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 public class ProjectController {
@@ -161,9 +167,48 @@ public class ProjectController {
     @FXML
     void entered_chemical_equation(ActionEvent event) {
 
+    	
+    	
+    	
+    	/*
+    	if (optionalCompletedChoiceBox.getValue() != null) {
+        	//System.out.println("Quiz grade clicked");
+        	Scene mainScene1 = applicationStage.getScene();
+        	
+        	int numberOfQuizzes = optionalCompletedChoiceBox.getValue();
+        	int rowsCreated = 0;
+        	
+        	VBox quizGradeContainer = new VBox();
+        	Label this_is_optional = new Label("This is Optional Quiz Grades (Out of 10)");
+        	quizGradeContainer.getChildren().add(this_is_optional);
+        	
+        	ArrayList<TextField> optional_quiz_textfield = new ArrayList<TextField>();
+        	while (rowsCreated < numberOfQuizzes) {
+        		
+            	HBox rowContainer = new HBox();
+            	Label optional_quiz_label = new Label("Quiz grade");
+            	TextField optional_quiz_textfield1 = new TextField();
+            	optional_quiz_textfield.add(optional_quiz_textfield1);
+            	
+            	rowContainer.getChildren().addAll(optional_quiz_label,optional_quiz_textfield1);
+            	rowsCreated++;
+            	
+            	quizGradeContainer.getChildren().add(rowContainer);
+        	}
+        	Label optional_error_label = new Label("");
+        	
+        	Button doneButton = new Button("Done");
+        	doneButton.setOnAction(doneEvent -> calculateAverageQuizGrade(mainScene1, optional_quiz_textfield,optional_error_label));
+        	quizGradeContainer.getChildren().addAll(optional_error_label,doneButton);
+        	
+        	Scene optional_quiz = new Scene(quizGradeContainer);
+        	applicationStage.setScene(optional_quiz);
+    	}else {
+    		average_optional_quiz_grade.setText("No Quiz Input (Grade is 0)");
+    		average_quiz_grade1 = 0;
+    	}
+    	 */
     }
-
-
 }
 
 
