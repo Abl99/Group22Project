@@ -42,7 +42,7 @@ public class ProjectController {
     @FXML
     void entered_element_input(ActionEvent event) {
     	
-    	Valid_Atoms element_information = new Valid_Atoms();
+    	Atom element_information = new Atom();
     	
     	if (element_information.Test(element_Input.getText()).equals("invalid element")) {
     		error_element_label.setText("Invalid Element");
@@ -128,14 +128,21 @@ public class ProjectController {
     	}else {
     		error_molecule_label.setText("");
     	}
+    	
+    	Molecule molecule_information = new Molecule(molecule_input.getText());
+    	
+    	//check if molecule is valid
+    	if (molecule_information.MoleculeCheck()) {
+    		molecule_answer_1.setText(Double.toString(molecule_information.getMolecularWeight()));
+    		
+    		molecule_NAME.setText(molecule_information.MoleculeName());
 
-    	Valid_Molecules molecule_information = new Valid_Molecules(molecule_input.getText());
-    	
-    	//Molecule Name
-    	molecule_NAME.setText(molecule_information.getMoleculeName());
-    	
-    	//Atomic Weight
-    	molecule_answer_2.setText(molecule_information.getMoleculeWeight());
+    	}else {
+    		error_molecule_label.setText("Invalid Molecule");
+    		molecule_NAME.setText("");
+    		molecule_answer_1.setText("");
+    		return;
+    	}
     }
     
     //---------------------------------------------------------

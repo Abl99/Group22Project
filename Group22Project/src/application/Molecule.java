@@ -58,13 +58,14 @@ public class Molecule extends Atom{
 	 * @return the molecular weight. If any elements in the molecular formula do not exist, their
 	 * atomic weight is treated as 0.0, and the molecular weight is calculated as usual.
 	 */
-	public double getMolecularWeight() {
+	public Double getMolecularWeight() {
 		//TODO test method
 		double sum = 0.0;
 		ArrayList<String> moleculeArray = getMoleculeArray();
 		for (int index = 0; index < moleculeArray.size(); index = index+2) {
-			Atom x = new Atom(moleculeArray.get(index));
-			sum = sum + x.getAtomicWeight() * (Integer.parseInt(moleculeArray.get(index+1)));
+			
+			Atom x = new Atom();
+			sum += Double.parseDouble(x.getAtomicWeight(moleculeArray.get(index))) * Integer.parseInt(moleculeArray.get(index+1));
 		}
 		return sum;
 	}
@@ -91,6 +92,40 @@ public class Molecule extends Atom{
 		return partiallyCondensed;
 	}
 	
-
+	//This method serves to see if it is a valid molecule
+	protected boolean MoleculeCheck() {
+		Molecule test = new Molecule(molecularFormula);
+		ArrayList<String> test_array = test.getMoleculeArray();
+		
+		for (int x = 0; x < test_array.size();x = x + 2) {
+			
+			if (test.Test(test_array.get(x)).equals("invalid element")){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	//This method is to return the name of the molecule
+	protected String MoleculeName() {
+		Molecule test = new Molecule(molecularFormula);
+		ArrayList<String> test_array = test.getMoleculeArray();
+		
+		String molecule_name = "";
+		
+		for (int x = 0; x < test_array.size();x = x + 2) {
+			
+			if (!test.Test(test_array.get(x)).equals("invalid element")){
+				String name = test.getElement(test_array.get(x));
+				name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+				
+				molecule_name += name + " ";
+			}
+		}
+		return molecule_name;
+	}
+	
+	
+	
 	
 }

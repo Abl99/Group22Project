@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MoleculeTester {
 
 	public static void main(String[] args) {
-		String input = "XeF4A";
+		String input = "XeF4";
 		Molecule m = new Molecule(input);
 		
 		String p = m.getMolecularFormula();
@@ -17,9 +17,9 @@ public class MoleculeTester {
 		System.out.println(r);
 
 		
+		Molecule m1 = new Molecule("XeMg");
 		
-		
-		
+		System.out.println(m1.MoleculeCheck());
 		
 		
 	}

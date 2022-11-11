@@ -2,7 +2,7 @@ package application;
 
 import java.util.Arrays;
 
-public class Valid_Molecules extends Valid_Atoms{
+public class Valid_Molecules extends Atom{
 
 	//ArrayList<String> molecule_input = new ArrayList<String>();
 	
@@ -29,7 +29,7 @@ public class Valid_Molecules extends Valid_Atoms{
 		double molecule_weight = 0;
 		
 		for (int x = 0; x < atoms.length;x++) {
-			Valid_Atoms test_me = new Valid_Atoms();
+			Atom test_me = new Atom();
 			String to_test = atoms[x];
 			
 			if (test_me.Test(to_test).equals("invalid element")) {
@@ -50,7 +50,7 @@ public class Valid_Molecules extends Valid_Atoms{
 		String molecule_name = "";
 		
 		for (int x = 0; x < atoms.length;x++) {
-			Valid_Atoms test_me = new Valid_Atoms();
+			Atom test_me = new Atom();
 			String to_test = atoms[x];
 			
 			if (test_me.Test(to_test).equals("invalid element")) {
