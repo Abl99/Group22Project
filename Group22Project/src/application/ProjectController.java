@@ -170,19 +170,37 @@ public class ProjectController {
     @FXML
     void entered_chemical_equation(ActionEvent event) {
 
-    	String amount_of_reactants = number_of_rectants.getText().toLowerCase().replaceAll("[a-z]", "");
-    	String amount_of_products = number_of_products.getText().toLowerCase().replaceAll("[a-z]", "");
+    	String test1 = number_of_rectants.getText().toLowerCase().replaceAll("[0-9]", "");
+    	String test2 = number_of_products.getText().toLowerCase().replaceAll("[0-9]", "");
     	
-    	System.out.println(amount_of_reactants);
+    	if (number_of_rectants.getText().equals("") || number_of_rectants.getText().isEmpty()) {
+    		reaction_error_label.setText("Add Numerical Inputs");
+    		return;
+    	}
     	
-    	if (amount_of_reactants.isEmpty() || amount_of_products.isEmpty()) {
-    		reaction_error_label.setText("Add Inputs");
+    	if (number_of_products.getText().equals("") || number_of_products.getText().isEmpty()) {
+    		reaction_error_label.setText("Add Numerical Inputs");
     		return;
     	}
     	
     	
+    	if (test1.length() >= 1 || test2.length() >= 1) {
+    		reaction_error_label.setText("Add Numerical Inputs");
+    		return;
+    	}
     	
-    	/*
+    	//wipe the erorr message
+    	reaction_error_label.setText("");
+    	
+    	//Get the amount of each as an int. 
+    	int amount_of_reactants = Integer.parseInt(number_of_rectants.getText());
+    	int amount_of_products = Integer.parseInt(number_of_products.getText());
+    	
+    	
+    	
+    	
+    	
+    	/* USING THIS AS REFERENCE 
     	if (optionalCompletedChoiceBox.getValue() != null) {
         	//System.out.println("Quiz grade clicked");
         	Scene mainScene1 = applicationStage.getScene();
