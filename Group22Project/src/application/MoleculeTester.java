@@ -16,7 +16,12 @@ public class MoleculeTester {
 		System.out.println(q);
 		System.out.println(r);
 
-
+		
+		
+		
+		
+		
+		
 	}
 
 }

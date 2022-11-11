@@ -42,7 +42,7 @@ public class ProjectController {
     @FXML
     void entered_element_input(ActionEvent event) {
     	
-    	Valid_Input element_information = new Valid_Input();
+    	Valid_Atoms element_information = new Valid_Atoms();
     	
     	if (element_information.Test(element_Input.getText()).equals("invalid element")) {
     		error_element_label.setText("Invalid Element");
@@ -54,6 +54,8 @@ public class ProjectController {
     		element_answer_3.setText("");
     		element_answer_4.setText("");
     		return;
+    	}else {
+    		error_element_label.setText("");
     	}
 
     	//Input should be valid beyond this
@@ -87,6 +89,9 @@ public class ProjectController {
 	//---------------------------------------------------------
     
     //MOLECULE VALUES
+    
+    @FXML
+    private TextField molecule_input;
 
     @FXML
     private Button enter_molecule_input;
@@ -111,15 +116,31 @@ public class ProjectController {
     
     @FXML
     void entered_molecule_input(ActionEvent event) {
+    	
+    	if (molecule_input.getText().equals("") || molecule_input.getText().isEmpty()) {
+    		
+    		error_molecule_label.setText("Invalid Molecule");
+    		
+    		//clear inputs
+    		molecule_NAME.setText("");
+    		molecule_answer_1.setText("");
+    		return;
+    	}else {
+    		error_molecule_label.setText("");
+    	}
 
+    	Valid_Molecules molecule_information = new Valid_Molecules(molecule_input.getText());
+    	
+    	//Molecule Name
+    	molecule_NAME.setText(molecule_information.getMoleculeName());
+    	
+    	//Atomic Weight
+    	molecule_answer_2.setText(molecule_information.getMoleculeWeight());
     }
     
     //---------------------------------------------------------
 
     //CHEMICAL EQUATION
-    
-    @FXML
-    private TextField molecule_input;
 
     @FXML
     private TextField number_of_products;

@@ -1,21 +1,21 @@
 package application;
 
-public class Valid_Input_Test {
+public class Valid_Atoms_Test {
 
 	public static void main(String[] args) {
 		
 		
-		Valid_Input test_me = new Valid_Input();
+		Valid_Atoms test_me = new Valid_Atoms();
 		
 		
 		//I have three methods at the moment, getElement, getSymbol and Test
 		
 		//Test will return the element if the proper element was inputed.
-		//Test will return a symbol if the symbol was inputted. 
+		//Test will return a symbol if the symbol was inputed. 
 		
 		
 		//getSymbol will get the symbol of a real element
-		//getElement will het the element of a real symbol 
+		//getElement will get the element of a real symbol 
 		
 		System.out.println(test_me.getElement("FE"));
 		

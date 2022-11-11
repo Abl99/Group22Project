@@ -16,7 +16,7 @@ import org.json.simple.parser.ParseException;
 
 //I am thinking this class should only be used for the elements section 
 
-public class Valid_Input{
+public class Valid_Atoms{
 	
 	private ArrayList<String> all_elements = new ArrayList<>(Arrays.asList(
     "hydrogen",
