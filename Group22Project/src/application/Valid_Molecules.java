@@ -56,6 +56,8 @@ public class Valid_Molecules extends Valid_Atoms{
 			if (test_me.Test(to_test).equals("invalid element")) {
 				return "invalid element";
 			}else {
+
+				//I need to get elements here
 				molecule_name += atoms[x] + " " + atom_numbers[x] + " ";
 			}
 		}
