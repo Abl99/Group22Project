@@ -13,13 +13,13 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			AnchorPane root = loader.load(new FileInputStream("src/application/Project_View.fxml"));
-			ProjectController controller = (ProjectController)loader.getController();
+			Project_View_Controller controller = (Project_View_Controller)loader.getController();
 			controller.applicationStage = primaryStage;
 			
 			Scene scene = new Scene(root,912,450);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Group 22 Project");
-			primaryStage.show();
+			primaryStage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
