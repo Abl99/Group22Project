@@ -22,6 +22,12 @@ public class ProjectController {
 	//ELEMENT VALUES 
     @FXML
     private TextField element_Input;
+    
+    @FXML
+    private Label element_name;
+
+    @FXML
+    private Label element_symbol;
 
     @FXML
     private Label element_answer_1;
@@ -40,9 +46,6 @@ public class ProjectController {
     
     @FXML
     private Label error_element_label;
-    
-    @FXML
-    private Label element_NAME;
 
     
     @FXML
@@ -54,7 +57,7 @@ public class ProjectController {
     		error_element_label.setText("Invalid Element");
     		
     		//clear inputs
-    		element_NAME.setText("");
+    		element_symbol.setText("");
     		element_answer_1.setText("");
     		element_answer_2.setText("");
     		element_answer_3.setText("");
@@ -67,14 +70,26 @@ public class ProjectController {
     	//Input should be valid beyond this
     	String element = element_Input.getText();
     	
+    	//Atomic Name
+    	if (element_information.getElement(element).equals("invalid element")){
+    		
+    		element = element.substring(0,1).toUpperCase() + element.substring(1).toLowerCase();
+    		element_name.setText(element);
+    		
+    	}else {
+    		String my_element = element_information.getElement(element);
+    		my_element = my_element.substring(0,1).toUpperCase() + my_element.substring(1).toLowerCase();
+    		element_name.setText(my_element);
+    	}
+    	
     	//Atomic Symbol
     	if (element_information.getSymbol(element).equals("invalid element")) {
     		
     		element = element.substring(0,1).toUpperCase() + element.substring(1).toLowerCase();
-    		element_NAME.setText(element);
+    		element_symbol.setText(element);
     		
     	}else {
-    		element_NAME.setText(element_information.getSymbol(element));
+    		element_symbol.setText(element_information.getSymbol(element));
     	}
     	
     	//Atomic Number
@@ -105,6 +120,7 @@ public class ProjectController {
     @FXML
     private Label molecule_answer_1;
 
+    //Only molecule_answer_1 and molecule_NAME is used, answer 2 - 4 are empty
     @FXML
     private Label molecule_answer_2;
 
@@ -173,17 +189,19 @@ public class ProjectController {
     	String test1 = number_of_rectants.getText().toLowerCase().replaceAll("[0-9]", "");
     	String test2 = number_of_products.getText().toLowerCase().replaceAll("[0-9]", "");
     	
+    	//check for null on reactants
     	if (number_of_rectants.getText().equals("") || number_of_rectants.getText().isEmpty()) {
     		reaction_error_label.setText("Add Numerical Inputs");
     		return;
     	}
     	
+    	//check for null on products
     	if (number_of_products.getText().equals("") || number_of_products.getText().isEmpty()) {
     		reaction_error_label.setText("Add Numerical Inputs");
     		return;
     	}
     	
-    	
+    	//ensures that there are numbers only in an input
     	if (test1.length() >= 1 || test2.length() >= 1) {
     		reaction_error_label.setText("Add Numerical Inputs");
     		return;
@@ -195,6 +213,13 @@ public class ProjectController {
     	//Get the amount of each as an int. 
     	int amount_of_reactants = Integer.parseInt(number_of_rectants.getText());
     	int amount_of_products = Integer.parseInt(number_of_products.getText());
+    	
+    	
+    	Scene reactions_scene = applicationStage.getScene();
+    	
+    	VBox reaction_container = new VBox();
+    	Label reaction_info = new Label("Please enter your reaction info");
+    	reaction_container.getChildren().add(reaction_info);
     	
     	
     	
