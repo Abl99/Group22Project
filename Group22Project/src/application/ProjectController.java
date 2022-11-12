@@ -151,12 +151,28 @@ public class ProjectController {
     		error_molecule_label.setText("");
     	}
     	
+    	//prevents an error if input is only numbers
+    	String test = molecule_input.getText().toLowerCase().replaceAll("[a-z]", "");
+    	
+    	String test2 = molecule_input.getText().toLowerCase().replaceAll("[0-9]", "");
+    	
+    	System.out.println(test);
+    	if (test.length() >= 1 && test2.length() == 0) {
+    		error_molecule_label.setText("Invalid Molecule");
+    		molecule_NAME.setText("");
+    		molecule_answer_1.setText("");
+    		return;
+    	}
+    	
+    	
     	Molecule molecule_information = new Molecule(molecule_input.getText());
     	
     	//check if molecule is valid
     	if (molecule_information.MoleculeCheck()) {
-    		molecule_answer_1.setText(Double.toString(molecule_information.getMolecularWeight()));
     		
+    		//rounds the answer
+    		molecule_answer_1.setText(String.format("%.4f", molecule_information.getMolecularWeight()));
+   
     		molecule_NAME.setText(molecule_information.MoleculeName());
 
     	}else {
@@ -165,6 +181,7 @@ public class ProjectController {
     		molecule_answer_1.setText("");
     		return;
     	}
+    	
     }
     
     //---------------------------------------------------------
