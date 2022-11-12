@@ -183,6 +183,10 @@ public class ProjectController {
     @FXML
     private Label reaction_error_label;
     
+    //This label should return whether the reaction inputed was balanced or not
+    @FXML
+    private Label reaction_balanced;
+    
     @FXML
     void entered_chemical_equation(ActionEvent event) {
 
