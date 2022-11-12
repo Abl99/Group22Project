@@ -2,10 +2,14 @@ package application;
 
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,7 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
-public class ProjectController {
+public class Project_View_Controller {
 	public Stage applicationStage;
 	
 	//---------------------------------------------------------
@@ -205,7 +209,7 @@ public class ProjectController {
     private Label reaction_balanced;
     
     @FXML
-    void entered_chemical_equation(ActionEvent event) {
+    void entered_chemical_equation(ActionEvent event) throws IOException{
 
     	String test1 = number_of_rectants.getText().toLowerCase().replaceAll("[0-9]", "");
     	String test2 = number_of_products.getText().toLowerCase().replaceAll("[0-9]", "");
@@ -230,72 +234,42 @@ public class ProjectController {
     	
     	//wipe the error message
     	reaction_error_label.setText("");
+
+    	//I decided to make a new scene for the Reactions class since it appeared to be quite complicated and 
+    	//also required formatting 
+    	
+    	//I used the video below, to get the code to move from one scene to the next
+    	//https://www.youtube.com/watch?v=XCgcQTQCfJQ
+    	
+    	Parent Reaction_Views = FXMLLoader.load(getClass().getResource("Reactions_View.fxml"));
+    	
+    	Scene Reacton_Scene = new Scene(Reaction_Views);
+    	
+    	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    	
+    	scene.setScene(Reacton_Scene);
+    	scene.show();
+
+    }
+    
+    //This method will provide the text field amounts 
+    protected ArrayList<Integer> get_amount(){
+    	
+    	ArrayList<Integer> amount = new ArrayList<Integer>();
     	
     	//Get the amount of each as an int. 
-    	int amount_of_reactants = Integer.parseInt(number_of_rectants.getText());
-    	int amount_of_products = Integer.parseInt(number_of_products.getText());
+    	amount.add(Integer.parseInt(number_of_rectants.getText()));
+    	amount.add(Integer.parseInt(number_of_products.getText()));
     	
-    	
-    	Scene reactions_scene = applicationStage.getScene();
-    	
-    	VBox reaction_container = new VBox();
-    	Label reaction_info = new Label("Please enter your reaction info");
-    	reaction_container.getChildren().add(reaction_info);
-    	
-    	ArrayList<TextField> reactions_textfield = new ArrayList<TextField>();
-    	
-    	/*
-    	while (rowsCreated < numberOfQuizzes) {
-    		
-        	HBox rowContainer = new HBox();
-        	Label optional_quiz_label = new Label("Quiz grade");
-        	TextField optional_quiz_textfield1 = new TextField();
-        	optional_quiz_textfield.add(optional_quiz_textfield1);
-        	
-        	rowContainer.getChildren().addAll(optional_quiz_label,optional_quiz_textfield1);
-        	rowsCreated++;
-        	
-        	quizGradeContainer.getChildren().add(rowContainer);
-    	*/
-    	/* USING THIS AS REFERENCE 
-    	if (optionalCompletedChoiceBox.getValue() != null) {
-        	//System.out.println("Quiz grade clicked");
-        	Scene mainScene1 = applicationStage.getScene();
-        	
-        	int numberOfQuizzes = optionalCompletedChoiceBox.getValue();
-        	int rowsCreated = 0;
-        	
-        	VBox quizGradeContainer = new VBox();
-        	Label this_is_optional = new Label("This is Optional Quiz Grades (Out of 10)");
-        	quizGradeContainer.getChildren().add(this_is_optional);
-        	
-        	ArrayList<TextField> optional_quiz_textfield = new ArrayList<TextField>();
-        	while (rowsCreated < numberOfQuizzes) {
-        		
-            	HBox rowContainer = new HBox();
-            	Label optional_quiz_label = new Label("Quiz grade");
-            	TextField optional_quiz_textfield1 = new TextField();
-            	optional_quiz_textfield.add(optional_quiz_textfield1);
-            	
-            	rowContainer.getChildren().addAll(optional_quiz_label,optional_quiz_textfield1);
-            	rowsCreated++;
-            	
-            	quizGradeContainer.getChildren().add(rowContainer);
-        	}
-        	Label optional_error_label = new Label("");
-        	
-        	Button doneButton = new Button("Done");
-        	doneButton.setOnAction(doneEvent -> calculateAverageQuizGrade(mainScene1, optional_quiz_textfield,optional_error_label));
-        	quizGradeContainer.getChildren().addAll(optional_error_label,doneButton);
-        	
-        	Scene optional_quiz = new Scene(quizGradeContainer);
-        	applicationStage.setScene(optional_quiz);
-    	}else {
-    		average_optional_quiz_grade.setText("No Quiz Input (Grade is 0)");
-    		average_quiz_grade1 = 0;
-    	}
-    	 */
+    	return amount;
     }
+    
+    
+    
+    
+    
+    
+    
 }
 
 
