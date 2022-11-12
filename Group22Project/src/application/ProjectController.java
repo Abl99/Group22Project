@@ -189,7 +189,7 @@ public class ProjectController {
     	String test1 = number_of_rectants.getText().toLowerCase().replaceAll("[0-9]", "");
     	String test2 = number_of_products.getText().toLowerCase().replaceAll("[0-9]", "");
     	
-    	//check for null on reactants
+    	//check for null on reacts
     	if (number_of_rectants.getText().equals("") || number_of_rectants.getText().isEmpty()) {
     		reaction_error_label.setText("Add Numerical Inputs");
     		return;
@@ -207,7 +207,7 @@ public class ProjectController {
     		return;
     	}
     	
-    	//wipe the erorr message
+    	//wipe the error message
     	reaction_error_label.setText("");
     	
     	//Get the amount of each as an int. 
@@ -221,10 +221,21 @@ public class ProjectController {
     	Label reaction_info = new Label("Please enter your reaction info");
     	reaction_container.getChildren().add(reaction_info);
     	
+    	ArrayList<TextField> reactions_textfield = new ArrayList<TextField>();
     	
-    	
-    	
-    	
+    	/*
+    	while (rowsCreated < numberOfQuizzes) {
+    		
+        	HBox rowContainer = new HBox();
+        	Label optional_quiz_label = new Label("Quiz grade");
+        	TextField optional_quiz_textfield1 = new TextField();
+        	optional_quiz_textfield.add(optional_quiz_textfield1);
+        	
+        	rowContainer.getChildren().addAll(optional_quiz_label,optional_quiz_textfield1);
+        	rowsCreated++;
+        	
+        	quizGradeContainer.getChildren().add(rowContainer);
+    	*/
     	/* USING THIS AS REFERENCE 
     	if (optionalCompletedChoiceBox.getValue() != null) {
         	//System.out.println("Quiz grade clicked");
