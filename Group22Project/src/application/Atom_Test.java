@@ -1,11 +1,11 @@
 package application;
 
-public class Valid_Atoms_Test {
+public class Atom_Test {
 
 	public static void main(String[] args) {
 		
 		
-		Valid_Atoms test_me = new Valid_Atoms();
+		Atom test_me = new Atom();
 		
 		
 		//I have three methods at the moment, getElement, getSymbol and Test

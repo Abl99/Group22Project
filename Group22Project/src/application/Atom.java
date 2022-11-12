@@ -3,123 +3,331 @@ package application;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+//UPDATED
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class Atom {
-	private String name;
-	private String symbol;
+//For the controller class, I am trying to check inputs for validity
+//If this belongs in another class, then we can move it
+
+//I am thinking this class should only be used for the elements section 
+
+public class Atom{
 	
-	public Atom (){
-		setName("");
-		setSymbol("");
-	}
-	public Atom (String i){
-		if (elementExistence(i)) {
-			if (i.length()>3) {
-				setName(i);
-				setSymbol(fetchNameOrSymbol(i));
-			}else {
-				setName(fetchNameOrSymbol(i));
-				setSymbol(i);
-			}
+	private ArrayList<String> all_elements = new ArrayList<>(Arrays.asList(
+    "hydrogen",
+    "H",
+    "helium",
+    "He",
+    "lithium","Li",
+    "beryllium","Be",
+    "boron","B",
+    "carbon","C",
+    "nitrogen","N",
+    "oxygen","O",
+    "fluorine","F",
+    "neon","Ne",
+    "sodium","Na",
+    "magnesium","Mg",
+    "aluminium","Al",
+    "silicon","Si",
+    "phosphorus","P",
+    "sulfur","S",
+    "chlorine","Cl",
+    "argon","Ar",
+    "potassium","K",
+    "calcium","Ca",
+    "scandium","Sc",
+    "titanium","Ti",
+    "vanadium","V",
+    "chromium","Cr",
+    "manganese","Mn",
+    "iron","Fe",
+    "cobalt","Co",
+    "nickel","Ni",
+    "copper","Cu",
+    "zinc","Zn",
+    "gallium","Ga",
+    "germanium","Ge",
+    "arsenic","As",
+    "selenium","Se",
+    "bromine","Br",
+    "krypton","Kr",
+    "rubidium","Rb",
+    "strontium","Sr",
+    "yttrium","Y",
+    "zirconium","Zr",
+    "niobium","Nb",
+    "molybdenum","Mo",
+    "technetium","Tc",
+    "ruthenium","Ru",
+    "rhodium","Rh",
+    "palladium","Pd",
+    "silver","Ag",
+    "cadmium","Cd",
+    "indium","In",
+    "tin","Sn",
+    "antimony","Sb",
+    "tellurium","Te",
+    "iodine","I",
+    "xenon","Xe",
+    "cesium","Cs",
+    "barium","Ba",
+    "lanthanum","La",
+    "cerium","Ce",
+    "praseodymium","Pr",
+    "neodymium","Nd",
+    "promethium","Pm",
+    "samarium","Sm",
+    "europium","Eu",
+    "gadolinium","Gd",
+    "terbium","Tb",
+    "dysprosium","Dy",
+    "holmium","Ho",
+    "erbium","Er",
+    "thulium","Tm",
+    "ytterbium","Yb",
+    "lutetium","Lu",
+    "hafnium","Hf",
+    "tantalum","Ta",
+    "tungsten","W",
+    "rhenium","Re",
+    "osmium","Os",
+    "iridium","Ir",
+    "platinum","Pt",
+    "gold","Au",
+    "mercury","Hg",
+    "thallium","Tl",
+    "lead","Pb",
+    "bismuth","Bi",
+    "polonium","Po",
+    "astatine","At",
+    "radon","Rn",
+    "francium","Fr",
+    "radium","Ra",
+    "actinium","Ac",
+    "thorium","Th",
+    "protactinium","Pa",
+    "uranium","U",
+    "neptunium","Np",
+    "plutonium","Pu",
+    "americium","Am",
+    "curium","Cm",
+    "berkelium","Bk",
+    "californium","Cf",
+    "einsteinium","Es",
+    "fermium","Fm",
+    "mendelevium","Md",
+    "nobelium","No",
+    "lawrencium","Lr",
+    "rutherfordium","Rf",
+    "dubnium","Db",
+    "seaborgium","Sg",
+    "bohrium","Bh",
+    "hassium","Hs",
+    "meitnerium","Mt",
+    "darmstadtium","Ds",
+    "roentgenium","Rg",
+    "copernicium","Cn",
+    "nihonium","Nh",
+    "flerovium","Fl",
+    "moscovium","Mc",
+    "livermorium","Lv",
+    "tennessine","Ts",
+    "oganesson","Og",
+    "ununennium", "Uue"));
+	
+	protected String Test(String element_to_check) {
+		
+		//will assume it is not digit 
+		if (element_to_check.equals(null) || element_to_check.equals("")){
+			return "invalid element";
 		}else {
-			setName("");
-			setSymbol("");
+			//remove any whitespace
+			element_to_check = element_to_check.trim();
 		}
+		
+		//Check as a symbol
+		if (element_to_check.length() < 3) {
+			
+			//upper case the string
+			element_to_check = element_to_check.substring(0,1).toUpperCase() + element_to_check.substring(1).toLowerCase();
+			
+			//Look for the element symbol
+			for (int x = 0; x < all_elements.size();x ++) {
+				
+				//This should only look at odd indexes (in which the symbols are)
+				if ((element_to_check.equals(all_elements.get(x))) && !(x % 2 == 0)) {
+					return element_to_check;
+				}
+			}
+		
+		//Check as an element
+		}else if (element_to_check.length() > 3) {
+			
+			//lower case String so as to compare to other lower cased elements in array list
+			element_to_check = element_to_check.toLowerCase();
+			
+			//Look for the element
+			for (int x = 0; x < all_elements.size();x ++) {
+				
+				//This should only look at even indexes (in which the elements are)
+				if ((element_to_check.equals(all_elements.get(x))) && (x % 2 == 0)) {
+					
+					//element needs to be upper cased for JSON lookup (if possible)
+					return element_to_check.substring(0,1).toUpperCase() + element_to_check.substring(1);
+				}
+			}	
+		}
+		return "invalid element";
 	}
 	
-	String getName() {
-		return name;
+	
+	protected String getElement(String symbol) {
+		
+		if(symbol.length() > 3) {
+			return "invalid symbol";
+		}
+		
+		if (Test(symbol).equals("invalid element")) {
+			return "invalid element";
+		}
+		
+		//upper case symbol for array list search 
+		symbol = symbol.substring(0,1).toUpperCase() + symbol.substring(1).toLowerCase();
+		
+		//Look for the element symbol
+		for (int x = 0; x < all_elements.size();x ++) {
+			
+			//This should only look at odd indexes (in which the symbols are)
+			if ((symbol.equals(all_elements.get(x))) && !(x % 2 == 0)) {
+				return all_elements.get(x-1);
+			}
+		}
+		
+		//This should not be returned
+		return "ERROR IN GET ELEMENT";
 	}
-	void setName(String name) {
-		this.name = name;
+	
+	
+	protected String getSymbol(String element) {
+	
+		if (Test(element).equals("invalid element") || element.length() < 3) {
+			return "invalid element";
+		}
+		
+		//lower case for element search 
+		element = element.toLowerCase();
+		
+		//Look for the element symbol
+		for (int x = 0; x < all_elements.size();x ++) {
+			
+			//This should only look at odd indexes (in which the symbols are)
+			if ((element.equals(all_elements.get(x))) && (x % 2 == 0)) {
+				return all_elements.get(x+1);
+			}
+		}
+		
+		//This should not be returned
+		return "ERROR IN GET SYMBOL";
 	}
-	String getSymbol() {
-		return symbol;
-	}
-	void setSymbol(String symbol) {
-		this.symbol = symbol;
-	}
-	/**
-	 * This method accesses the element data file ("src/application/periodic-table-lookup-modified.json")
-	 * and uses the key provided to fetch the corresponding value.
-	 * @param key: is the key corresponding to the wanted information from the element data file.
-	 * @return the value fetched from the element data file as an Object.
-	 */
-	private Object fileLookup(String key) {
+	
+	private String get_Element_Traits (String value, String selected_trait) {
+		//needs to be valid element/symbol
+		if (Test(value).equals("invalid element")) {
+			return null;
+			
+		}else if (value.length() > 3){ //If an element was value
+			value = value.toLowerCase();
+			
+		
+		}else if (value.length() < 3) { //If a symbol was entered, give me the element of it
+			value = getElement(value);
+		}	
+		
 		JSONParser jsonparser = new JSONParser();
+		
 		try {
-			FileReader reader = new FileReader("src/application/periodic-table-lookup-modified.json");		
-			Object obj = jsonparser.parse(reader);
-			JSONObject jsonObj = (JSONObject) obj;
-			Object value =  jsonObj.get(key);
-			return value;
-		//TODO put useful catch statements
+			FileReader reader = new FileReader("src/application/periodic-table-lookup-modified.json");
+			JSONObject obj = (JSONObject) jsonparser.parse(reader);
+			JSONObject element_traits =  (JSONObject) obj.get(value);
+			
+			//Since is instance doesn't really exist in java
+			//I just try to figure out what type of object element_traits will be
+			//If its a double, I convert it to string, etc.
+			
+			try {
+				return (String) element_traits.get(selected_trait);
+			
+			}catch (ClassCastException x) {
+				
+				try {
+					
+					return Double.toString( (double) element_traits.get(selected_trait));
+				
+				}catch (ClassCastException y) {
+					
+					return Long.toString((long) element_traits.get(selected_trait));
+				}
+			}
+
 		}catch(FileNotFoundException e) {
 			e.getMessage();
-			System.out.println("FNF exception");
 		}catch(ParseException e) {
 			e.getMessage();
-			System.out.println("Parse Exception");
 		}catch(IOException e) {
 			e.getMessage();
-			System.out.println("IO Exception");
 		}
+		
 		return null;
 	}
-	/**
-	 * This method finds the atomic weight for the instance of Atom that it is called on. If the instance
-	 * variable 'name' does not exist (for example, if it is currently blank), then 0.0 is returned.
-	 * @return the atomic weight of the instance of Atom, or 0.0 if the instance name variable is not
-	 * an element that exists (aka. is "" or null).
-	 */
-	protected double getAtomicWeight() {
-		// TODO add a method to fetch the atomic weight from the data file
-		if (elementExistence(this.name)) {
-			String element = (this.name).toLowerCase();
-			JSONObject atom = (JSONObject) fileLookup(element);
-			double atomicWeight = 0.0;			
-			atomicWeight = (double) atom.get("atomic_mass");	
-			return atomicWeight;
-		}else return 0.0;
-	}
 	
-	// may need to move this class to the Validating class
-	protected boolean elementExistence (String element) {
-		if (element.length() > 3) element = element.toLowerCase();		
-		JSONArray elementList = (JSONArray) fileLookup("order");
-		for (int index = 0; index < elementList.size(); index ++) {
-			if (element.equals(elementList.get(index))) return true;
+	//It makes sense to have these all return a string, since labels only accept strings
+	
+	protected String getAtomicWeight(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
 		}
-		return false;
-	}
-	/**
-	 * will return the element symbol if given the name, and return the name if given the symbol
-	 * @param element is the name or symbol
-	 * @return is the symbol or name. if there was an error, a blank string is returned
-	 */
-	protected String fetchNameOrSymbol (String element) {
-		String nameOrSymbol = "";
-		if (element.length() > 3) element = element.toLowerCase();		
-		if (!(element == null || element.equals(""))){			
-			JSONArray atom = (JSONArray) fileLookup("order");
-			if (element.length()>3) {
-				int index = atom.indexOf(element);
-				nameOrSymbol = "" + atom.get(index+1);
-			}else {
-				int index = atom.indexOf(element);
-				nameOrSymbol = "" + atom.get(index-1);
-			}
-		}	
-		return nameOrSymbol;
+		return get_Element_Traits(element, "atomic_mass");
 	}
 	
+	protected String getAtomicNumber(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return get_Element_Traits(element, "number");
+	}
 	
-
+	protected String getCategory(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return get_Element_Traits(element, "category");
+	}
+	
+	protected String getBoil(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return  get_Element_Traits(element, "boil");
+	}
+	
+	protected String getDensity (String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return get_Element_Traits(element, "density");
+	}
+	
+	protected String getPhase(String element) {
+		if (Test(element).equals("invalid element")) {
+			return "invalid element";
+		}
+		return (String) get_Element_Traits(element, "phase");
+	}
+	
 }
