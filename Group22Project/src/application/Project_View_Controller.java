@@ -246,11 +246,9 @@ public class Project_View_Controller {
     	
     	//Scene Reacton_Scene = getReactionScene();
     	
-    	Reactions_Scene test = new Reactions_Scene();
-    	Scene Reaction_Scene = test.getReactionScene();
+    	Scene Reacton_Scene = getReactionScene();
     	
     	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	
     	
     	
     	scene.setScene(Reacton_Scene);
