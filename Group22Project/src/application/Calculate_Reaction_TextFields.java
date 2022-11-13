@@ -102,6 +102,16 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    	}
 	    }
 	    
+	    //THIS IS ONE OF THE PLACES WHERE I WILL NEED GETAMOUNT TO RETURN THE NUMBER OF REACTANTS AND PRODUCSTS!
+	    
+	    //I need to get the number of reactants and number of products from Project View Controller
+	    //However extending the class to this class doesn't help
+	   
+	    //ArrayList<Integer> amounts = get_amount();
+	    
+	    
+	    
+	    
 	   //---------------------------- GRAMS ---------------------------------- 
 	    //ArrayList for all items in grams 
 	    ArrayList<Node> grams_array = new ArrayList<Node>(grams.getChildren());
@@ -133,6 +143,8 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    //I need to separate the gram reactants from the gram products as a double
 	    ArrayList<Double> gram_reactants = new ArrayList<Double>();
 	    ArrayList<Double> gram_products = new ArrayList<Double>();
+	    
+	    //THIS IS ONE OF THE PLACES WHERE I WILL NEED GETAMOUNT TO RETURN THE NUMBER OF REACTANTS AND PRODUCSTS!
 	    
 	    //I need to get the number of reactants and number of products from Project View Controller
 	    //However extending the class to this class doesn't help
