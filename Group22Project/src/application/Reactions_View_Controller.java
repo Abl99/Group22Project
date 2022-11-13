@@ -42,9 +42,6 @@ public class Reactions_View_Controller extends Project_View_Controller{
     private AnchorPane reaction_anchor_5;
     
     
-
-    
-    
     //Product Section
     
     @FXML
