@@ -250,7 +250,6 @@ public class Project_View_Controller {
     	
     	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
     	
-    	
     	scene.setScene(Reacton_Scene);
     	scene.show();
 
