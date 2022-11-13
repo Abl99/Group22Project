@@ -390,7 +390,6 @@ public class Project_View_Controller{
     	Calculate_Reaction_TextFields test = new Calculate_Reaction_TextFields();
     	enterButton.setOnAction(doneEvent -> test.Textfield_Calculator(main_box,grams));
     	
-    	
     	//Thinking of moving all the scene stuff here and making this method void
      	Scene ReactionScene = new Scene(overall_box);
      	return ReactionScene;

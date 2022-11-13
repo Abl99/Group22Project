@@ -6,12 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Calculate_Reaction_TextFields extends Reaction{
+	
+	
+	public Stage applicationStage;
 
 	//Takes all the Hboxes from the Node Array, and makes a H box Array list from them
 	private ArrayList<HBox> Node_to_Hbox_Array(ArrayList<Node> node_array) {
@@ -116,27 +121,72 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    	gram_inputs.add(x.getText());
 	    }
 	    
-	    System.out.println(gram_inputs);
+	    //Check if user input is a number (i.e. how # of molecule)
+	    //This may not work with decimals (may have to change how this is validated)
 	    
+	    for (int x = 0; x < user_inputs.size(); x += 2) {
+	    	String test = user_inputs.get(x).toLowerCase().replaceAll("[0-9]", "");
+	    	if (test.length() > 1 || user_inputs.get(x).isEmpty()) {
+	    		valid_input = false;
+	    	}
+	    }
 	    
+	    //I need to separate the gram reactants from the gram products as a double
+	    ArrayList<Double> gram_reactants = new ArrayList<Double>();
+	    ArrayList<Double> gram_products = new ArrayList<Double>();
+	    
+	    //I need to get the number of reactants and number of products from Project View Controller
+	    //However extending the class to this class doesn't help
+	   
+	    //ArrayList<Integer> amounts = get_amount();
+	    
+	    /*
+	    for (int x = 0; x < amounts.get(0); x++) {
+	    	gram_reactants.add(Double.parseDouble(gram_inputs.get(x)));
+	    }
+
+	    for (int x = 0; x < amounts.get(1); x++) {
+	    	gram_products.add(Double.parseDouble(gram_inputs.get(x) + amounts.get(0)));
+	    }
+	    
+	    System.out.println(gram_reactants);
+	    System.out.println(gram_products);
+	    */
 	    
 	  //---------------------------- ERRORS ---------------------------------- 
 	    
 	  if (valid_input) {
-	    	//need to close out of current scene
+		  //need to close out of current scene
+		  System.out.println("All Valid Inputs");
+		  
 
 	  }else {
-		  //Open new window to tell user they made an error
 		  
+		  System.out.println("Invalid Input");
+		  
+		  
+		  //Open new window to tell user they made an error
+		  //WORK IN PROGRESS
 		  /*
-	    	Scene Reacton_Scene = new Scene();
-	    	
-	    	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	    	
-	    	scene.setScene(Reacton_Scene);
-	    	scene.show();
-		  */
+		  Scene error_window = applicationStage.getScene();
+		  
+		  VBox error_box = new VBox();
+          Label error_label = new Label("Invalid Entry");
+          Button error_button = new Button("Enter");
+      	  error_box.getChildren().addAll(error_label, error_button);
+      	  
+      	  error_button.setOnAction(doneEvent -> applicationStage.close());
+      	  
+      	  applicationStage.setScene(error_window);
+      	  applicationStage.show();
+		 */ 
 		  
 	  }  
+	  
+	  
+	  
 	}
+
+	
+	
 }
