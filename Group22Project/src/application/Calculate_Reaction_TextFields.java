@@ -2,10 +2,14 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class Calculate_Reaction_TextFields extends Reaction{
 
@@ -119,12 +123,19 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	  //---------------------------- ERRORS ---------------------------------- 
 	    
 	  if (valid_input) {
-		  //close the window
+	    	//need to close out of current scene
+
 	  }else {
 		  //Open new window to tell user they made an error
 		  
-		  
-		  
+		  /*
+	    	Scene Reacton_Scene = new Scene();
+	    	
+	    	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	    	
+	    	scene.setScene(Reacton_Scene);
+	    	scene.show();
+		  */
 		  
 	  }  
 	}
