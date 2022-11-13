@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Reactions_View_Controller">
+<AnchorPane fx:id="main_anchor_pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Reactions_View_Controller">
    <children>
       <AnchorPane fx:id="reaction_anchor_1" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
          <children>

@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -21,6 +20,9 @@ public class Reactions_View_Controller extends Project_View_Controller{
 
 	@FXML
     private Button enter_button;
+	
+    @FXML
+    private AnchorPane main_anchor_pane;
 
     //Reaction Section
     
@@ -64,6 +66,13 @@ public class Reactions_View_Controller extends Project_View_Controller{
     @FXML
     void enter_chemical_equation(ActionEvent event) throws IOException {
     
+    	
+    	
+    	//need to close out of current scene
+    	//Used https://www.youtube.com/watch?v=exIQqcQ0lzI for the code to do this
+    	Stage stage1 = (Stage) main_anchor_pane.getScene().getWindow();
+    	stage1.close();
+    	
     	
     	//need to change the scene back to Project_View
     	//Used https://www.youtube.com/watch?v=hcM-R-YOKkQ&t=125s for the code to do this
