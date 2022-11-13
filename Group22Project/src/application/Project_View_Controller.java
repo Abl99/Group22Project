@@ -373,11 +373,42 @@ public class Project_View_Controller {
 	     		enterButton.setText("enter");
 	     	outerBox.getChildren().add(enterButton);
 	     	
-	     	Scene ReactionScene = new Scene(outerBox);
+	     	//make a VBox to put all the mass enertys in
+	 	    VBox outerBox2 = new VBox();
+	 	    int count = 0;
+	 	    // add mass entry labels and textfields for every reactant
+	 	    while (count < numReact) {
+	 	    	count ++;
+	 	    	HBox massRow = new HBox();
+	 	    	Label massLabel = new Label();
+	 	    		massLabel.setText("Reactant " + count + " mass:");
+	 	    	TextField massEntery = new TextField();
+	 	    	massRow.getChildren().addAll(massLabel,massEntery);
+	 	    	outerBox2.getChildren().add(massRow);
+	 	    }
+	 	    // add mass entry labels and textfields for every product
+	 	    count = 0;
+	 	    while (count < numProd) {
+	 	    	count ++;
+	 	    	HBox massRow = new HBox();
+	 	    	Label massLabel = new Label();
+	 	    		massLabel.setText("Product " + count + " mass:");
+	 	    	TextField massEntery = new TextField();
+	 	    	massRow.getChildren().addAll(massLabel,massEntery);
+	 	    	outerBox2.getChildren().add(massRow);
+	 	    }
+	 	    // put both outer boxes in an HBox
+	 	    HBox outerHBox = new HBox();
+	 	    outerHBox.getChildren().addAll(outerBox,outerBox2);
+
+	 	    // add the outer HBox to the scene
+	     	Scene ReactionScene = new Scene(outerHBox);
 	     	applicationStage.setScene(ReactionScene);
 	     	return ReactionScene;
 
 	     }
+    
+    
     
     
     
