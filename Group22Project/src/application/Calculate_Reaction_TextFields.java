@@ -200,7 +200,6 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    
 	  //ONLY VALIDATION REMAINING AND TO CONNECT REACTIONS FOR CALCULATIONS 
 	    
-	    
 	  //---------------------------- ERRORS ---------------------------------- 
 	    
 	  if (valid_input) {
