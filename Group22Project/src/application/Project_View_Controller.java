@@ -241,8 +241,8 @@ public class Project_View_Controller {
     	//I used the video below, to get the code to move from one scene to the next
     	//https://www.youtube.com/watch?v=XCgcQTQCfJQ
     	
-    	Parent Reaction_Views = FXMLLoader.load(getClass().getResource("Reactions_View.fxml"));
     	
+    	Parent Reaction_Views = FXMLLoader.load(getClass().getResource("Reactions_View.fxml"));
     	Scene Reacton_Scene = new Scene(Reaction_Views);
     	
     	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -265,7 +265,7 @@ public class Project_View_Controller {
     }
     
     
-    
+
     
     
     
