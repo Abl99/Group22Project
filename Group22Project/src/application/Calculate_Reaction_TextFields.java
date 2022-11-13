@@ -102,7 +102,6 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    	}
 	    }
 	    
-	    
 	   //---------------------------- GRAMS ---------------------------------- 
 	    //ArrayList for all items in grams 
 	    ArrayList<Node> grams_array = new ArrayList<Node>(grams.getChildren());
@@ -165,7 +164,7 @@ public class Calculate_Reaction_TextFields extends Reaction{
 		  System.out.println("Invalid Input");
 		  
 		  
-		  //Open new window to tell user they made an error
+		  //Open new window to tell user they made an error (idea) 
 		  //WORK IN PROGRESS
 		  /*
 		  Scene error_window = applicationStage.getScene();

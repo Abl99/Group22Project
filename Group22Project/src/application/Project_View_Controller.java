@@ -340,7 +340,11 @@ public class Project_View_Controller{
     		chemical_equation.add(get_HBox_Container());
     		
     		gram_array.add(get_gram_container("Reactant ", reactions_added, false));
-    		gram_array.add(get_Sign_Box(""));
+    		
+    		//Added this for appearance reasons
+    		if (!(reactions_added == number_of_reactions - 1)) {
+    			gram_array.add(get_Sign_Box(""));
+    		}
     		
     		reactions_added++;
     	}
