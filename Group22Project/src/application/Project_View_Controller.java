@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -238,17 +239,51 @@ public class Project_View_Controller {
     	//I decided to make a new scene for the Reactions class since it appeared to be quite complicated and 
     	//also required formatting 
     	
-    	//I used the video below, to get the code to move from one scene to the next
+    	//Can adjust reaction view dimensions if I want it to show up smaller since there can be less panes
+    	int default_width = 1161;
+    	int default_height = 452;
+    	
+    	//The number of reactions and products
+    	int number_of_reactions = Integer.parseInt(number_of_rectants.getText());
+    	
+    	String np = number_of_products.getText();
+    	int number_of_products = Integer.parseInt(np);
+    	
+    	
+    	
+    	//I need to figure out how to hide panes that are yet to made in the reaction_view
+    	
+    	//I used the video below, to get the code to move to another scene
     	//https://www.youtube.com/watch?v=XCgcQTQCfJQ
     	
-    	Parent Reaction_Views = FXMLLoader.load(getClass().getResource("Reactions_View.fxml"));
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("Reactions_View.fxml"));
+    	Parent Reaction_Views = loader.load();
     	
-    	Scene Reacton_Scene = new Scene(Reaction_Views);
+    	Scene Reaction_Scene = new Scene(Reaction_Views);
     	
+    	//controller access
+    	Reactions_View_Controller reaction_controller = loader.getController();
+    	
+    	/*IMPORTANT
+    	 * 
+    	 * I WILL NEED TO CHANGE THE TEXTFIELD INTO A DROP DOWN BOX GOING 1 TO 5 FOR REACTIONS AND PRODUCTS
+    	 * SINCE THI MODEL CAN'T SUPPORT IT IF IT GOES HIGHER THAN 5
+    	 */
+    	
+    	//removes any unused panels (i.e. if user only wants 1 react pane, then only 1 will be present)
+    	reaction_controller.remove_Panels(reaction_controller, number_of_reactions, number_of_products);
+    	
+    	//Gets information on stage
     	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
     	
-    	scene.setScene(Reacton_Scene);
-    	scene.show();
+    	
+    	scene.setScene(Reaction_Scene);
+    	
+    	//disables maximizing
+    	scene.resizableProperty().setValue(false);
+
+    	scene.show();	
 
     }
     
@@ -263,12 +298,6 @@ public class Project_View_Controller {
     	
     	return amount;
     }
-    
-    
-    
-    
-    
-    
     
 }
 

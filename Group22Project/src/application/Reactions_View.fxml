@@ -6,15 +6,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="452.0" prefWidth="1161.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Reactions_View_Controller">
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Reactions_View_Controller">
    <children>
-      <AnchorPane layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="reaction_anchor_1" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="19.0" layoutY="25.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
       <Label layoutX="221.0" layoutY="94.0" text="+" />
@@ -27,88 +28,97 @@
       <Label layoutX="221.0" layoutY="324.0" text="+" />
       <Label layoutX="455.0" layoutY="325.0" text="+" />
       <Label layoutX="685.0" layoutY="325.0" text="+" />
-      <AnchorPane layoutY="234.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="product_anchor_1" layoutY="234.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="19.0" layoutY="26.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="230.0" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="reaction_anchor_2" layoutX="230.0" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="21.0" layoutY="27.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="230.0" layoutY="233.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="product_anchor_2" layoutX="230.0" layoutY="233.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="21.0" layoutY="29.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="466.0" layoutY="233.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="product_anchor_3" layoutX="466.0" layoutY="233.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="16.0" layoutY="27.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="694.0" layoutY="233.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="product_anchor_4" layoutX="694.0" layoutY="233.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="19.0" layoutY="28.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="928.0" layoutY="233.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="product_anchor_5" layoutX="928.0" layoutY="233.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="19.0" layoutY="28.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
       <Label layoutX="919.0" layoutY="324.0" text="+" />
-      <AnchorPane layoutX="466.0" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="reaction_anchor_3" layoutX="466.0" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="22.0" layoutY="28.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="694.0" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="reaction_anchor_4" layoutX="694.0" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="21.0" layoutY="27.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="936.0" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
+      <AnchorPane fx:id="reaction_anchor_5" layoutX="936.0" layoutY="3.0" prefHeight="200.0" prefWidth="225.0">
          <children>
             <TextField layoutX="20.0" layoutY="56.0" prefHeight="25.0" prefWidth="26.0" />
             <TextField layoutX="56.0" layoutY="56.0" />
             <TextField layoutX="141.0" layoutY="107.0" prefHeight="25.0" prefWidth="64.0" />
             <Label layoutX="19.0" layoutY="111.0" prefHeight="17.0" prefWidth="116.0" text="Amount of mass:" />
             <Label layoutX="207.0" layoutY="111.0" text="g" />
+            <Label layoutX="21.0" layoutY="27.0" prefHeight="20.0" prefWidth="185.0" text="Enter Molecule Below:" />
          </children>
       </AnchorPane>
-      <Button layoutX="555.0" layoutY="426.0" mnemonicParsing="false" text="Enter" />
+      <Button fx:id="enter_button" layoutX="555.0" layoutY="426.0" mnemonicParsing="false" onAction="#enter_chemical_equation" text="Enter" />
    </children>
 </AnchorPane>

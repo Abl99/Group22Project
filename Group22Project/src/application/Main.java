@@ -17,7 +17,12 @@ public class Main extends Application {
 			controller.applicationStage = primaryStage;
 			
 			Scene scene = new Scene(root,912,450);
+			
 			primaryStage.setScene(scene);
+			
+			//disables maximizing
+			primaryStage.resizableProperty().setValue(false);
+			
 			primaryStage.setTitle("Group 22 Project");
 			primaryStage.show();	
 		} catch(Exception e) {
