@@ -4,6 +4,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -268,16 +269,9 @@ public class Project_View_Controller{
     //This method will create an H box and return it
     protected HBox get_HBox_Container() {
     	
-    	//Label quantity_label = new Label();
-    	//quantity_label.setText("#:");
-    	
  	    TextField quantity = new TextField();
  	    
-    	//Label molecule_label = new Label();
-    	//molecule_label.setText("Molecule:");
- 	    
  	    TextField molecule = new TextField();
- 	    //TextField grams = new TextField();
  	    
  	    HBox new_box = new HBox();
  	    new_box.getChildren().addAll(quantity,molecule);
@@ -326,7 +320,7 @@ public class Project_View_Controller{
     	int reactions_added = 1;
     	int products_added = 1;
     	
-    	//The main equation 
+    	//The main equation (for number of molecules and molecules)
     	ArrayList<HBox> chemical_equation = new ArrayList<HBox>();
     	
     	//For grams
@@ -384,20 +378,23 @@ public class Project_View_Controller{
  		enterButton.setText("enter");   	
     	main_box.getChildren().add(enterButton);
     	
-    	
     	//VBox for grams
     	VBox grams = new VBox();
     	grams.getChildren().addAll(gram_array);
     	
-    	//overall V box
+    	//overall H box
     	HBox overall_box = new HBox();
     	overall_box.getChildren().addAll(main_box,grams);
+    	
+    	//When enter button is pressed, I will need to make a method that will get all the text field information
+    	Calculate_Reaction_TextFields test = new Calculate_Reaction_TextFields();
+    	enterButton.setOnAction(doneEvent -> test.Textfield_Calculator(main_box,grams));
+    	
     	
     	//Thinking of moving all the scene stuff here and making this method void
      	Scene ReactionScene = new Scene(overall_box);
      	return ReactionScene;
     }
-
 }
 
 
