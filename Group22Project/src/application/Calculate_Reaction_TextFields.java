@@ -58,7 +58,8 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	}
 	
 	//Main method
-	public void Textfield_Calculator(VBox main_box, VBox grams){
+	public void Textfield_Calculator(ArrayList<Integer> amounts, VBox main_box, VBox grams){
+		//The ArrayList<Integer> amounts is so I can get the get_amount information
 		
 		boolean valid_input = true;
 		
@@ -84,7 +85,8 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    //The Array list String will now have every number of and molecule in order
 	    //System.out.println(user_inputs);
 	    
-	    //Check if user input is a valid molecule
+	    //Check if user input is a valid molecule (NOT NEEDED AT THE MOMENT)
+	    /*
 	    for (int x = 1; x < user_inputs.size(); x += 2) {
 	    	
 	    	//check if molecule or not
@@ -95,6 +97,7 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    		valid_input = false;
 	    	}
 	    }
+	    */
 	    
 	    //Check if user input is a number (i.e. how # of molecule)
 	    for (int x = 0; x < user_inputs.size(); x += 2) {
@@ -103,16 +106,46 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    		valid_input = false;
 	    	}
 	    }
+	    //I need to sort out the string array list user_inputs into the following four array lists
 	    
-	    //THIS IS ONE OF THE PLACES WHERE I WILL NEED GETAMOUNT TO RETURN THE NUMBER OF REACTANTS AND PRODUCSTS!
+	    ArrayList<Integer> reaction_amount_molecules = new ArrayList<Integer>();
+	    ArrayList<Integer> product_amount_molecules = new ArrayList<Integer>();
 	    
-	    //I need to get the number of reactants and number of products from Project View Controller
-	    //However extending the class to this class doesn't help
-	   
-	    //ArrayList<Integer> amounts = get_amount();
+	    ArrayList<String> reaction_molecules = new ArrayList<String>();
+	    ArrayList<String> product_molecules = new ArrayList<String>();
 	    
+	    System.out.println(amounts);
+	    System.out.println(user_inputs);
 	    
+	    //for reaction_amount_molecules
+	    for (int x = 0; x < amounts.get(0)*2; x += 2) {
+	    	reaction_amount_molecules.add(Integer.parseInt(user_inputs.get(x)));
+	    }
 	    
+	    //for reaction_molecules
+	    for (int x = 1; x < amounts.get(0)*2; x += 2) {
+	        reaction_molecules.add(user_inputs.get(x));
+	    }
+	    
+	    //for product_amount_molecules
+	    for (int x = 0; x < amounts.get(1)*2; x += 2) {
+	    	product_amount_molecules.add(Integer.parseInt(user_inputs.get(x + amounts.get(0)*2)));
+	    }
+	    
+	    //for product_molecules
+	    for (int x = 1; x < amounts.get(1)*2; x += 2) {
+	    	product_molecules.add(user_inputs.get(x + amounts.get(0)*2));
+	    }
+	    
+	    System.out.println("reaction amount molecules" + reaction_amount_molecules);
+	    System.out.println("reaction molecules" + reaction_molecules);
+	    
+	    System.out.println("----------------");
+	    
+	    System.out.println("product amount molecules" + product_amount_molecules);
+	    System.out.println("product molecules" + product_molecules);
+	    
+	    //ONLY VALIDATION REMAINING AND TO CONNECT REACTIONS FOR CALCULATIONS 
 	    
 	   //---------------------------- GRAMS ---------------------------------- 
 	    //ArrayList for all items in grams 
@@ -146,54 +179,38 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    ArrayList<Double> gram_reactants = new ArrayList<Double>();
 	    ArrayList<Double> gram_products = new ArrayList<Double>();
 	    
-	    FXMLLoader fxmlLoader = new FXMLLoader();
-	    ArrayList<Integer> amounts = new ArrayList<Integer>();
+	    //System.out.println(amounts);
 	    
-	    
-	    try {
-	    	Pane x = fxmlLoader.load(getClass().getResource("Project_View.fxml").openStream());
-		    Project_View_Controller main_controller = (Project_View_Controller) fxmlLoader.getController();
-		    
-		    for (int y : main_controller.get_amount()) {
-		    	amounts.add(y);
+	    //This if statement is just so I can test molecules without an error
+	    if (!(gram_inputs.get(0).equals(""))) {
+	    	
+		    for (int x = 0; x < amounts.get(0); x++) {
+		    	gram_reactants.add(Double.parseDouble(gram_inputs.get(x)));	
 		    }
-	    
-	    }catch (IOException e) {
-	    	//Do nothing
-	    }
-	    System.out.println(amounts);
-	    
-	    
-	    //THIS IS ONE OF THE PLACES WHERE I WILL NEED GETAMOUNT TO RETURN THE NUMBER OF REACTANTS AND PRODUCSTS!
-	    
-	    //I need to get the number of reactants and number of products from Project View Controller
-	    //However extending the class to this class doesn't help
-	   
-	    //ArrayList<Integer> amounts = get_amount();
-	    
-	    /*
-	    for (int x = 0; x < amounts.get(0); x++) {
-	    	gram_reactants.add(Double.parseDouble(gram_inputs.get(x)));
-	    }
-
-	    for (int x = 0; x < amounts.get(1); x++) {
-	    	gram_products.add(Double.parseDouble(gram_inputs.get(x) + amounts.get(0)));
+		    
+		    for (int x = 0; x < amounts.get(1); x++) {
+		    	gram_products.add(Double.parseDouble(gram_inputs.get(x + amounts.get(0))));
+		    }
+		    
+		    System.out.println("----------------");
+		    
+		    System.out.println("Your gram reactants are:" + gram_reactants);
+		    System.out.println("Your gram products are:" + gram_products);
 	    }
 	    
-	    System.out.println(gram_reactants);
-	    System.out.println(gram_products);
-	    */
+	  //ONLY VALIDATION REMAINING AND TO CONNECT REACTIONS FOR CALCULATIONS 
+	    
 	    
 	  //---------------------------- ERRORS ---------------------------------- 
 	    
 	  if (valid_input) {
 		  //need to close out of current scene
-		  System.out.println("All Valid Inputs");
+		  //System.out.println("All Valid Inputs");
 		  
 
 	  }else {
 		  
-		  System.out.println("Invalid Input");
+		  //System.out.println("Invalid Input");
 		  
 		  
 		  //Open new window to tell user they made an error (idea) 
