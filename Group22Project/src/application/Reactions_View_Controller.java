@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 	    	test_label.setText("It works!");
 	    }
 	    
-	    Scene getReactionScene () {
+	    protected Scene getReactionScene () {
 	 	   //TODO edit the visual parameters of every item to make it look nicer
 	     	// collect the numbers related to the reaction
 	     	ArrayList<Integer> numProdReact = get_amount();
