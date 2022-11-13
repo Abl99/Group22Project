@@ -1,22 +1,16 @@
-	package application;
-	
-	import java.util.ArrayList;
-	
-	import javafx.event.ActionEvent;
-	import javafx.fxml.FXML;
+package application;
+
+import java.util.ArrayList;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-	import javafx.scene.control.Label;
-	import javafx.scene.control.TextField;
-	import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-	
-	public class Reactions_View_Controller extends Project_View_Controller{
-		public Stage applicationStage;
-		//I plan to make some methods in reaction_view so I can get useful information 
-	    
-	    protected Scene getReactionScene () {
+
+public class Reactions_Scene  extends Project_View_Controller{
+	protected Scene getReactionScene () {
 	 	   //TODO edit the visual parameters of every item to make it look nicer
 	     	// collect the numbers related to the reaction
 	     	ArrayList<Integer> numProdReact = get_amount();
@@ -121,5 +115,4 @@ import javafx.stage.Stage;
 	     	return ReactionScene;
 
 	     }
-	  
-	}
+}

@@ -244,7 +244,10 @@ public class Project_View_Controller {
     	
     	//Parent Reaction_Views = FXMLLoader.load(getClass().getResource("Reactions_View.fxml"));  	    	
     	
-    	Scene Reacton_Scene = getReactionScene();
+    	//Scene Reacton_Scene = getReactionScene();
+    	
+    	Reactions_Scene test = new Reactions_Scene();
+    	Scene Reaction_Scene = test.getReactionScene();
     	
     	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
     	
