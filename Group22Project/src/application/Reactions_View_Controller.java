@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 	    protected Scene getReactionScene () {
 	 	   //TODO edit the visual parameters of every item to make it look nicer
 	     	// collect the numbers related to the reaction
+	    	
 	     	ArrayList<Integer> numProdReact = get_amount();
 	 	    int numReact = numProdReact.get(0);
 	 	    int numReactAdded = 1;
@@ -117,7 +118,7 @@ import javafx.stage.Stage;
 	     	outerBox.getChildren().add(enterButton);
 	     	
 	     	Scene ReactionScene = new Scene(outerBox);
-	     	applicationStage.setScene(ReactionScene);
+	     	//applicationStage.setScene(ReactionScene);
 	     	return ReactionScene;
 
 	     }
