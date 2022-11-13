@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -56,7 +58,7 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	}
 	
 	//Main method
-	public void Textfield_Calculator(VBox main_box, VBox grams) {
+	public void Textfield_Calculator(VBox main_box, VBox grams){
 		
 		boolean valid_input = true;
 		
@@ -143,6 +145,24 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    //I need to separate the gram reactants from the gram products as a double
 	    ArrayList<Double> gram_reactants = new ArrayList<Double>();
 	    ArrayList<Double> gram_products = new ArrayList<Double>();
+	    
+	    FXMLLoader fxmlLoader = new FXMLLoader();
+	    ArrayList<Integer> amounts = new ArrayList<Integer>();
+	    
+	    
+	    try {
+	    	Pane x = fxmlLoader.load(getClass().getResource("Project_View.fxml").openStream());
+		    Project_View_Controller main_controller = (Project_View_Controller) fxmlLoader.getController();
+		    
+		    for (int y : main_controller.get_amount()) {
+		    	amounts.add(y);
+		    }
+	    
+	    }catch (IOException e) {
+	    	//Do nothing
+	    }
+	    System.out.println(amounts);
+	    
 	    
 	    //THIS IS ONE OF THE PLACES WHERE I WILL NEED GETAMOUNT TO RETURN THE NUMBER OF REACTANTS AND PRODUCSTS!
 	    
