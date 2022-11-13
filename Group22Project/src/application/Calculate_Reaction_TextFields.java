@@ -114,8 +114,8 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    ArrayList<String> reaction_molecules = new ArrayList<String>();
 	    ArrayList<String> product_molecules = new ArrayList<String>();
 	    
-	    System.out.println(amounts);
-	    System.out.println(user_inputs);
+	    System.out.println("reaction inputted " + amounts.get(0));
+	    System.out.println("proudcts inputted " + amounts.get(1));
 	    
 	    //for reaction_amount_molecules
 	    for (int x = 0; x < amounts.get(0)*2; x += 2) {
