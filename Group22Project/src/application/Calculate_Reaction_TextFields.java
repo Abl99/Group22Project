@@ -254,7 +254,6 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  System.out.println("You have inputted no errors");
 		  
-		  
 		  //This is where we will calculate if the reaction is balanced since there are no errors in the inputs
 		  //All the ArrayLists should have the correct stuff in them
 		  
@@ -277,24 +276,79 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 
 	  }else {
 		  
+		  //Count the errors
+		  ArrayList<String> accumulated_errors = new ArrayList<String>();
 		  
-		  //There were errors in user input
+		  //Molecule possible errors
+		  int null_molecule_textfield = 0;
+		  int invalid_reaction_amount = 0;
+		  int invalid_product_amount = 0;
+		  
+		  //Gram possible errors
+		  int null_gram_textfield = 0;
+		  int invalid_reactant_gram_amount = 0;
+		  int invalid_product_gram_amount = 0;
+		  
+		  //All these if statements are just for counting errors so that user gets a cleaner error message
+		  for (String x : error_list) {
+			  
+			  if (x.equals("1x Empty TextField in Molecules Section")) {
+				  null_molecule_textfield++;
+				  
+			  }else if (x.equals("1x Invalid Reaction Amount")) {
+				  invalid_reaction_amount++;
+				  
+			  }else if (x.equals("1x Invalid Product Molecule")) {
+				  invalid_product_amount++;
+				  
+			  }else if (x.equals("1x Empty TextField in Gram Section")) {
+				  null_gram_textfield++;
+				  
+			  }else if (x.equals("1x Invalid Reactant Gram Amount")) {
+				  invalid_reactant_gram_amount++;
+				  
+			  }else if (x.equals("1x Invalid Product Gram Amount")) {
+				  invalid_product_gram_amount++;
+			  } 
+		  }
+		  
+		  if (!(null_molecule_textfield == 0)){
+			  accumulated_errors.add(String.format("%dx Empty TextField in Molecules Section", null_molecule_textfield));
+		  }
+		  
+		  if (!(invalid_reaction_amount == 0)){
+			  accumulated_errors.add(String.format("%dx Invalid Reaction Amount", invalid_reaction_amount));
+		  }
+		  
+		  if (!(invalid_product_amount == 0)){
+			  accumulated_errors.add(String.format("%dx Invalid Product Molecule", invalid_product_amount));
+		  }
+		  
+		  if (!(null_gram_textfield == 0)){
+			  accumulated_errors.add(String.format("%dx Empty TextField in Gram Section", null_gram_textfield));
+		  }
+		  
+		  if (!(invalid_reactant_gram_amount == 0)){
+			  accumulated_errors.add(String.format("%dx Invalid Reactant Gram Amount", invalid_reactant_gram_amount));
+		  }
+		  
+		  if (!(invalid_product_gram_amount == 0)){
+			  accumulated_errors.add(String.format("%dx Invalid Product Gram Amount", invalid_product_gram_amount));
+		  }
+		  
+		  //Prints the number of each error (i.e. so the user can make the proper adjustment)
 		  
 		  System.out.println("---------------------");
 		  System.out.println("User Errors:");
-		  for (String x : error_list) {
+		  for (String x : accumulated_errors) {
 			  System.out.println(x);
 		  }
 		  System.out.println("---------------------");
 
-		  
-		  
-		  
-		  
-		  
-		  
-		  
+
 		  //Open new window to tell user they made an error (idea) 
+		  //They see their errors via the accumulated_error ArrayList
+		  
 		  //WORK IN PROGRESS
 		  /*
 		  Scene error_window = applicationStage.getScene();
