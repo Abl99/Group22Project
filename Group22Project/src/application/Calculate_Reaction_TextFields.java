@@ -262,7 +262,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  
 		  
-		  
+		  //CALL REACTION CLASS HERE WITH ARRAYLISTS FROM THIS CLASS, THERE SHOULDN'T BE ERRORS IN THE ARRAYLISTS
 		  
 		  
 		  
