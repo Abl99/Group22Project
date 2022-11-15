@@ -280,6 +280,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  //There were errors in user input
 		  
+		  System.out.println("---------------------");
 		  System.out.println("User Errors:");
 		  for (String x : error_list) {
 			  System.out.println(x);
