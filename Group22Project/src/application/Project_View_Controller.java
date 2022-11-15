@@ -243,7 +243,9 @@ public class Project_View_Controller{
     	//I used the video below, to get the code to move from one scene to the next
     	//https://www.youtube.com/watch?v=XCgcQTQCfJQ
     	
-    	Scene Reacton_Scene = getChemicalEquation();
+    	Reaction_View_Controller new_scene = new Reaction_View_Controller();
+    	
+    	Scene Reacton_Scene = new_scene.getChemicalEquation(get_amount());
     	
     	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
     	
@@ -265,7 +267,7 @@ public class Project_View_Controller{
     	return amount;
     }
     
-    
+    /*
     //This method will create an H box and return it
     protected HBox get_HBox_Container() {
     	
@@ -398,6 +400,7 @@ public class Project_View_Controller{
      	Scene ReactionScene = new Scene(overall_box);
      	return ReactionScene;
     }
+    */
 }
 
 
