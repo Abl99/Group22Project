@@ -4,21 +4,29 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
-public class Project_View_Controller {
+public class Project_View_Controller{
 	public Stage applicationStage;
 	
 	//---------------------------------------------------------
@@ -241,21 +249,13 @@ public class Project_View_Controller {
     	//I used the video below, to get the code to move from one scene to the next
     	//https://www.youtube.com/watch?v=XCgcQTQCfJQ
     	
-    	
-    	//Parent Reaction_Views = FXMLLoader.load(getClass().getResource("Reactions_View.fxml"));  	    	
-    	
-    	Scene Reacton_Scene = getReactionScene();
+    	Scene Reacton_Scene = getChemicalEquation();
     	
     	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	
-    	
     	
     	scene.setScene(Reacton_Scene);
     	scene.show();
 
-    	
-    	
-    	
     	
     }
     
@@ -272,115 +272,140 @@ public class Project_View_Controller {
     }
     
     
+    //This method will create an H box and return it
+    protected HBox get_HBox_Container() {	
+ 	    TextField quantity = new TextField();
+ 	    	quantity.setPrefSize(40.0, 25.0);
+ 	    TextField molecule = new TextField();
+ 	    	molecule.setPrefSize(80.0,25.0);
+ 	    HBox new_box = new HBox();
+ 	    	new_box.setPadding(new Insets(5,20,5,20));
+ 	    new_box.getChildren().addAll(quantity,molecule);
+    	
+ 	    return new_box;
+    }
+    
+    //Enter a sign to get an HBox with that sign
+    protected HBox get_Sign_Box(String sign) {
+ 	    Label new_label = new Label();
+ 			new_label.setText(sign);
+ 		HBox signBox = new HBox();
+	    	signBox.setPadding(new Insets(5,10,5,10));
+ 		signBox.getChildren().add(new_label);
+ 		
+ 		return signBox;
+    }
+    
+    //Makes an HBox with a label and text field
+    protected HBox get_gram_container(String item, int number, boolean product) {
+    	HBox my_HBox = new HBox();
+	    	my_HBox.setPadding(new Insets(10,10,10,10));
+    	Label test = new Label();
+    		test.setPadding(new Insets(0,5,0,0));
+    	if (product) {
+        	test.setText(item + Integer.toString(number) + " ");
+    	}else {
+    		test.setText(item + Integer.toString(number));
+    	}
+    	TextField gram = new TextField();
+    		gram.setPrefSize(70.0, 25.0);	
+    	my_HBox.getChildren().addAll(test,gram);
+    	
+    	return my_HBox;	
+    }
 
-    protected Scene getReactionScene () {
-	 	   //TODO edit the visual parameters of every item to make it look nicer
-	     	// collect the numbers related to the reaction
-	     	ArrayList<Integer> numProdReact = get_amount();
-	 	    int numReact = numProdReact.get(0);
-	 	    int numReactAdded = 1;
-	 	    int numProd = numProdReact.get(1);
-	 	    int numProdAdded = 1;
-	 	    
-	 	    // make the outermost container
-	 	    VBox outerBox = new VBox();
-	 	    
-	 	    // make a title/instructional label and add it to the outer box
-	 	    Label title = new Label();
-	 	    	title.setText("<insert title>");
-	 	    outerBox.getChildren().add(title);
-	 		
-	 		//make a label and box for the '-->'
-	 	    Label arrow = new Label();
-	     		arrow.setText("-->");
-	     	HBox arrowBox = new HBox();
-	     	arrowBox.getChildren().add(arrow);
-	 	    
-	     	//add all the components of the chemical equation to an array in the right order
-	     	ArrayList<HBox> reactionScheme = new ArrayList<HBox>();
-	 		
-	 	    // make the secondary container that holds the text fields
-	 	    TextField coeff = new TextField();
-	 	    TextField molecule = new TextField();
-	 	    HBox secondary = new HBox();
-	 	    secondary.getChildren().addAll(coeff,molecule);
-	     	
-	     	reactionScheme.add(secondary);
-	     	while (numReactAdded < numReact) {
-	     		
-	     	    // make a label and box for the '+'
-	     	    Label plus = new Label();
-	     	    	plus.setText("+");
-	     		HBox plusBox = new HBox();
-	     		plusBox.getChildren().add(plus);
-	     		
-	     		reactionScheme.add(plusBox);
-	     		
-	 		    // make the secondary container that holds the text fields
-	 		    TextField coeff2 = new TextField();
-	 		    TextField molecule2 = new TextField();
-	 		    HBox secondary2 = new HBox();
-	 		    secondary2.getChildren().addAll(coeff2,molecule2);
-	     		
-	     		reactionScheme.add(secondary2);
-	     		numReactAdded ++;
-	     	}
-	 		reactionScheme.add(arrowBox);
-	 		
-	 	    // make the secondary container that holds the text fields
-	 	    TextField coeff3 = new TextField();
-	 	    TextField molecule3 = new TextField();
-	 	    HBox secondary3 = new HBox();
-	 	    secondary3.getChildren().addAll(coeff3,molecule3);
-	 		
-	 		reactionScheme.add(secondary3);
-	     	while (numProdAdded < numProd) {
-	     		
-	     	    // make a label and box for the '+'
-	     	    Label plus2 = new Label();
-	     	    	plus2.setText("+");
-	     		HBox plusBox2 = new HBox();
-	     		plusBox2.getChildren().add(plus2);
-	     		
-	     		reactionScheme.add(plusBox2);
-	     		
-	 		    // make the secondary container that holds the text fields
-	 		    TextField coeff4 = new TextField();
-	 		    TextField molecule4 = new TextField();
-	 		    HBox secondary4 = new HBox();
-	 		    secondary4.getChildren().addAll(coeff4,molecule4);
-	     		
-	     		reactionScheme.add(secondary4);
-	     		numProdAdded ++;
-	     	}
-	     	
-	     	// add the reaction components from the array to primary HBoxes and add these HBoxes to the outer box
-	     	int itemsAdded = 0;
-	     	while (itemsAdded < reactionScheme.size()) {
-	 	    	int count = 0;
-	 	    	HBox primary = new HBox();
-	     		// TODO check if more than 5 items fit in a primary box nicely
-	 	    	while (count < 5 && itemsAdded < reactionScheme.size()) {
-	     			primary.getChildren().add(reactionScheme.get(itemsAdded));
-	     			itemsAdded ++;
-	     			count ++;
-	     		}
-	 	    	outerBox.getChildren().add(primary);
-	     	}
-	     	
-	     	// make and add the enter/return button
-	     	Button enterButton = new Button();
-	     		enterButton.setText("enter");
-	     	outerBox.getChildren().add(enterButton);
-	     	
-	     	Scene ReactionScene = new Scene(outerBox);
-	     	applicationStage.setScene(ReactionScene);
-	     	return ReactionScene;
+    protected Scene getChemicalEquation () {
+		
+    	ArrayList<Integer> numProdReact = get_amount();
+    	
+    	int number_of_reactions = numProdReact.get(0);
+    	int number_of_products = numProdReact.get(1);
+    	
+    	int reactions_added = 1;
+    	int products_added = 1;
+    	
+    	//The main equation (for number of molecules and molecules)
+    	ArrayList<HBox> chemical_equation = new ArrayList<HBox>();
+    	
+    	//For grams
+    	ArrayList<HBox> gram_array = new ArrayList<HBox>();
+    	
+    	//expecting at least 1 reactions to begin
+    	chemical_equation.add(get_HBox_Container());
+    	
+    	//Setting up reactions part of gram array
+    	gram_array.add(get_Sign_Box("-------- Reaction Grams: --------"));
+    	gram_array.add(get_gram_container("Reactant ", 1, false));
+    	
+    	while (number_of_reactions > reactions_added) {
+    		reactions_added++;
 
-	     }
-    
-    
-    
+    		chemical_equation.add(get_Sign_Box("+"));
+    		chemical_equation.add(get_HBox_Container());
+    		
+    		gram_array.add(get_gram_container("Reactant ", (reactions_added), false));
+    		
+    		
+    	}
+    	chemical_equation.add(get_Sign_Box("-->"));
+    	
+    	//expecting at least 1 product to begin
+    	chemical_equation.add(get_HBox_Container());
+    	
+    	//Setting up products part of gram array
+    	gram_array.add(get_Sign_Box("-------- Product Grams: --------"));
+    	gram_array.add(get_gram_container("Product ", 1, true));
+    	
+    	while (number_of_products > products_added) {
+    		chemical_equation.add(get_Sign_Box("+"));
+    		chemical_equation.add(get_HBox_Container());
+    		
+    		gram_array.add(get_gram_container("Product ", (products_added+1), true));
+    		
+    		products_added++;	
+    	}
+    	
+    	//V for # and molecule
+    	VBox main_box = new VBox();
+	    	main_box.setPadding(new Insets(20,20,20,20));
+	    	main_box.setAlignment(Pos.CENTER);
+    	//Added label
+    	Label title = new Label();
+    	title.setText("Please enter your values");
+    	main_box.getChildren().add(title);
+    	
+    	main_box.getChildren().addAll(chemical_equation);
+    	
+     	Button enterButton = new Button();
+ 			enterButton.setText("enter"); 
+    	main_box.getChildren().add(enterButton);
+    	
+    	//VBox for grams
+    	VBox grams = new VBox();
+	    	grams.setPadding(new Insets(20,20,20,20));
+    	grams.getChildren().addAll(gram_array);
+    	
+    	//overall H box
+    	HBox overall_box = new HBox();
+    	overall_box.getChildren().addAll(main_box,grams);
+    	
+    	
+    	// we need to add a scrollPane, but I'm having trouble with it
+    	//ScrollPane overallBox = new ScrollPane(overall_box);
+    	//overall_box.prefWidthProperty().bind(Bindings.add(-5, overallBox.widthProperty()));
+    	//overall_box.prefHeightProperty().bind(Bindings.add(-5, overallBox.heightProperty()));    	
+    	//overallBox.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+    	
+    	
+    	
+    	//When enter button is pressed, I will need to make a method that will get all the text field information
+    	Calculate_Reaction_TextFields test = new Calculate_Reaction_TextFields();
+    	enterButton.setOnAction(doneEvent -> test.Textfield_Calculator(numProdReact, main_box,grams));
+    	
+    	//Thinking of moving all the scene stuff here and making this method void
+     	Scene ReactionScene = new Scene(overall_box);
+     	return ReactionScene;
+    }
 }
 
 
