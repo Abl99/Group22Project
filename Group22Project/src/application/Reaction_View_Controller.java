@@ -72,6 +72,7 @@ public class Reaction_View_Controller {
     	ArrayList<HBox> gram_array = new ArrayList<HBox>();
     	
     	//expecting at least 1 reactions to begin
+    	chemical_equation.add(get_Sign_Box("Reaction 1:"));
     	chemical_equation.add(get_HBox_Container());
     	
     	//Setting up reactions part of gram array
@@ -80,17 +81,18 @@ public class Reaction_View_Controller {
     	
     	while (number_of_reactions > reactions_added) {
     		reactions_added++;
-
+    		
     		chemical_equation.add(get_Sign_Box("+"));
+    		chemical_equation.add(get_Sign_Box(String.format("Reaction %d:", reactions_added)));
     		chemical_equation.add(get_HBox_Container());
     		
     		gram_array.add(get_gram_container("Reactant ", (reactions_added), false));
-    		
     		
     	}
     	chemical_equation.add(get_Sign_Box("-->"));
     	
     	//expecting at least 1 product to begin
+    	chemical_equation.add(get_Sign_Box("Product 1:"));
     	chemical_equation.add(get_HBox_Container());
     	
     	//Setting up products part of gram array
@@ -99,6 +101,7 @@ public class Reaction_View_Controller {
     	
     	while (number_of_products > products_added) {
     		chemical_equation.add(get_Sign_Box("+"));
+    		chemical_equation.add(get_Sign_Box(String.format("Product %d:", products_added)));
     		chemical_equation.add(get_HBox_Container());
     		
     		gram_array.add(get_gram_container("Product ", (products_added+1), true));
@@ -112,7 +115,7 @@ public class Reaction_View_Controller {
 	    	main_box.setAlignment(Pos.CENTER);
 	    	
     	//Added overall label
-	    main_box.getChildren().add(get_Sign_Box("Please enter your values"));
+	    main_box.getChildren().add(get_Sign_Box("Please Enter Your Values"));
 	    
 	    //Add chemical equation to main_box
     	main_box.getChildren().addAll(chemical_equation);
@@ -135,16 +138,8 @@ public class Reaction_View_Controller {
     	ScrollPane scroll = new ScrollPane();
     	
     	//Please don't change the pref size of scroll box
-    	scroll.setPrefSize(445, 600);
+    	scroll.setPrefSize(445, 700);
     	scroll.setContent(overall_box);
-    	
-    	
-    	// we need to add a scrollPane, but I'm having trouble with it
-    	//ScrollPane overallBox = new ScrollPane(overall_box);
-    	//overall_box.prefWidthProperty().bind(Bindings.add(-5, overallBox.widthProperty()));
-    	//overall_box.prefHeightProperty().bind(Bindings.add(-5, overallBox.heightProperty()));    	
-    	//overallBox.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-    	
     	
     	
     	//When enter button is pressed, I will need to make a method that will get all the text field information
