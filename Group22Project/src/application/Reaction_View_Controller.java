@@ -137,8 +137,12 @@ public class Reaction_View_Controller {
     	//Scroll main that encompasses all 
     	ScrollPane scroll = new ScrollPane();
     	
+    	//This is to control the screen size when the amount of molecules is small (don't need a lot of 
+    	//space for a chemical equation of 2)
+    	ArrayList<Integer> scroll_pref = scrollpanepreferences(get_amount);
+    	
     	//Please don't change the pref size of scroll box
-    	scroll.setPrefSize(445, 700);
+    	scroll.setPrefSize(scroll_pref.get(0), scroll_pref.get(1));
     	scroll.setContent(overall_box);
     	
     	
@@ -151,4 +155,42 @@ public class Reaction_View_Controller {
     	Scene ReactionScene = new Scene(scroll);
      	return ReactionScene;
     }
+    
+    //This class sets the size of the reaction view
+    //It decides this by using the amount of reactants and products in the chemical equation and will shorten the screen
+    //if there would be too much empty space
+    
+    protected ArrayList<Integer> scrollpanepreferences (ArrayList<Integer> get_amount) {
+    	
+    	ArrayList<Integer> scroll_pref = new ArrayList<Integer>();
+    	
+    	//The width will stay the same, only the length changes when the number of molecules
+    	//in the chemical equation is increased
+		scroll_pref.add(445);
+    	
+    	//smallest chemical equation
+    	if ((get_amount.get(0) + get_amount.get(1)) == 2) {
+    		scroll_pref.add(250);
+    		
+    	}else if((get_amount.get(0) + get_amount.get(1)) == 3 ){
+    		scroll_pref.add(350);
+    		
+    	}else if((get_amount.get(0) + get_amount.get(1)) == 4 ){
+    		scroll_pref.add(450);
+    		
+    	}else if((get_amount.get(0) + get_amount.get(1)) == 5 ){
+    		scroll_pref.add(550);
+    		
+    	}else if((get_amount.get(0) + get_amount.get(1)) == 6 ){
+    		scroll_pref.add(610);
+    	
+    	//largest size before scroll wheel will need to be used
+    	}else if ((get_amount.get(0) + get_amount.get(1)) >= 7) {
+    		scroll_pref.add(700);
+    	}
+
+    	return scroll_pref;
+
+    }
+ 
 }
