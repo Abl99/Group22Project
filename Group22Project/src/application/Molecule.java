@@ -92,6 +92,7 @@ public class Molecule extends Atom{
 		return partiallyCondensed;
 	}
 	
+
 	//This method serves to see if it is a valid molecule
 	protected boolean MoleculeCheck() {
 		Molecule test = new Molecule(molecularFormula);
@@ -105,6 +106,7 @@ public class Molecule extends Atom{
 		}
 		return true;
 	}
+
 	
 	//This method is to return the name of the molecule
 	protected String MoleculeName() {
