@@ -15,8 +15,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Calculate_Reaction_TextFields extends Reaction{
-	
+public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
+	//TextField_Validity_Check extended reaction so almost every method written so far is available 
 	
 	public Stage applicationStage;
 
@@ -63,6 +63,10 @@ public class Calculate_Reaction_TextFields extends Reaction{
 		
 		boolean valid_input = true;
 		
+		//will track the errors the user made 
+		ArrayList<String> error_list = new ArrayList<String>();
+		
+		
 		//-------------------------  MOLECULES ------------------------------- 
 		//ArrayList for all items in the main_box (the box where number of and molecules are)
 	    ArrayList<Node> main_box_array = new ArrayList<Node>(main_box.getChildren());
@@ -79,33 +83,19 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    ArrayList<String> user_inputs = new ArrayList<String>();
 	    
 	    for (TextField x : my_textfields) {
-	    	user_inputs.add(x.getText());
-	    }
-	    
-	    //The Array list String will now have every number of and molecule in order
-	    //System.out.println(user_inputs);
-	    
-	    //Check if user input is a valid molecule (NOT NEEDED AT THE MOMENT)
-	    /*
-	    for (int x = 1; x < user_inputs.size(); x += 2) {
 	    	
-	    	//check if molecule or not
-	    	Molecule check_input = new Molecule(user_inputs.get(x));
-	    	boolean molecule_or_not = check_input.MoleculeCheck();
+	    	//From TextField_Validity_Check, it will return false if a text field is null and that text field will not be recorded
+	    	valid_input = check_if_null(x);
 	    	
-	    	if (!molecule_or_not) {
-	    		valid_input = false;
+	    	if (valid_input) {
+	    		user_inputs.add(x.getText());
+	    	}else {
+	    		user_inputs.add("null value");
+	    		error_list.add("1x Empty TextField in Molecules Section");
 	    	}
 	    }
-	    */
+	    //There should be no null values in ArrayList<String> user_input 
 	    
-	    //Check if user input is a number (i.e. how # of molecule)
-	    for (int x = 0; x < user_inputs.size(); x += 2) {
-	    	String test = user_inputs.get(x).toLowerCase().replaceAll("[0-9]", "");
-	    	if (test.length() > 1 || user_inputs.get(x).isEmpty()) {
-	    		valid_input = false;
-	    	}
-	    }
 	    //I need to sort out the string array list user_inputs into the following four array lists
 	    
 	    ArrayList<Integer> reaction_amount_molecules = new ArrayList<Integer>();
@@ -114,38 +104,79 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    ArrayList<String> reaction_molecules = new ArrayList<String>();
 	    ArrayList<String> product_molecules = new ArrayList<String>();
 	    
-	    System.out.println("reaction inputted " + amounts.get(0));
-	    System.out.println("proudcts inputted " + amounts.get(1));
-	    
 	    //for reaction_amount_molecules
 	    for (int x = 0; x < amounts.get(0)*2; x += 2) {
-	    	reaction_amount_molecules.add(Integer.parseInt(user_inputs.get(x)));
+	    	
+	    	//From TextField_Validity_Check
+	    	valid_input = check_if_int(user_inputs.get(x));
+	    	
+	    	if (valid_input) {
+	    		reaction_amount_molecules.add(Integer.parseInt(user_inputs.get(x)));
+	    	}else {
+	    		
+	    		//avoid repeat errors
+	    		if (!user_inputs.get(x).equals("null value")) {
+	    			error_list.add("1x Invalid Reaction Amount");
+	    		}
+	    	}
 	    }
 	    
 	    //for reaction_molecules
 	    for (int x = 1; x < amounts.get(0)*2; x += 2) {
-	        reaction_molecules.add(user_inputs.get(x));
+	    	
+	    	
+	    	//reaction_molecules.add(user_inputs.get(x));
+	    	
+	    	//From TextField_Validity_Check
+	    	valid_input = molecule_check(user_inputs.get(x));
+	 
+	    	if (valid_input) {
+	    		reaction_molecules.add(user_inputs.get(x));
+	    	}else {
+	    		
+	    		//avoid repeat errors
+	    		if (!user_inputs.get(x).equals("null value")) {
+	    			error_list.add("1x Invalid Reaction Molecule");
+	    		}
+	    	}
 	    }
 	    
 	    //for product_amount_molecules
 	    for (int x = 0; x < amounts.get(1)*2; x += 2) {
-	    	product_amount_molecules.add(Integer.parseInt(user_inputs.get(x + amounts.get(0)*2)));
+	    	
+	    	//From TextField_Validity_Check
+	    	valid_input = check_if_int(user_inputs.get(x + amounts.get(0)*2));
+	    	
+	    	if (valid_input) {
+	    		product_amount_molecules.add(Integer.parseInt(user_inputs.get(x + amounts.get(0)*2)));
+	    	}else {
+	    		
+	    		//avoid repeat errors
+	    		if (!user_inputs.get(x + amounts.get(0)*2).equals("null value")) {
+	    			error_list.add("1x Invalid Product Amount");
+	    		}
+	    	}
 	    }
 	    
 	    //for product_molecules
 	    for (int x = 1; x < amounts.get(1)*2; x += 2) {
-	    	product_molecules.add(user_inputs.get(x + amounts.get(0)*2));
+	    	
+	    	//product_molecules.add(user_inputs.get(x + amounts.get(0)*2));
+	    	
+
+	    	//From TextField_Validity_Check
+	    	valid_input = molecule_check(user_inputs.get(x + amounts.get(0)*2));
+	    	
+	    	if (valid_input) {
+	    		product_molecules.add(user_inputs.get(x + amounts.get(0)*2));
+	    	}else {
+	    		
+	    		//avoid repeat errors
+	    		if (!user_inputs.get(x + amounts.get(0)*2).equals("null value")) {
+	    			error_list.add("1x Invalid Product Molecule");
+	    		}
+	    	}
 	    }
-	    
-	    System.out.println("reaction amount molecules" + reaction_amount_molecules);
-	    System.out.println("reaction molecules" + reaction_molecules);
-	    
-	    System.out.println("----------------");
-	    
-	    System.out.println("product amount molecules" + product_amount_molecules);
-	    System.out.println("product molecules" + product_molecules);
-	    
-	    //ONLY VALIDATION REMAINING AND TO CONNECT REACTIONS FOR CALCULATIONS 
 	    
 	   //---------------------------- GRAMS ---------------------------------- 
 	    //ArrayList for all items in grams 
@@ -162,54 +193,104 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	    
 	    for (TextField x : gram_textfields) {
 	    	
-	    	gram_inputs.add(x.getText());
-	    }
-	    
-	    //Check if user input is a number (i.e. how # of molecule)
-	    //This may not work with decimals (may have to change how this is validated)
-	    
-	    for (int x = 0; x < user_inputs.size(); x += 2) {
-	    	String test = user_inputs.get(x).toLowerCase().replaceAll("[0-9]", "");
-	    	if (test.length() > 1 || user_inputs.get(x).isEmpty()) {
-	    		valid_input = false;
+	    	valid_input = check_if_null(x);
+	    	
+	    	if (valid_input) {
+	    		gram_inputs.add(x.getText());
+	    	}else {
+	    		gram_inputs.add("null value");
+	    		error_list.add("1x Empty TextField in Gram Section");
 	    	}
+	    	
 	    }
 	    
 	    //I need to separate the gram reactants from the gram products as a double
 	    ArrayList<Double> gram_reactants = new ArrayList<Double>();
 	    ArrayList<Double> gram_products = new ArrayList<Double>();
 	    
-	    //System.out.println(amounts);
-	    
-	    //This if statement is just so I can test molecules without an error
-	    if (!(gram_inputs.get(0).equals(""))) {
-	    	
-		    for (int x = 0; x < amounts.get(0); x++) {
-		    	gram_reactants.add(Double.parseDouble(gram_inputs.get(x)));	
-		    }
+		for (int x = 0; x < amounts.get(0); x++) {
+			
+			//From TextField_Validity_Check
+			valid_input = check_if_double(gram_inputs.get(x));
+			
+			if (valid_input) {
+				gram_reactants.add(Double.parseDouble(gram_inputs.get(x)));	
+			}else {
+				
+				//prevent repeat errors
+				if(!gram_inputs.get(x).equals("null value")) {
+					error_list.add("1x Invalid Reactant Gram Amount");
+				}
+			}
+		}
 		    
-		    for (int x = 0; x < amounts.get(1); x++) {
-		    	gram_products.add(Double.parseDouble(gram_inputs.get(x + amounts.get(0))));
-		    }
-		    
+		for (int x = 0; x < amounts.get(1); x++) {
+			
+			//From TextField_Validity_Check
+			valid_input = check_if_double(gram_inputs.get(x + amounts.get(0)));
+			
+			if (valid_input) {
+				gram_products.add(Double.parseDouble(gram_inputs.get(x + amounts.get(0))));
+			}else {
+				
+				//prevent repeat errors
+				if (!gram_inputs.get(x + amounts.get(0)).equals("null value")) {
+					error_list.add("1x Invalid Product Gram Amount");					
+				}
+			}
+		}
+		    /*
 		    System.out.println("----------------");
 		    
 		    System.out.println("Your gram reactants are:" + gram_reactants);
 		    System.out.println("Your gram products are:" + gram_products);
-	    }
+			*/
 	    
 	  //ONLY VALIDATION REMAINING AND TO CONNECT REACTIONS FOR CALCULATIONS 
 	    
 	  //---------------------------- ERRORS ---------------------------------- 
 	    
-	  if (valid_input) {
-		  //need to close out of current scene
-		  //System.out.println("All Valid Inputs");
+	  if (error_list.size() == 0) {
 		  
+		  System.out.println("You have inputted no errors");
+		  
+		  
+		  //This is where we will calculate if the reaction is balanced since there are no errors in the inputs
+		  //All the ArrayLists should have the correct stuff in them
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  //Close out of reaction view and go back to Project_View
+		  //Will need to change label on main page to say if reaction was balanced or not
 
 	  }else {
 		  
-		  //System.out.println("Invalid Input");
+		  
+		  //There were errors in user input
+		  
+		  System.out.println("User Errors:");
+		  for (String x : error_list) {
+			  System.out.println(x);
+		  }
+		  System.out.println("---------------------");
+
+		  
+		  
+		  
+		  
+		  
 		  
 		  
 		  //Open new window to tell user they made an error (idea) 
@@ -234,6 +315,4 @@ public class Calculate_Reaction_TextFields extends Reaction{
 	  
 	}
 
-	
-	
 }

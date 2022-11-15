@@ -188,9 +188,7 @@ public class Reaction_View_Controller {
     	}else if ((get_amount.get(0) + get_amount.get(1)) >= 7) {
     		scroll_pref.add(700);
     	}
-
     	return scroll_pref;
-
     }
  
 }
