@@ -16,6 +16,12 @@ public class Reaction extends Molecule {
 	 * 
 	 * @param m
 	 */
+	
+	//Added this so I can extend it to Calculate Reaction Text Fields 
+	public Reaction() {
+	}
+	
+	
 	public Reaction(String m) {
 		super(m);
 		// TODO make this actually sensible
