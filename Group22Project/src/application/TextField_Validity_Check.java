@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 //This class and its method will check if a text field is a valid input
 public class TextField_Validity_Check extends Reaction{
 
-	//method that checks if a text field is null
+	//method that checks if a text field is null, returns true if not null
 	protected boolean check_if_null(TextField to_test) {
 		
 		if (to_test.getText().isEmpty() || to_test.getText().equals("")) {
@@ -16,12 +16,17 @@ public class TextField_Validity_Check extends Reaction{
 		return true;
 	}
 	
-	//method that checks if a String is an int value 
+	//method that checks if a String is an int value, returns true is it is a int
 	protected boolean check_if_int(String to_test){
 		
 		try {
 			
 			int test = Integer.parseInt(to_test);
+			
+			//no negative values
+			if (test < 0) {
+				return false;
+			}
 			
 		}catch (NumberFormatException e) {
 			
@@ -37,6 +42,11 @@ public class TextField_Validity_Check extends Reaction{
 		try {
 			
 			Double test = Double.parseDouble(to_test);
+			
+			//no negative values
+			if (test < 0) {
+				return false;
+			}
 			
 		}catch (NumberFormatException e) {
 			

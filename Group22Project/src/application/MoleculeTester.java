@@ -14,13 +14,7 @@ public class MoleculeTester {
 		
 		System.out.println(p);
 		System.out.println(q);
-		System.out.println(r);
-
-		
-		Molecule m1 = new Molecule("XeMg");
-		
-		System.out.println(m1.MoleculeCheck());
-		
+		System.out.println(r);	
 		
 	}
 

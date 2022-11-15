@@ -69,6 +69,7 @@ public class Project_View_Controller{
     		error_element_label.setText("Invalid Element");
     		
     		//clear inputs
+    		element_name.setText("");
     		element_symbol.setText("");
     		element_answer_1.setText("");
     		element_answer_2.setText("");
@@ -176,11 +177,11 @@ public class Project_View_Controller{
     		return;
     	}
     	
-    	
-    	Molecule molecule_information = new Molecule(molecule_input.getText());
-    	
+    	TextField_Validity_Check molecule_test = new TextField_Validity_Check();
     	//check if molecule is valid
-    	if (molecule_information.MoleculeCheck()) {
+    	if (molecule_test.molecule_check(molecule_input.getText())) {
+    		
+    		Molecule molecule_information = new Molecule(molecule_input.getText());
     		
     		//rounds the answer
     		molecule_answer_1.setText(String.format("%.4f", molecule_information.getMolecularWeight()));
@@ -218,28 +219,38 @@ public class Project_View_Controller{
     
     @FXML
     void entered_chemical_equation(ActionEvent event) throws IOException{
+    	
+    	boolean valid_rectants = true;
+    	boolean valid_products = true;
+    	
+    	TextField_Validity_Check testing_for_input_errors = new TextField_Validity_Check();
+    	
+    	//check if input is null
+    	valid_rectants = testing_for_input_errors.check_if_null(number_of_rectants);
+    	valid_products = testing_for_input_errors.check_if_null(number_of_products);
+    	
+    	if (!valid_rectants || !valid_products) {
+    		reaction_error_label.setText("Add Numerical Inputs");
+    		return;
+    	}
+    	
+    	//check if input is a number
+    	valid_rectants = testing_for_input_errors.check_if_int(number_of_rectants.getText());
+    	valid_products = testing_for_input_errors.check_if_int(number_of_products.getText());
+    	
+    	if (!valid_rectants || !valid_products) {
+    		//not an integer
+    		reaction_error_label.setText("Add Numerical Inputs");
+    		return;
+    	}
+    	
+    	//input should not be 0 on either side
+    	if ((Integer.parseInt(number_of_rectants.getText()) == 0) || (Integer.parseInt(number_of_products.getText()) == 0)) {
+    		reaction_error_label.setText("Cannot have 0");
+    		return;
+    	}
+    	//beyond this, the input should be valid
 
-    	String test1 = number_of_rectants.getText().toLowerCase().replaceAll("[0-9]", "");
-    	String test2 = number_of_products.getText().toLowerCase().replaceAll("[0-9]", "");
-    	
-    	//check for null on reacts
-    	if (number_of_rectants.getText().equals("") || number_of_rectants.getText().isEmpty()) {
-    		reaction_error_label.setText("Add Numerical Inputs");
-    		return;
-    	}
-    	
-    	//check for null on products
-    	if (number_of_products.getText().equals("") || number_of_products.getText().isEmpty()) {
-    		reaction_error_label.setText("Add Numerical Inputs");
-    		return;
-    	}
-    	
-    	//ensures that there are numbers only in an input
-    	if (test1.length() >= 1 || test2.length() >= 1) {
-    		reaction_error_label.setText("Add Numerical Inputs");
-    		return;
-    	}
-    	
     	//wipe the error message
     	reaction_error_label.setText("");
     	

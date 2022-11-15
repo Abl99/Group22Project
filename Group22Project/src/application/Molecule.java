@@ -92,22 +92,6 @@ public class Molecule extends Atom{
 		return partiallyCondensed;
 	}
 	
-
-	//This method serves to see if it is a valid molecule
-	protected boolean MoleculeCheck() {
-		Molecule test = new Molecule(molecularFormula);
-		ArrayList<String> test_array = test.getMoleculeArray();
-		
-		for (int x = 0; x < test_array.size();x = x + 2) {
-			
-			if (test.Test(test_array.get(x)).equals("invalid element")){
-				return false;
-			}
-		}
-		return true;
-	}
-
-	
 	//This method is to return the name of the molecule
 	protected String MoleculeName() {
 		Molecule test = new Molecule(molecularFormula);
