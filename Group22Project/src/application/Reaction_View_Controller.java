@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -109,15 +110,16 @@ public class Reaction_View_Controller {
     	VBox main_box = new VBox();
 	    	main_box.setPadding(new Insets(20,20,20,20));
 	    	main_box.setAlignment(Pos.CENTER);
-    	//Added label
-    	Label title = new Label();
-    	title.setText("Please enter your values");
-    	main_box.getChildren().add(title);
-    	
+	    	
+    	//Added overall label
+	    main_box.getChildren().add(get_Sign_Box("Please enter your values"));
+	    
+	    //Add chemical equation to main_box
     	main_box.getChildren().addAll(chemical_equation);
     	
+    	//Enter button
      	Button enterButton = new Button();
- 			enterButton.setText("enter"); 
+ 			enterButton.setText("Enter"); 
     	main_box.getChildren().add(enterButton);
     	
     	//VBox for grams
@@ -128,6 +130,13 @@ public class Reaction_View_Controller {
     	//overall H box
     	HBox overall_box = new HBox();
     	overall_box.getChildren().addAll(main_box,grams);
+    	
+    	//Scroll main that encompasses all 
+    	ScrollPane scroll = new ScrollPane();
+    	
+    	//Please don't change the pref size of scroll box
+    	scroll.setPrefSize(445, 600);
+    	scroll.setContent(overall_box);
     	
     	
     	// we need to add a scrollPane, but I'm having trouble with it
@@ -143,7 +152,8 @@ public class Reaction_View_Controller {
     	enterButton.setOnAction(doneEvent -> test.Textfield_Calculator(numProdReact, main_box,grams));
     	
     	//Thinking of moving all the scene stuff here and making this method void
-     	Scene ReactionScene = new Scene(overall_box);
+     	//Scene ReactionScene = new Scene(overall_box);
+    	Scene ReactionScene = new Scene(scroll);
      	return ReactionScene;
     }
 }
