@@ -244,7 +244,8 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		}
 	    
 	  //---------------------------- ERRORS ---------------------------------- 
-	    
+	  
+	  //THERE ARE NO ERRORS
 	  if (error_list.size() == 0) {
 		  
 		  //close the reaction window
@@ -271,6 +272,8 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  test.start(primaryStage);
 		  
+	
+	  //THERE IS AT LEAST 1 ERROR
 	  }else {
 		  
 		  //Count the errors
