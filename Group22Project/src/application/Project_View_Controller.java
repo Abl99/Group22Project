@@ -29,6 +29,8 @@ import javafx.scene.layout.VBox;
 public class Project_View_Controller{
 	public Stage applicationStage;
 	
+	private String balanced;
+	
 	//---------------------------------------------------------
 	
 	//ELEMENT VALUES 
@@ -59,7 +61,6 @@ public class Project_View_Controller{
     @FXML
     private Label error_element_label;
 
-    
     @FXML
     void entered_element_input(ActionEvent event) {
     	
@@ -118,6 +119,7 @@ public class Project_View_Controller{
     	
     	//Density (Sample)
     	element_answer_4.setText(element_information.getDensity(element));
+    	
     }
 
 	//---------------------------------------------------------
@@ -217,6 +219,11 @@ public class Project_View_Controller{
     @FXML
     private Label reaction_balanced;
     
+    //This will update the label balanced when needed
+    protected void update_balanaced(String balanced) {
+    	reaction_balanced.setText(balanced);
+    }
+    
     @FXML
     void entered_chemical_equation(ActionEvent event) throws IOException{
     	
@@ -254,17 +261,21 @@ public class Project_View_Controller{
     	//wipe the error message
     	reaction_error_label.setText("");
     	
-    	Reaction_View_Controller new_scene = new Reaction_View_Controller();
     	
-    	Scene Reacton_Scene = new_scene.getChemicalEquation(get_amount());
     	
     	//I used the video below, to get the code to move from one scene to the next
     	//https://www.youtube.com/watch?v=XCgcQTQCfJQ
     	
     	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
     	
+    	//I added the stage of this class to be carried over to Reaction_View_Controller;
+    	Reaction_View_Controller new_scene = new Reaction_View_Controller();
+    	
+    	Scene Reacton_Scene = new_scene.getChemicalEquation(scene, get_amount());
+    	
     	scene.setScene(Reacton_Scene);
     	scene.show();
+    		
     }
     
     //This method will provide the text field amounts 
@@ -278,6 +289,20 @@ public class Project_View_Controller{
     	
     	return amount;
     }
+    
+    //---------------------------------------------------------
+    //Exit Program
+    
+    @FXML
+    private Button exit_button;
+    
+    @FXML
+    void exit_program(ActionEvent event) {
+    	
+    	applicationStage.close();
+    	
+    }
+    
 }
 
 

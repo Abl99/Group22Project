@@ -11,8 +11,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class Reaction_View_Controller {
+	
+    private boolean leave_Stage = false;
+	
 	 //This method will create an H box and return it
     protected HBox get_HBox_Container() {	
  	    TextField quantity = new TextField();
@@ -55,7 +59,8 @@ public class Reaction_View_Controller {
     	return my_HBox;	
     }
 
-    protected Scene getChemicalEquation (ArrayList<Integer> get_amount) {
+    protected Scene getChemicalEquation (Stage reaction_stage, ArrayList<Integer> get_amount) {
+    	//The stage of Project_View_Controller is carried over and can be shown 
 		
     	ArrayList<Integer> numProdReact = get_amount;
     	
@@ -148,10 +153,8 @@ public class Reaction_View_Controller {
     	
     	//When enter button is pressed, I will need to make a method that will get all the text field information
     	Calculate_Reaction_TextFields test = new Calculate_Reaction_TextFields();
-    	enterButton.setOnAction(doneEvent -> test.Textfield_Calculator(numProdReact, main_box,grams));
+    	enterButton.setOnAction(doneEvent -> test.Textfield_Calculator(reaction_stage, numProdReact, main_box,grams));
     	
-    	//Thinking of moving all the scene stuff here and making this method void
-     	//Scene ReactionScene = new Scene(overall_box);
     	Scene ReactionScene = new Scene(scroll);
      	return ReactionScene;
     }
@@ -190,5 +193,11 @@ public class Reaction_View_Controller {
     	}
     	return scroll_pref;
     }
+    
+    public boolean get_leave_Stage() {
+		
+    	return leave_Stage;
+    }
+    
  
 }
