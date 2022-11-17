@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
-	private String test = "N/A";
+	private String test = "No Reaction Yet";
 	
 	@Override
 	public void start(Stage primaryStage) {
