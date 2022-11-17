@@ -11,9 +11,14 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class Reaction_View_Controller {
-	 //This method will create an H box and return it
+	private Stage thisStage;
+	private final Project_View_Controller projVwCont;
+	
+	
+	//This method will create an H box and return it
     protected HBox get_HBox_Container() {	
  	    TextField quantity = new TextField();
  	    	quantity.setPrefSize(40.0, 25.0);
@@ -55,8 +60,10 @@ public class Reaction_View_Controller {
     	return my_HBox;	
     }
 
-    protected Scene getChemicalEquation (ArrayList<Integer> get_amount) {
-		
+    protected Reaction_View_Controller (ArrayList<Integer> get_amount, Project_View_Controller projVwCont) {
+    	this.projVwCont = projVwCont;
+    	thisStage = new Stage();
+    	
     	ArrayList<Integer> numProdReact = get_amount;
     	
     	int number_of_reactions = numProdReact.get(0);
@@ -146,15 +153,63 @@ public class Reaction_View_Controller {
     	scroll.setContent(overall_box);
     	
     	
-    	//When enter button is pressed, I will need to make a method that will get all the text field information
     	Calculate_Reaction_TextFields test = new Calculate_Reaction_TextFields();
-    	enterButton.setOnAction(doneEvent -> test.Textfield_Calculator(numProdReact, main_box,grams));
-    	
-    	//Thinking of moving all the scene stuff here and making this method void
-     	//Scene ReactionScene = new Scene(overall_box);
+    	if (test.totalErrors == null) {
+        	enterButton.setOnAction(doneEvent -> returnToMainStage(test));
+    	}else {
+        	enterButton.setOnAction(doneEvent -> errorMessages(test));
+
+    	}
     	Scene ReactionScene = new Scene(scroll);
-     	return ReactionScene;
+     	thisStage.setScene(ReactionScene);
+    	
+    	
+    	//return ReactionScene;
     }
+    
+    public void showStage() {
+    	thisStage.showAndWait();
+    }
+    
+    
+    // if there are no errors in the user's reaction input, return to the main stage by calling this method
+    private void returnToMainStage(Calculate_Reaction_TextFields test) {
+    	System.out.println("reaction is good");
+    	
+    	ArrayList<Integer> reactCoeff = test.reactantCoeff;
+    	ArrayList<String> reactMol = test.reactantMolecules;
+    	ArrayList<Integer> prodCoeff = test.productCoeff;
+    	ArrayList<String> prodMol = test.productMolecules;
+    	ArrayList<Double> reactMass = test.reactantMasses;
+    	ArrayList<Double> prodMass = test.productMasses;
+    	
+    	System.out.println(reactMol);
+    	System.out.println(reactMol);
+
+    	
+    	//Reaction reaction = new Reaction(reactCoeff,reactMol,prodCoeff,prodMol);
+    	//boolean balance = reaction.balancedReaction();
+    	//String balanceString = "";
+    	//if (balance) balanceString = "true";
+    	//else balanceString = "false";
+    	
+    	//String limitingReagent = reaction.getLimitingReagent().get(0);
+    	//TODO add toString methods for theoretical and percent yeilds in ReactionsCLass
+    	//ArrayList<String> theorYields = reaction.theoreticalYield();
+    	//ArrayList<String> yieldPercents = reaction.yieldPercent();
+    	
+    	projVwCont.setReaction_balanced("true");
+    	
+    	
+    }
+    
+    // if there are errors in the user's reaction input, DO A THING THERE
+    private void errorMessages(Calculate_Reaction_TextFields test) {
+    	System.out.println("reaction is bad");
+
+    }
+    
+    
     
     //This class sets the size of the reaction view
     //It decides this by using the amount of reactants and products in the chemical equation and will shorten the screen

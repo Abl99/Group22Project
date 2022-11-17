@@ -215,11 +215,11 @@ public class Project_View_Controller{
     
     //This label should return whether the reaction inputed was balanced or not
     @FXML
-    private Label reaction_balanced;
+    protected Label reaction_balanced;
     
     @FXML
     void entered_chemical_equation(ActionEvent event) throws IOException{
-    	
+    	    	
     	boolean valid_rectants = true;
     	boolean valid_products = true;
     	
@@ -254,17 +254,26 @@ public class Project_View_Controller{
     	//wipe the error message
     	reaction_error_label.setText("");
     	
-    	Reaction_View_Controller new_scene = new Reaction_View_Controller();
     	
-    	Scene Reacton_Scene = new_scene.getChemicalEquation(get_amount());
+    	
+    	Reaction_View_Controller reactVwCont = new Reaction_View_Controller(get_amount(),this);
+    	reactVwCont.showStage();
+    	
+
+    	//Scene mainScene = applicationStage.getScene();
+    	//Reaction_View_Controller new_scene = new Reaction_View_Controller();
+    	//Scene Reacton_Scene = new_scene.getChemicalEquation(get_amount(), mainScene);
     	
     	//I used the video below, to get the code to move from one scene to the next
     	//https://www.youtube.com/watch?v=XCgcQTQCfJQ
     	
-    	Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	
-    	scene.setScene(Reacton_Scene);
-    	scene.show();
+    	//Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    	//scene.setScene(Reacton_Scene);
+    	//scene.show();
+    }
+    
+    public void setReaction_balanced(String text) {
+    	reaction_balanced.setText(text);
     }
     
     //This method will provide the text field amounts 
@@ -278,6 +287,7 @@ public class Project_View_Controller{
     	
     	return amount;
     }
+    
 }
 
 

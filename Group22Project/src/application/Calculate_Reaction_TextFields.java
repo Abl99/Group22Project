@@ -16,6 +16,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
+	 ArrayList<Integer> reactantCoeff;
+	 ArrayList<String> reactantMolecules;
+	 ArrayList<Integer> productCoeff;
+	 ArrayList<String> productMolecules;
+	 ArrayList<Double> reactantMasses; 
+	 ArrayList<Double> productMasses;
+	ArrayList<String> totalErrors;
+	
 	//TextField_Validity_Check extended reaction so almost every method written so far is available 
 	
 	public Stage applicationStage;
@@ -58,7 +66,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	}
 	
 	//Main method
-	public void Textfield_Calculator(ArrayList<Integer> amounts, VBox main_box, VBox grams){
+	public void Textfield_Calculator(ArrayList<Integer> amounts, VBox main_box, VBox grams, Scene mainScene){
 		//The ArrayList<Integer> amounts is so I can get the get_amount information
 		
 		boolean valid_input = true;
@@ -253,26 +261,14 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	  if (error_list.size() == 0) {
 		  
 		  System.out.println("You have inputted no errors");
-		  
-		  //This is where we will calculate if the reaction is balanced since there are no errors in the inputs
-		  //All the ArrayLists should have the correct stuff in them
-		  
-		  
-		  
-		  
-		  
-		  
-		  //CALL REACTION CLASS HERE WITH ARRAYLISTS FROM THIS CLASS, THERE SHOULDN'T BE ERRORS IN THE ARRAYLISTS
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  //Close out of reaction view and go back to Project_View
-		  //Will need to change label on main page to say if reaction was balanced or not
+
+		ArrayList<Integer> reactantCoeff = reaction_amount_molecules;
+		ArrayList<String> reactantMolecules = reaction_molecules;
+		ArrayList<Integer> productCoeff = product_amount_molecules;
+		ArrayList<String> productMolecules = product_molecules;
+		ArrayList<Double> reactantMasses = gram_reactants; 
+		ArrayList<Double> productMasses = gram_products;
+		 
 
 	  }else {
 		  
@@ -335,6 +331,10 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  if (!(invalid_product_gram_amount == 0)){
 			  accumulated_errors.add(String.format("%dx Invalid Product Gram Amount", invalid_product_gram_amount));
 		  }
+		  
+		  ArrayList<String> totalErrors = accumulated_errors;
+		  
+		  
 		  
 		  //Prints the number of each error (i.e. so the user can make the proper adjustment)
 		  
