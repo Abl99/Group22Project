@@ -1,5 +1,7 @@
 package application;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -18,8 +21,8 @@ import javafx.stage.Stage;
 public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	//TextField_Validity_Check extended reaction so almost every method written so far is available 
 	
-	public Stage applicationStage;
-
+	private boolean leave_Stage = false;
+	
 	//Takes all the Hboxes from the Node Array, and makes a H box Array list from them
 	private ArrayList<HBox> Node_to_Hbox_Array(ArrayList<Node> node_array) {
 		
@@ -58,8 +61,8 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	}
 	
 	//Main method
-	public void Textfield_Calculator(ArrayList<Integer> amounts, VBox main_box, VBox grams){
-		//The ArrayList<Integer> amounts is so I can get the get_amount information
+	public void Textfield_Calculator(Stage reaction_stage, ArrayList<Integer> amounts, VBox main_box, VBox grams){
+		//The Stage scene, is the stage of the project
 		
 		boolean valid_input = true;
 		
@@ -239,41 +242,38 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				}
 			}
 		}
-		    /*
-		    System.out.println("----------------");
-		    
-		    System.out.println("Your gram reactants are:" + gram_reactants);
-		    System.out.println("Your gram products are:" + gram_products);
-			*/
-	    
-	  //ONLY VALIDATION REMAINING AND TO CONNECT REACTIONS FOR CALCULATIONS 
 	    
 	  //---------------------------- ERRORS ---------------------------------- 
-	    
+	  
+	  //THERE ARE NO ERRORS
 	  if (error_list.size() == 0) {
 		  
-		  System.out.println("You have inputted no errors");
+		  //close the reaction window
+		  reaction_stage.close();
 		  
-		  //This is where we will calculate if the reaction is balanced since there are no errors in the inputs
-		  //All the ArrayLists should have the correct stuff in them
+		  //prepare to make a new project_view window with only 1 label changed (balanced)
+		  Stage primaryStage = new Stage();
+		  Main test = new Main();
 		  
+		  //Check if balanced or not using Reactions class
+		  Reaction test_the_chemical_equation = new Reaction(
+				  reaction_amount_molecules,reaction_molecules,
+				  product_amount_molecules,product_molecules,
+				  gram_reactants,gram_products);
 		  
+		  //test_the_chemical_equation contains every relevant array list in the proper order;
+		  boolean balanced_or_not = test_the_chemical_equation.balancedReaction();
 		  
+		  if (balanced_or_not) {
+			  test.setBalanced("Balanced!");
+		  }else {
+			  test.setBalanced("Not Balanced");
+		  }
 		  
+		  test.start(primaryStage);
 		  
-		  
-		  //CALL REACTION CLASS HERE WITH ARRAYLISTS FROM THIS CLASS, THERE SHOULDN'T BE ERRORS IN THE ARRAYLISTS
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  //Close out of reaction view and go back to Project_View
-		  //Will need to change label on main page to say if reaction was balanced or not
-
+	
+	  //THERE IS AT LEAST 1 ERROR
 	  }else {
 		  
 		  //Count the errors
@@ -365,9 +365,10 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		 */ 
 		  
 	  }  
-	  
-	  
-	  
 	}
-
+	
+	protected boolean get_leave_Stage() {
+		return leave_Stage;
+	}
+	
 }
