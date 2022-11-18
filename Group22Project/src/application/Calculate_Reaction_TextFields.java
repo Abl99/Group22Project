@@ -61,7 +61,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	}
 	
 	//Main method
-	public void Textfield_Calculator(Stage reaction_stage, ArrayList<Integer> amounts, VBox main_box, VBox grams){
+	public void Textfield_Calculator(Stage reaction_stage, ArrayList<Integer> amounts, VBox main_box, VBox grams, Label errorLabel){
 		//The Stage scene, is the stage of the project
 		
 		boolean valid_input = true;
@@ -338,37 +338,17 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  //Prints the number of each error (i.e. so the user can make the proper adjustment)
 		  
+		  
+		  errorLabel.setText("Error(s): " + accumulated_errors.toString());
+		  
+		  /*For Dev purposes
 		  System.out.println("---------------------");
 		  System.out.println("User Errors:");
 		  for (String x : accumulated_errors) {
 			  System.out.println(x);
 		  }
 		  System.out.println("---------------------");
-
-
-		  //Open new window to tell user they made an error (idea) 
-		  //They see their errors via the accumulated_error ArrayList
-		  
-		  //WORK IN PROGRESS
-		  /*
-		  Scene error_window = applicationStage.getScene();
-		  
-		  VBox error_box = new VBox();
-          Label error_label = new Label("Invalid Entry");
-          Button error_button = new Button("Enter");
-      	  error_box.getChildren().addAll(error_label, error_button);
-      	  
-      	  error_button.setOnAction(doneEvent -> applicationStage.close());
-      	  
-      	  applicationStage.setScene(error_window);
-      	  applicationStage.show();
-		 */ 
-		  
+		  */
 	  }  
-	}
-	
-	protected boolean get_leave_Stage() {
-		return leave_Stage;
-	}
-	
+	}	
 }
