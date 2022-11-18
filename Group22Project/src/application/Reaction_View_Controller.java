@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Reaction_View_Controller {
@@ -77,18 +78,18 @@ public class Reaction_View_Controller {
     	ArrayList<HBox> gram_array = new ArrayList<HBox>();
     	
     	//expecting at least 1 reactions to begin
-    	chemical_equation.add(get_Sign_Box("Reaction 1:"));
+    	chemical_equation.add(get_Sign_Box("Reactant 1:"));
     	chemical_equation.add(get_HBox_Container());
     	
     	//Setting up reactions part of gram array
-    	gram_array.add(get_Sign_Box("-------- Reaction Grams: --------"));
+    	gram_array.add(get_Sign_Box("-------- Reactant Grams: --------"));
     	gram_array.add(get_gram_container("Reactant ", 1, false));
     	
     	while (number_of_reactions > reactions_added) {
     		reactions_added++;
     		
     		chemical_equation.add(get_Sign_Box("+"));
-    		chemical_equation.add(get_Sign_Box(String.format("Reaction %d:", reactions_added)));
+    		chemical_equation.add(get_Sign_Box(String.format("Reactant %d:", reactions_added)));
     		chemical_equation.add(get_HBox_Container());
     		
     		gram_array.add(get_gram_container("Reactant ", (reactions_added), false));
@@ -139,6 +140,20 @@ public class Reaction_View_Controller {
     	HBox overall_box = new HBox();
     	overall_box.getChildren().addAll(main_box,grams);
     	
+    	
+    	// error label
+    	Label reactionErrorLabel = new Label();
+    		reactionErrorLabel.setAlignment(Pos.TOP_CENTER);
+    		reactionErrorLabel.setTextFill(Color.RED);
+    		reactionErrorLabel.setPadding(new Insets(5,20,20,20));
+    		reactionErrorLabel.setMaxWidth(425);
+    		reactionErrorLabel.setWrapText(true);
+    	
+    	VBox overall_box_2 = new VBox();
+    		//overall_box_2.setPadding(new Insets(20,20,20,20));
+
+    	overall_box_2.getChildren().addAll(overall_box,reactionErrorLabel);
+    	
     	//Scroll main that encompasses all 
     	ScrollPane scroll = new ScrollPane();
     	
@@ -148,12 +163,12 @@ public class Reaction_View_Controller {
     	
     	//Please don't change the pref size of scroll box
     	scroll.setPrefSize(scroll_pref.get(0), scroll_pref.get(1));
-    	scroll.setContent(overall_box);
-    	
+    	scroll.setContent(overall_box_2);
     	
     	//When enter button is pressed, I will need to make a method that will get all the text field information
     	Calculate_Reaction_TextFields test = new Calculate_Reaction_TextFields();
-    	enterButton.setOnAction(doneEvent -> test.Textfield_Calculator(reaction_stage, numProdReact, main_box,grams));
+    	enterButton.setOnAction(doneEvent -> test.Textfield_Calculator(reaction_stage, numProdReact, main_box,grams,reactionErrorLabel));
+    	
     	
     	Scene ReactionScene = new Scene(scroll);
      	return ReactionScene;

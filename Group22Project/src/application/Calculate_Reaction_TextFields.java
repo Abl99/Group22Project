@@ -61,7 +61,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	}
 	
 	//Main method
-	public void Textfield_Calculator(Stage reaction_stage, ArrayList<Integer> amounts, VBox main_box, VBox grams){
+	public void Textfield_Calculator(Stage reaction_stage, ArrayList<Integer> amounts, VBox main_box, VBox grams, Label errorLabel){
 		//The Stage scene, is the stage of the project
 		
 		boolean valid_input = true;
@@ -337,6 +337,9 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  }
 		  
 		  //Prints the number of each error (i.e. so the user can make the proper adjustment)
+		  
+		  
+		  errorLabel.setText("Error(s): " + accumulated_errors.toString());
 		  
 		  System.out.println("---------------------");
 		  System.out.println("User Errors:");
