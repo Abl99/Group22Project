@@ -11,9 +11,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Reaction_View_Controller {
+	
+	private String error_string = "";
 	
     private boolean leave_Stage = false;
 	
@@ -130,6 +133,20 @@ public class Reaction_View_Controller {
  			enterButton.setText("Enter"); 
     	main_box.getChildren().add(enterButton);
     	
+    	//Error Label
+    	Label error_label = new Label();
+    	
+    	//Set the label of whatever error_string is
+    	error_label.setText(error_string);
+    	
+    	//Make it appear red
+    	error_label.setTextFill(Color.web("RED"));
+    	
+		HBox Error_Box = new HBox();
+		Error_Box.getChildren().add(error_label);
+		Error_Box.setPadding(new Insets(5,10,5,10));
+    	main_box.getChildren().add(Error_Box);
+    	
     	//VBox for grams
     	VBox grams = new VBox();
 	    	grams.setPadding(new Insets(20,20,20,20));
@@ -173,7 +190,7 @@ public class Reaction_View_Controller {
     	
     	//smallest chemical equation
     	if ((get_amount.get(0) + get_amount.get(1)) == 2) {
-    		scroll_pref.add(250);
+    		scroll_pref.add(275);
     		
     	}else if((get_amount.get(0) + get_amount.get(1)) == 3 ){
     		scroll_pref.add(350);
@@ -194,10 +211,9 @@ public class Reaction_View_Controller {
     	return scroll_pref;
     }
     
-    public boolean get_leave_Stage() {
-		
-    	return leave_Stage;
+    //change the error label if there is an error
+    protected void change_erorr_label(String change) {
+    	error_string = change;
     }
     
- 
 }
