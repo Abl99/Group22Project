@@ -24,7 +24,7 @@ public class Main extends Application {
 			
 			controller.applicationStage = primaryStage;
 			
-			Scene scene = new Scene(root,912,450);
+			Scene scene = new Scene(root,912,460);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Group 22 Project");
 			
