@@ -67,9 +67,9 @@
                         <Label layoutX="33.0" layoutY="324.0" prefHeight="17.0" prefWidth="110.0" text="LIMITING REAGENT:" />
                         <Label layoutX="33.0" layoutY="354.0" prefHeight="17.0" prefWidth="130.0" text="THEORETICAL YIELD:" />
                         <Label layoutX="33.0" layoutY="384.0" prefHeight="17.0" prefWidth="100.0" text="PERCENT YIELD:" />
-                        <Label fx:id="limiting_reagent" layoutX="173.0" layoutY="324.0" prefHeight="17.0" prefWidth="63.0" text="XXXXXXX" />
-                        <Label fx:id="theoretical_yield" layoutX="173.0" layoutY="354.0" prefHeight="17.0" prefWidth="74.0" text="XXXXXXX" />
-                        <Label fx:id="percent_yield" layoutX="173.0" layoutY="384.0" prefHeight="17.0" prefWidth="63.0" text="XXXXXXX" />
+                        <Label fx:id="limiting_reagent" layoutX="173.0" layoutY="324.0" prefWidth="63.0" text="XXXXXXX" wrapText="true" />
+                        <Label fx:id="theoretical_yield" layoutX="173.0" layoutY="354.0" prefWidth="74.0" text="XXXXXXX" wrapText="true" />
+                        <Label fx:id="percent_yield" layoutX="173.0" layoutY="384.0" prefWidth="63.0" text="XXXXXXX" wrapText="true" />
                      </children>
                   </AnchorPane>
                </children>
