@@ -261,6 +261,8 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				  product_amount_molecules,product_molecules,
 				  gram_reactants,gram_products);
 		  
+		  
+		  //----------------------- BALANCED -----------------------------------
 		  //test_the_chemical_equation contains every relevant array list in the proper order;
 		  boolean balanced_or_not = test_the_chemical_equation.balancedReaction();
 		  
@@ -269,6 +271,34 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  }else {
 			  test.setBalanced("Not Balanced");
 		  }
+		//----------------------- LIMITING REAGENT -----------------------------------
+		  
+		  String limiting_reagents = "";
+		  
+		  for (String x : test_the_chemical_equation.getLimitingReagent()) {
+			  limiting_reagents += x + " ,";
+		  }
+		  test.update_limiting_reagent(limiting_reagents);
+		  
+		  
+		//----------------------- THEORETICAL YIELD -----------------------------------
+		  
+		  String theoretical_yield = "";
+		  
+		  for (String y : test_the_chemical_equation.theoreticalYield()) {
+			  theoretical_yield += y + " ,";
+		  }
+		  test.update_theoretical_yield(theoretical_yield);
+		  
+		  
+		//----------------------- PERCENT YIELD -----------------------------------
+		  
+		  String percent_yield = "";
+		  
+		  for (String z : test_the_chemical_equation.yieldPercent()) {
+			  percent_yield += z + " ,";
+		  }
+		  test.update_percent_yield(percent_yield);
 		  
 		  test.start(primaryStage);
 		  
