@@ -286,7 +286,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  String theoretical_yield = "";
 		  
 		  for (String y : test_the_chemical_equation.theoreticalYield()) {
-			  theoretical_yield += y + " ,";
+			  theoretical_yield += y + " ," + "\n";
 		  }
 		  test.update_theoretical_yield(theoretical_yield);
 		  

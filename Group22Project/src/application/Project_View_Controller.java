@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -283,7 +286,7 @@ public class Project_View_Controller{
     
   //---------------------------------------------------------
     //Reaction OUTPUTS
-    
+   
     @FXML
     private Label limiting_reagent;
     
@@ -303,6 +306,7 @@ public class Project_View_Controller{
     
     protected void update_theoretical_yield(String theoretical_yields) {
     	theoretical_yield.setText(theoretical_yields);
+    	
     }
     
     protected void update_percent_yield(String percent_yields) {
