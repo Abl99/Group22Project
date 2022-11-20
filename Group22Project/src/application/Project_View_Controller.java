@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 
 public class Project_View_Controller{
@@ -231,6 +232,7 @@ public class Project_View_Controller{
     	valid_products = testing_for_input_errors.check_if_null(number_of_products);
     	
     	if (!valid_rectants || !valid_products) {
+        	reaction_error_label.setTextFill(Color.RED);
     		reaction_error_label.setText("Add Numerical Inputs");
     		return;
     	}
@@ -241,12 +243,14 @@ public class Project_View_Controller{
     	
     	if (!valid_rectants || !valid_products) {
     		//not an integer
+        	reaction_error_label.setTextFill(Color.RED);
     		reaction_error_label.setText("Add Numerical Inputs");
     		return;
     	}
     	
     	//input should not be 0 on either side
     	if ((Integer.parseInt(number_of_rectants.getText()) == 0) || (Integer.parseInt(number_of_products.getText()) == 0)) {
+        	reaction_error_label.setTextFill(Color.RED);
     		reaction_error_label.setText("Cannot have 0");
     		return;
     	}
@@ -315,6 +319,10 @@ public class Project_View_Controller{
     
     protected void update_balanaced(String balanced) {
     	reaction_balanced.setText(balanced);
+    }
+    protected void update_reaction(String reaction) {
+    	reaction_error_label.setTextFill(Color.BLACK);
+    	reaction_error_label.setText(reaction);
     }
     
     //---------------------------------------------------------

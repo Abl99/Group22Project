@@ -106,13 +106,12 @@ public class Reaction_View_Controller {
     	gram_array.add(get_gram_container("Product ", 1, true));
     	
     	while (number_of_products > products_added) {
+    		products_added++;	
     		chemical_equation.add(get_Sign_Box("+"));
     		chemical_equation.add(get_Sign_Box(String.format("Product %d:", products_added)));
     		chemical_equation.add(get_HBox_Container());
     		
     		gram_array.add(get_gram_container("Product ", (products_added+1), true));
-    		
-    		products_added++;	
     	}
     	
     	//V for # and molecule

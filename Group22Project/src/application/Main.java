@@ -9,9 +9,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
-	private String limiting_reagent = "N/A";
-	private String theoretical_yield = "N/A";
-	private String percent_yield = "N/A";
+	private String reaction_string;
+	private String limiting_reagent = "";
+	private String theoretical_yield = "";
+	private String percent_yield = "";
 	
 	private String balanced_or_not = "No Reaction Yet";
 	
@@ -33,6 +34,7 @@ public class Main extends Application {
 			controller.update_percent_yield(percent_yield);
 			
 			controller.update_balanaced(balanced_or_not);
+			controller.update_reaction(reaction_string);
 			
 			primaryStage.show();	
 		} catch(Exception e) {
@@ -45,6 +47,9 @@ public class Main extends Application {
 	}
 	
 	//Reaction Output Methods
+	public void setReaction(String reaction) {
+		this.reaction_string = reaction;
+	}
 	
 	public void setBalanced (String balanced) {
 		this.balanced_or_not = balanced;

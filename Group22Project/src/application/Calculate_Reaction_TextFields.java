@@ -261,6 +261,10 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				  product_amount_molecules,product_molecules,
 				  gram_reactants,gram_products);
 		  
+		  //----------------------- REACTION STRING -----------------------------------
+		  test.setReaction(test_the_chemical_equation.toString());
+		  
+		  
 		  
 		  //----------------------- BALANCED -----------------------------------
 		  //test_the_chemical_equation contains every relevant array list in the proper order;
@@ -274,10 +278,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		//----------------------- LIMITING REAGENT -----------------------------------
 		  
 		  String limiting_reagents = "";
-		  
-		  for (String x : test_the_chemical_equation.getLimitingReagent()) {
-			  limiting_reagents += x + " ,";
-		  }
+		  limiting_reagents = test_the_chemical_equation.getLimitingReagent().get(0);
 		  test.update_limiting_reagent(limiting_reagents);
 		  
 		  
@@ -285,18 +286,20 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  String theoretical_yield = "";
 		  
-		  for (String y : test_the_chemical_equation.theoreticalYield()) {
-			  theoretical_yield += y + " ," + "\n";
+		  ArrayList<String> theorYield = test_the_chemical_equation.theoreticalYield();
+		  for (int index = 0; index < theorYield.size(); index = index +2) {
+			  theoretical_yield = theoretical_yield + String.format("%.2f g of %s \n",Double.parseDouble(theorYield.get(index+1)),theorYield.get(index));
 		  }
+		  
 		  test.update_theoretical_yield(theoretical_yield);
 		  
 		  
 		//----------------------- PERCENT YIELD -----------------------------------
 		  
 		  String percent_yield = "";
-		  
-		  for (String z : test_the_chemical_equation.yieldPercent()) {
-			  percent_yield += z + " ,";
+		  ArrayList<String> percYield = test_the_chemical_equation.yieldPercent();
+		  for (int index = 0; index < percYield.size(); index = index +2) {
+			  percent_yield = percent_yield + String.format("%.2f %s of %s \n",Double.parseDouble(percYield.get(index+1)),"%",percYield.get(index));
 		  }
 		  test.update_percent_yield(percent_yield);
 		  
