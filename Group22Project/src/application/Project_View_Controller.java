@@ -215,15 +215,6 @@ public class Project_View_Controller{
     @FXML
     private Label reaction_error_label;
     
-    //This label should return whether the reaction inputed was balanced or not
-    @FXML
-    private Label reaction_balanced;
-    
-    //This will update the label balanced when needed
-    protected void update_balanaced(String balanced) {
-    	reaction_balanced.setText(balanced);
-    }
-    
     @FXML
     void entered_chemical_equation(ActionEvent event) throws IOException{
     	
@@ -288,6 +279,38 @@ public class Project_View_Controller{
     	amount.add(Integer.parseInt(number_of_products.getText()));
     	
     	return amount;
+    }
+    
+  //---------------------------------------------------------
+    //Reaction OUTPUTS
+    
+    @FXML
+    private Label limiting_reagent;
+    
+    @FXML
+    private Label theoretical_yield;
+    
+    @FXML
+    private Label percent_yield;
+    
+    @FXML
+    private Label reaction_balanced;
+    
+    
+    protected void update_limiting_reagent(String limiting_reactant) {
+    	limiting_reagent.setText(limiting_reactant);
+    }
+    
+    protected void update_theoretical_yield(String theoretical_yields) {
+    	theoretical_yield.setText(theoretical_yields);
+    }
+    
+    protected void update_percent_yield(String percent_yields) {
+    	percent_yield.setText(percent_yields);
+    }
+    
+    protected void update_balanaced(String balanced) {
+    	reaction_balanced.setText(balanced);
     }
     
     //---------------------------------------------------------
