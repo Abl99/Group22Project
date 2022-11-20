@@ -341,37 +341,14 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  errorLabel.setText("Error(s): " + accumulated_errors.toString());
 		  
+		  /*For Dev purposes
 		  System.out.println("---------------------");
 		  System.out.println("User Errors:");
 		  for (String x : accumulated_errors) {
 			  System.out.println(x);
 		  }
 		  System.out.println("---------------------");
-
-
-		  //Open new window to tell user they made an error (idea) 
-		  //They see their errors via the accumulated_error ArrayList
-		  
-		  //WORK IN PROGRESS
-		  /*
-		  Scene error_window = applicationStage.getScene();
-		  
-		  VBox error_box = new VBox();
-          Label error_label = new Label("Invalid Entry");
-          Button error_button = new Button("Enter");
-      	  error_box.getChildren().addAll(error_label, error_button);
-      	  
-      	  error_button.setOnAction(doneEvent -> applicationStage.close());
-      	  
-      	  applicationStage.setScene(error_window);
-      	  applicationStage.show();
-		 */ 
-		  
+		  */
 	  }  
-	}
-	
-	protected boolean get_leave_Stage() {
-		return leave_Stage;
-	}
-	
+	}	
 }

@@ -188,31 +188,24 @@ public class Reaction_View_Controller {
     	
     	//smallest chemical equation
     	if ((get_amount.get(0) + get_amount.get(1)) == 2) {
-    		scroll_pref.add(250);
+    		scroll_pref.add(310);
     		
     	}else if((get_amount.get(0) + get_amount.get(1)) == 3 ){
-    		scroll_pref.add(350);
+    		scroll_pref.add(380);
     		
     	}else if((get_amount.get(0) + get_amount.get(1)) == 4 ){
-    		scroll_pref.add(450);
+    		scroll_pref.add(490);
     		
     	}else if((get_amount.get(0) + get_amount.get(1)) == 5 ){
-    		scroll_pref.add(550);
+    		scroll_pref.add(590);
     		
     	}else if((get_amount.get(0) + get_amount.get(1)) == 6 ){
-    		scroll_pref.add(610);
+    		scroll_pref.add(690);
     	
     	//largest size before scroll wheel will need to be used
     	}else if ((get_amount.get(0) + get_amount.get(1)) >= 7) {
-    		scroll_pref.add(700);
+    		scroll_pref.add(720);
     	}
     	return scroll_pref;
     }
-    
-    public boolean get_leave_Stage() {
-		
-    	return leave_Stage;
-    }
-    
- 
 }
