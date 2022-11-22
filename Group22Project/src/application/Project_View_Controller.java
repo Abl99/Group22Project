@@ -313,6 +313,8 @@ public class Project_View_Controller{
     	
     	if (reaction != "") {
     		invisible_chemical_equation(true);
+    	}else {
+    		invisible_chemical_equation(false);
     	}
     	
     	reactionEquationLabel.setText(reaction);
@@ -322,6 +324,8 @@ public class Project_View_Controller{
     	//How the scroll box becomes invisible or not
     	if (limiting_reactant != "") {
     		invisible_limiting_and_yields(true);
+    	}else {
+    		invisible_limiting_and_yields(false);
     	}
     	limiting_reagent.setText(limiting_reactant);
     }
