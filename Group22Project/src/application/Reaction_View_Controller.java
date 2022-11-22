@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 
 public class Reaction_View_Controller {
 	
-    private boolean leave_Stage = false;
-	
 	 //This method will create an H box and return it
     protected HBox get_HBox_Container() {	
  	    TextField quantity = new TextField();

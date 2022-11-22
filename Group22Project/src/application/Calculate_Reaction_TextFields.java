@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	//TextField_Validity_Check extended reaction so almost every method written so far is available 
 	
-	private boolean leave_Stage = false;
 	private int gram_blank_boxes = 0;
 	
 	//Takes all the Hboxes from the Node Array, and makes a H box Array list from them

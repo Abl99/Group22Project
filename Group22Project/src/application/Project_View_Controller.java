@@ -34,8 +34,6 @@ import javafx.scene.paint.Color;
 public class Project_View_Controller{
 	public Stage applicationStage;
 	
-	private String balanced;
-	
 	//---------------------------------------------------------
 	
 	//ELEMENT VALUES 
