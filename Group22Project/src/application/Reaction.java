@@ -241,7 +241,7 @@ public class Reaction extends Molecule {
 		for (int index = 1; index < productMolecules.size(); index ++) {
 			products = products + " + " + productCoeff.get(index) + " " + productMolecules.get(index);
 		}
-		return reactants + " --> " + products;
+		return reactants + " \n --> \n " + products;
 	}
 	
 	

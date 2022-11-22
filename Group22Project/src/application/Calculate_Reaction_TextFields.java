@@ -22,6 +22,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	//TextField_Validity_Check extended reaction so almost every method written so far is available 
 	
 	private boolean leave_Stage = false;
+	private int gram_blank_boxes = 0;
 	
 	//Takes all the Hboxes from the Node Array, and makes a H box Array list from them
 	private ArrayList<HBox> Node_to_Hbox_Array(ArrayList<Node> node_array) {
@@ -203,6 +204,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    	}else {
 	    		gram_inputs.add("null value");
 	    		error_list.add("1x Empty TextField in Gram Section");
+	    		gram_blank_boxes++;
 	    	}
 	    	
 	    }
@@ -302,6 +304,39 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 			  percent_yield = percent_yield + String.format("%.2f %s of %s \n",Double.parseDouble(percYield.get(index+1)),"%",percYield.get(index));
 		  }
 		  test.update_percent_yield(percent_yield);
+		  
+		  test.start(primaryStage);
+	
+		  
+	  //This else if is where the user has left the gram inputs empty
+	  }else if (gram_blank_boxes == (amounts.get(0) + amounts.get(1)))  {
+		  
+		  //close the reaction window
+		  reaction_stage.close();
+		  
+		  //prepare to make a new project_view window with only 1 label changed (balanced)
+		  Stage primaryStage = new Stage();
+		  Main test = new Main();
+		  
+		  //Check if balanced or not using Reactions class
+		  Reaction test_the_chemical_equation = new Reaction(
+				  reaction_amount_molecules,reaction_molecules,
+				  product_amount_molecules,product_molecules,
+				  gram_reactants,gram_products);
+		  
+		  //----------------------- REACTION STRING -----------------------------------
+		  test.setReaction(test_the_chemical_equation.toString());
+		  
+		  
+		  //----------------------- BALANCED -----------------------------------
+		  //test_the_chemical_equation contains every relevant array list in the proper order;
+		  boolean balanced_or_not = test_the_chemical_equation.balancedReaction();
+		  
+		  if (balanced_or_not) {
+			  test.setBalanced("Balanced!");
+		  }else {
+			  test.setBalanced("Not Balanced");
+		  }
 		  
 		  test.start(primaryStage);
 		  
