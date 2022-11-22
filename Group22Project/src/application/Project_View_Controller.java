@@ -292,6 +292,9 @@ public class Project_View_Controller{
     //Reaction OUTPUTS
    
     @FXML
+    private Label reactionEquationLabel;
+    
+    @FXML
     private Label limiting_reagent;
     
     @FXML
@@ -321,8 +324,7 @@ public class Project_View_Controller{
     	reaction_balanced.setText(balanced);
     }
     protected void update_reaction(String reaction) {
-    	reaction_error_label.setTextFill(Color.BLACK);
-    	reaction_error_label.setText(reaction);
+    	reactionEquationLabel.setText(reaction);
     }
     
     //---------------------------------------------------------
