@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
-	private String reaction_string;
+	private String reaction_string = "";
 	private String limiting_reagent = "";
 	private String theoretical_yield = "";
 	private String percent_yield = "";
@@ -25,7 +25,7 @@ public class Main extends Application {
 			
 			controller.applicationStage = primaryStage;
 			
-			Scene scene = new Scene(root,912,450);
+			Scene scene = new Scene(root,912,460);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Group 22 Project");
 			

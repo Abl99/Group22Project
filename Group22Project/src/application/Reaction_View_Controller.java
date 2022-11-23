@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 
 public class Reaction_View_Controller {
 	
-    private boolean leave_Stage = false;
-	
 	 //This method will create an H box and return it
     protected HBox get_HBox_Container() {	
  	    TextField quantity = new TextField();
@@ -111,7 +109,7 @@ public class Reaction_View_Controller {
     		chemical_equation.add(get_Sign_Box(String.format("Product %d:", products_added)));
     		chemical_equation.add(get_HBox_Container());
     		
-    		gram_array.add(get_gram_container("Product ", (products_added+1), true));
+    		gram_array.add(get_gram_container("Product ", (products_added), true));
     	}
     	
     	//V for # and molecule
