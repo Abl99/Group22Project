@@ -24,6 +24,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	private int gram_blank_boxes = 0;
 	
 	private int gram_invalid_input_errors = 0;
+	
 	private int molecule_related_errors = 0;
 	
 	//Takes all the Hboxes from the Node Array, and makes a H box Array list from them
@@ -65,6 +66,10 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	
 	//Main method
 	public void Textfield_Calculator(Stage reaction_stage, ArrayList<Integer> amounts, VBox main_box, VBox grams, Label errorLabel){
+		
+		
+		
+		
 		//The Stage scene, is the stage of the project
 		
 		boolean valid_input = true;
@@ -417,10 +422,12 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  //Prints the number of each error (i.e. so the user can make the proper adjustment)
 		  
-		  
 		  errorLabel.setText("Error(s): " + accumulated_errors.toString());
 		  
-		  
+		  //reset
+		  gram_blank_boxes = 0;
+		  gram_invalid_input_errors = 0;
+		  molecule_related_errors = 0;
 		  
 	  }  
 	}	
