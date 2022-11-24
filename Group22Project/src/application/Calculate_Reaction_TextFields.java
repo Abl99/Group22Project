@@ -23,6 +23,9 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	
 	private int gram_blank_boxes = 0;
 	
+	private int gram_invalid_input_errors = 0;
+	private int molecule_related_errors = 0;
+	
 	//Takes all the Hboxes from the Node Array, and makes a H box Array list from them
 	private ArrayList<HBox> Node_to_Hbox_Array(ArrayList<Node> node_array) {
 		
@@ -69,7 +72,6 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		//will track the errors the user made 
 		ArrayList<String> error_list = new ArrayList<String>();
 		
-		
 		//-------------------------  MOLECULES ------------------------------- 
 		//ArrayList for all items in the main_box (the box where number of and molecules are)
 	    ArrayList<Node> main_box_array = new ArrayList<Node>(main_box.getChildren());
@@ -95,6 +97,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    	}else {
 	    		user_inputs.add("null value");
 	    		error_list.add("1x Empty TextField in Molecules Section");
+	    		molecule_related_errors ++;
 	    	}
 	    }
 	    //There should be no null values in ArrayList<String> user_input 
@@ -120,6 +123,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		//avoid repeat errors
 	    		if (!user_inputs.get(x).equals("null value")) {
 	    			error_list.add("1x Invalid Reaction Amount");
+	    			molecule_related_errors ++;
 	    		}
 	    	}
 	    }
@@ -140,6 +144,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		//avoid repeat errors
 	    		if (!user_inputs.get(x).equals("null value")) {
 	    			error_list.add("1x Invalid Reaction Molecule");
+	    			molecule_related_errors ++;
 	    		}
 	    	}
 	    }
@@ -157,6 +162,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		//avoid repeat errors
 	    		if (!user_inputs.get(x + amounts.get(0)*2).equals("null value")) {
 	    			error_list.add("1x Invalid Product Amount");
+	    			molecule_related_errors ++;
 	    		}
 	    	}
 	    }
@@ -177,6 +183,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		//avoid repeat errors
 	    		if (!user_inputs.get(x + amounts.get(0)*2).equals("null value")) {
 	    			error_list.add("1x Invalid Product Molecule");
+	    			molecule_related_errors ++;
 	    		}
 	    	}
 	    }
@@ -203,7 +210,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    	}else {
 	    		gram_inputs.add("null value");
 	    		error_list.add("1x Empty TextField in Gram Section");
-	    		gram_blank_boxes++;
+	    		gram_blank_boxes ++;
 	    	}
 	    	
 	    }
@@ -224,6 +231,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				//prevent repeat errors
 				if(!gram_inputs.get(x).equals("null value")) {
 					error_list.add("1x Invalid Reactant Gram Amount");
+					gram_invalid_input_errors ++;
 				}
 			}
 		}
@@ -239,13 +247,17 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				
 				//prevent repeat errors
 				if (!gram_inputs.get(x + amounts.get(0)).equals("null value")) {
-					error_list.add("1x Invalid Product Gram Amount");					
+					error_list.add("1x Invalid Product Gram Amount");	
+					gram_invalid_input_errors ++;
 				}
 			}
 		}
 	    
 	  //---------------------------- ERRORS ---------------------------------- 
-	  
+		
+		
+	 System.out.println(molecule_related_errors);
+		
 	  //THERE ARE NO ERRORS
 	  if (error_list.size() == 0) {
 		  
@@ -308,7 +320,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	
 		  
 	  //This else if is where the user has left the gram inputs empty
-	  }else if (gram_blank_boxes == (amounts.get(0) + amounts.get(1)))  {
+	  }else if (molecule_related_errors == 0 && gram_blank_boxes == (amounts.get(0) + amounts.get(1)))  {
 		  
 		  //close the reaction window
 		  reaction_stage.close();
@@ -408,14 +420,8 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  errorLabel.setText("Error(s): " + accumulated_errors.toString());
 		  
-		  /*For Dev purposes
-		  System.out.println("---------------------");
-		  System.out.println("User Errors:");
-		  for (String x : accumulated_errors) {
-			  System.out.println(x);
-		  }
-		  System.out.println("---------------------");
-		  */
+		  
+		  
 	  }  
 	}	
 }
