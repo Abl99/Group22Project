@@ -56,8 +56,10 @@ public class TextField_Validity_Check extends Reaction{
 		return true;
 	}
 	
-	//This method serves to see if it is a valid molecule
+	//This method serves to see if it is a valid molecule	
 	protected boolean molecule_check(String to_test) {
+		if (Character.isDigit(to_test.charAt(0)))return false;
+		
 		Molecule test = new Molecule(to_test);
 		ArrayList<String> test_array = test.getMoleculeArray();
 		

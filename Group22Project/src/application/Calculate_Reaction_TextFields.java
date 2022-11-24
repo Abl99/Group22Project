@@ -1,20 +1,11 @@
 package application;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -143,7 +134,6 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		}
 	    	}
 	    }
-	    
 	    //for product_amount_molecules
 	    for (int x = 0; x < amounts.get(1)*2; x += 2) {
 	    	
@@ -169,7 +159,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 
 	    	//From TextField_Validity_Check
 	    	valid_input = molecule_check(user_inputs.get(x + amounts.get(0)*2));
-	    	
+	    		    	
 	    	if (valid_input) {
 	    		product_molecules.add(user_inputs.get(x + amounts.get(0)*2));
 	    	}else {
@@ -180,6 +170,12 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		}
 	    	}
 	    }
+	    // this boolean will keep track of weather or not there are errors in just the molecules and their amounts
+	    boolean moleculeErrors = true;
+	    if (error_list.size() == 0) {
+	    	moleculeErrors = false;
+	    }
+	    
 	    
 	   //---------------------------- GRAMS ---------------------------------- 
 	    //ArrayList for all items in grams 
@@ -308,7 +304,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	
 		  
 	  //This else if is where the user has left the gram inputs empty
-	  }else if (gram_blank_boxes == (amounts.get(0) + amounts.get(1)))  {
+	  }else if (gram_blank_boxes == (amounts.get(0) + amounts.get(1)) && !moleculeErrors)  {
 		  
 		  //close the reaction window
 		  reaction_stage.close();
@@ -342,15 +338,16 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	
 	  //THERE IS AT LEAST 1 ERROR
 	  }else {
-		  
 		  //Count the errors
 		  ArrayList<String> accumulated_errors = new ArrayList<String>();
 		  
 		  //Molecule possible errors
 		  int null_molecule_textfield = 0;
 		  int invalid_reaction_amount = 0;
+		  int invalid_reactant_molecule = 0;
 		  int invalid_product_amount = 0;
-		  
+		  int invalid_product_molecule = 0;
+
 		  //Gram possible errors
 		  int null_gram_textfield = 0;
 		  int invalid_reactant_gram_amount = 0;
@@ -358,54 +355,49 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  //All these if statements are just for counting errors so that user gets a cleaner error message
 		  for (String x : error_list) {
-			  
 			  if (x.equals("1x Empty TextField in Molecules Section")) {
-				  null_molecule_textfield++;
-				  
+				  null_molecule_textfield++;  
 			  }else if (x.equals("1x Invalid Reaction Amount")) {
-				  invalid_reaction_amount++;
-				  
+				  invalid_reaction_amount++;  
+			  }else if (x.equals("1x Invalid Reaction Molecule")) {
+				  invalid_reactant_molecule++;  
+			  }else if (x.equals("1x Invalid Product Amount")) {
+				  invalid_product_amount++;  
 			  }else if (x.equals("1x Invalid Product Molecule")) {
-				  invalid_product_amount++;
-				  
+				  invalid_product_molecule++;  
 			  }else if (x.equals("1x Empty TextField in Gram Section")) {
-				  null_gram_textfield++;
-				  
+				  null_gram_textfield++;  
 			  }else if (x.equals("1x Invalid Reactant Gram Amount")) {
-				  invalid_reactant_gram_amount++;
-				  
+				  invalid_reactant_gram_amount++;  
 			  }else if (x.equals("1x Invalid Product Gram Amount")) {
 				  invalid_product_gram_amount++;
 			  } 
-		  }
-		  
+		  }  
 		  if (!(null_molecule_textfield == 0)){
 			  accumulated_errors.add(String.format("%dx Empty TextField in Molecules Section", null_molecule_textfield));
 		  }
-		  
 		  if (!(invalid_reaction_amount == 0)){
 			  accumulated_errors.add(String.format("%dx Invalid Reaction Amount", invalid_reaction_amount));
 		  }
-		  
-		  if (!(invalid_product_amount == 0)){
-			  accumulated_errors.add(String.format("%dx Invalid Product Molecule", invalid_product_amount));
+		  if (!(invalid_reactant_molecule == 0)){
+			  accumulated_errors.add(String.format("%dx Invalid Reaction Molecule", invalid_reactant_molecule));
 		  }
-		  
+		  if (!(invalid_product_amount == 0)){
+			  accumulated_errors.add(String.format("%dx Invalid Product Amount", invalid_product_amount));
+		  }
+		  if (!(invalid_product_molecule == 0)){
+			  accumulated_errors.add(String.format("%dx Invalid Product Molecule", invalid_product_molecule));
+		  }
 		  if (!(null_gram_textfield == 0)){
 			  accumulated_errors.add(String.format("%dx Empty TextField in Gram Section", null_gram_textfield));
 		  }
-		  
 		  if (!(invalid_reactant_gram_amount == 0)){
 			  accumulated_errors.add(String.format("%dx Invalid Reactant Gram Amount", invalid_reactant_gram_amount));
 		  }
-		  
 		  if (!(invalid_product_gram_amount == 0)){
 			  accumulated_errors.add(String.format("%dx Invalid Product Gram Amount", invalid_product_gram_amount));
 		  }
-		  
 		  //Prints the number of each error (i.e. so the user can make the proper adjustment)
-		  
-		  
 		  errorLabel.setText("Error(s): " + accumulated_errors.toString());
 		  
 		  /*For Dev purposes
