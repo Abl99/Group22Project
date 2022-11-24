@@ -179,8 +179,12 @@ public class Project_View_Controller{
     		
     		//rounds the answer
     		molecule_answer_1.setText(String.format("%.4f", molecule_information.getMolecularWeight()));
-   
-    		molecule_NAME.setText(molecule_information.MoleculeName());
+    		
+    		if (molecule_information.MoleculeName().length() > 40) {
+    			molecule_NAME.setText("Molecule Name Too Long to be Shown");
+    		}else {
+    			molecule_NAME.setText(molecule_information.MoleculeName());
+    		}
 
     	}else {
     		error_molecule_label.setText("Invalid Molecule");
