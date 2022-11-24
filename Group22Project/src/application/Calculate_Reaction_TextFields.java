@@ -62,9 +62,6 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	//Main method
 	public void Textfield_Calculator(Stage reaction_stage, ArrayList<Integer> amounts, VBox main_box, VBox grams, Label errorLabel){
 		
-		
-		
-		
 		//The Stage scene, is the stage of the project
 		
 		boolean valid_input = true;
@@ -254,9 +251,6 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		}
 	    
 	  //---------------------------- ERRORS ---------------------------------- 
-		
-		
-	 System.out.println(molecule_related_errors);
 		
 	  //THERE ARE NO ERRORS
 	  if (error_list.size() == 0) {
