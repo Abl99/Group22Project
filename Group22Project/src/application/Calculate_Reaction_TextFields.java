@@ -23,7 +23,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	
 	private int gram_blank_boxes = 0;
 	
-	private int gram_invalid_input_errors = 0;
+	//private int gram_invalid_input_errors = 0;
 	
 	private int molecule_related_errors = 0;
 	
@@ -236,7 +236,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				//prevent repeat errors
 				if(!gram_inputs.get(x).equals("null value")) {
 					error_list.add("1x Invalid Reactant Gram Amount");
-					gram_invalid_input_errors ++;
+					//gram_invalid_input_errors ++;
 				}
 			}
 		}
@@ -253,7 +253,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				//prevent repeat errors
 				if (!gram_inputs.get(x + amounts.get(0)).equals("null value")) {
 					error_list.add("1x Invalid Product Gram Amount");	
-					gram_invalid_input_errors ++;
+					//gram_invalid_input_errors ++;
 				}
 			}
 		}
@@ -426,7 +426,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  //reset
 		  gram_blank_boxes = 0;
-		  gram_invalid_input_errors = 0;
+		  //gram_invalid_input_errors = 0;
 		  molecule_related_errors = 0;
 		  
 	  }  
