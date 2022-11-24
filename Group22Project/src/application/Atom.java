@@ -152,7 +152,7 @@ public class Atom{
 		}
 		
 		//Check as a symbol
-		if (element_to_check.length() < 3) {
+		if (element_to_check.length() <= 3) {
 			
 			//upper case the string
 			element_to_check = element_to_check.substring(0,1).toUpperCase() + element_to_check.substring(1).toLowerCase();
@@ -176,7 +176,7 @@ public class Atom{
 			for (int x = 0; x < all_elements.size();x ++) {
 				
 				//This should only look at even indexes (in which the elements are)
-				if ((element_to_check.equals(all_elements.get(x))) && (x % 2 == 0)) {
+				if ((element_to_check.equals(all_elements.get(x)))) {
 					
 					//element needs to be upper cased for JSON lookup (if possible)
 					return element_to_check.substring(0,1).toUpperCase() + element_to_check.substring(1);
@@ -190,7 +190,8 @@ public class Atom{
 	protected String getElement(String symbol) {
 		
 		if(symbol.length() > 3) {
-			return "invalid symbol";
+			symbol.toLowerCase();
+			return symbol;
 		}
 		
 		if (Test(symbol).equals("invalid element")) {
@@ -216,7 +217,7 @@ public class Atom{
 	
 	protected String getSymbol(String element) {
 	
-		if (Test(element).equals("invalid element") || element.length() < 3) {
+		if (Test(element).equals("invalid element") || element.length() <= 3) {
 			return "invalid element";
 		}
 		

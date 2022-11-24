@@ -225,7 +225,7 @@ public class Reaction extends Molecule {
 			int count = 0;
 			for (int index = 1; index < productTheorYield.size(); index = index +2) {
 				productYieldPercent.add(productTheorYield.get(index-1));
-				productYieldPercent.add(Double.toString(productMasses.get(count)/Double.parseDouble(productTheorYield.get(index))));
+				productYieldPercent.add(Double.toString(productMasses.get(count)/Double.parseDouble(productTheorYield.get(index))*100));
 				count ++;
 			}
 		return productYieldPercent;
@@ -237,9 +237,11 @@ public class Reaction extends Molecule {
 		String products = productCoeff.get(0) + " " + productMolecules.get(0);
 		for (int index = 1; index < reactantMolecules.size(); index ++) {
 			reactants = reactants + " + " + reactantCoeff.get(index)+ " " + reactantMolecules.get(index);
+		}
+		for (int index = 1; index < productMolecules.size(); index ++) {
 			products = products + " + " + productCoeff.get(index) + " " + productMolecules.get(index);
 		}
-		return reactants + " --> " + products;
+		return reactants + " \n --> \n " + products;
 	}
 	
 	

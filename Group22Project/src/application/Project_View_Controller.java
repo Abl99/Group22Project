@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,15 +23,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 
 public class Project_View_Controller{
 	public Stage applicationStage;
-	
-	private String balanced;
 	
 	//---------------------------------------------------------
 	
@@ -215,15 +218,6 @@ public class Project_View_Controller{
     @FXML
     private Label reaction_error_label;
     
-    //This label should return whether the reaction inputed was balanced or not
-    @FXML
-    private Label reaction_balanced;
-    
-    //This will update the label balanced when needed
-    protected void update_balanaced(String balanced) {
-    	reaction_balanced.setText(balanced);
-    }
-    
     @FXML
     void entered_chemical_equation(ActionEvent event) throws IOException{
     	
@@ -237,6 +231,7 @@ public class Project_View_Controller{
     	valid_products = testing_for_input_errors.check_if_null(number_of_products);
     	
     	if (!valid_rectants || !valid_products) {
+        	reaction_error_label.setTextFill(Color.RED);
     		reaction_error_label.setText("Add Numerical Inputs");
     		return;
     	}
@@ -247,12 +242,14 @@ public class Project_View_Controller{
     	
     	if (!valid_rectants || !valid_products) {
     		//not an integer
+        	reaction_error_label.setTextFill(Color.RED);
     		reaction_error_label.setText("Add Numerical Inputs");
     		return;
     	}
     	
     	//input should not be 0 on either side
     	if ((Integer.parseInt(number_of_rectants.getText()) == 0) || (Integer.parseInt(number_of_products.getText()) == 0)) {
+        	reaction_error_label.setTextFill(Color.RED);
     		reaction_error_label.setText("Cannot have 0");
     		return;
     	}
@@ -289,6 +286,76 @@ public class Project_View_Controller{
     	
     	return amount;
     }
+    
+  //---------------------------------------------------------
+    //Reaction OUTPUTS
+   
+    @FXML
+    private Label reactionEquationLabel;
+    
+    @FXML
+    private Label limiting_reagent;
+    
+    @FXML
+    private Label theoretical_yield;
+    
+    @FXML
+    private Label percent_yield;
+    
+    @FXML
+    private Label reaction_balanced;
+    
+    protected void update_balanaced(String balanced) {
+    	reaction_balanced.setText(balanced);
+    }
+    
+    protected void update_reaction(String reaction) {
+    	
+    	if (reaction != "") {
+    		invisible_chemical_equation(true);
+    	}else {
+    		invisible_chemical_equation(false);
+    	}
+    	
+    	reactionEquationLabel.setText(reaction);
+    }
+    
+    protected void update_limiting_reagent(String limiting_reactant) {
+    	//How the scroll box becomes invisible or not
+    	if (limiting_reactant != "") {
+    		invisible_limiting_and_yields(true);
+    	}else {
+    		invisible_limiting_and_yields(false);
+    	}
+    	limiting_reagent.setText(limiting_reactant);
+    }
+    
+    protected void update_theoretical_yield(String theoretical_yields) {
+    	theoretical_yield.setText(theoretical_yields);
+    }
+    
+    protected void update_percent_yield(String percent_yields) {
+    	percent_yield.setText(percent_yields);
+    }
+    
+    //--------------------- INVISIBLE OUTPUTS -----------------------
+    
+    @FXML
+    private VBox chemical_equation_output;
+    
+    @FXML
+    private VBox everything_else_output;
+    
+    protected void invisible_chemical_equation (boolean invisible) {
+    	chemical_equation_output.setVisible(invisible);
+    	chemical_equation_output.managedProperty().bind(chemical_equation_output.visibleProperty());
+    }
+    
+    protected void invisible_limiting_and_yields (boolean invisible) {
+    	everything_else_output.setVisible(invisible);
+    	everything_else_output.managedProperty().bind(everything_else_output.visibleProperty());
+    }
+    
     
     //---------------------------------------------------------
     //Exit Program

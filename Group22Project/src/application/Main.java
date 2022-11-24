@@ -9,7 +9,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
-	private String test = "No Reaction Yet";
+	private String reaction_string = "";
+	private String limiting_reagent = "";
+	private String theoretical_yield = "";
+	private String percent_yield = "";
+	
+	private String balanced_or_not = "No Reaction Yet";
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -20,11 +25,16 @@ public class Main extends Application {
 			
 			controller.applicationStage = primaryStage;
 			
-			Scene scene = new Scene(root,912,450);
+			Scene scene = new Scene(root,912,460);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Group 22 Project");
 			
-			controller.update_balanaced(test);
+			controller.update_limiting_reagent(limiting_reagent);
+			controller.update_theoretical_yield(theoretical_yield);
+			controller.update_percent_yield(percent_yield);
+			
+			controller.update_balanaced(balanced_or_not);
+			controller.update_reaction(reaction_string);
 			
 			primaryStage.show();	
 		} catch(Exception e) {
@@ -32,12 +42,28 @@ public class Main extends Application {
 		}
 	}
 	
-	//Added this method so that balanced label in Project_View can be changed before stage is shown
-	public void setBalanced (String balanced) {
-		this.test = balanced;
-	}
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	//Reaction Output Methods
+	public void setReaction(String reaction) {
+		this.reaction_string = reaction;
+	}
+	
+	public void setBalanced (String balanced) {
+		this.balanced_or_not = balanced;
+	}
+	
+    protected void update_limiting_reagent(String limiting_reactant) {
+    	this.limiting_reagent = limiting_reactant;
+    }
+    
+    protected void update_theoretical_yield(String theoretical_yields) {
+    	this.theoretical_yield = theoretical_yields;
+    }
+    
+    protected void update_percent_yield(String percent_yields) {
+    	this.percent_yield = percent_yields;
+    }
 }

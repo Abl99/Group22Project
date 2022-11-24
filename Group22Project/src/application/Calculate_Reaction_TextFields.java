@@ -21,7 +21,11 @@ import javafx.stage.Stage;
 public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	//TextField_Validity_Check extended reaction so almost every method written so far is available 
 	
-	private boolean leave_Stage = false;
+	private int gram_blank_boxes = 0;
+	
+	//private int gram_invalid_input_errors = 0;
+	
+	private int molecule_related_errors = 0;
 	
 	//Takes all the Hboxes from the Node Array, and makes a H box Array list from them
 	private ArrayList<HBox> Node_to_Hbox_Array(ArrayList<Node> node_array) {
@@ -62,13 +66,16 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	
 	//Main method
 	public void Textfield_Calculator(Stage reaction_stage, ArrayList<Integer> amounts, VBox main_box, VBox grams, Label errorLabel){
+		
+		
+		
+		
 		//The Stage scene, is the stage of the project
 		
 		boolean valid_input = true;
 		
 		//will track the errors the user made 
 		ArrayList<String> error_list = new ArrayList<String>();
-		
 		
 		//-------------------------  MOLECULES ------------------------------- 
 		//ArrayList for all items in the main_box (the box where number of and molecules are)
@@ -95,6 +102,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    	}else {
 	    		user_inputs.add("null value");
 	    		error_list.add("1x Empty TextField in Molecules Section");
+	    		molecule_related_errors ++;
 	    	}
 	    }
 	    //There should be no null values in ArrayList<String> user_input 
@@ -120,6 +128,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		//avoid repeat errors
 	    		if (!user_inputs.get(x).equals("null value")) {
 	    			error_list.add("1x Invalid Reaction Amount");
+	    			molecule_related_errors ++;
 	    		}
 	    	}
 	    }
@@ -140,6 +149,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		//avoid repeat errors
 	    		if (!user_inputs.get(x).equals("null value")) {
 	    			error_list.add("1x Invalid Reaction Molecule");
+	    			molecule_related_errors ++;
 	    		}
 	    	}
 	    }
@@ -157,6 +167,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		//avoid repeat errors
 	    		if (!user_inputs.get(x + amounts.get(0)*2).equals("null value")) {
 	    			error_list.add("1x Invalid Product Amount");
+	    			molecule_related_errors ++;
 	    		}
 	    	}
 	    }
@@ -177,6 +188,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    		//avoid repeat errors
 	    		if (!user_inputs.get(x + amounts.get(0)*2).equals("null value")) {
 	    			error_list.add("1x Invalid Product Molecule");
+	    			molecule_related_errors ++;
 	    		}
 	    	}
 	    }
@@ -203,6 +215,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    	}else {
 	    		gram_inputs.add("null value");
 	    		error_list.add("1x Empty TextField in Gram Section");
+	    		gram_blank_boxes ++;
 	    	}
 	    	
 	    }
@@ -223,6 +236,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				//prevent repeat errors
 				if(!gram_inputs.get(x).equals("null value")) {
 					error_list.add("1x Invalid Reactant Gram Amount");
+					//gram_invalid_input_errors ++;
 				}
 			}
 		}
@@ -238,13 +252,17 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				
 				//prevent repeat errors
 				if (!gram_inputs.get(x + amounts.get(0)).equals("null value")) {
-					error_list.add("1x Invalid Product Gram Amount");					
+					error_list.add("1x Invalid Product Gram Amount");	
+					//gram_invalid_input_errors ++;
 				}
 			}
 		}
 	    
 	  //---------------------------- ERRORS ---------------------------------- 
-	  
+		
+		
+	 System.out.println(molecule_related_errors);
+		
 	  //THERE ARE NO ERRORS
 	  if (error_list.size() == 0) {
 		  
@@ -261,6 +279,72 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 				  product_amount_molecules,product_molecules,
 				  gram_reactants,gram_products);
 		  
+		  //----------------------- REACTION STRING -----------------------------------
+		  test.setReaction(test_the_chemical_equation.toString());
+		  
+		  
+		  
+		  //----------------------- BALANCED -----------------------------------
+		  //test_the_chemical_equation contains every relevant array list in the proper order;
+		  boolean balanced_or_not = test_the_chemical_equation.balancedReaction();
+		  
+		  if (balanced_or_not) {
+			  test.setBalanced("Balanced!");
+		  }else {
+			  test.setBalanced("Not Balanced");
+		  }
+		//----------------------- LIMITING REAGENT -----------------------------------
+		  
+		  String limiting_reagents = "";
+		  limiting_reagents = test_the_chemical_equation.getLimitingReagent().get(0);
+		  test.update_limiting_reagent(limiting_reagents);
+		  
+		  
+		//----------------------- THEORETICAL YIELD -----------------------------------
+		  
+		  String theoretical_yield = "";
+		  
+		  ArrayList<String> theorYield = test_the_chemical_equation.theoreticalYield();
+		  for (int index = 0; index < theorYield.size(); index = index +2) {
+			  theoretical_yield = theoretical_yield + String.format("%.2f g of %s \n",Double.parseDouble(theorYield.get(index+1)),theorYield.get(index));
+		  }
+		  
+		  test.update_theoretical_yield(theoretical_yield);
+		  
+		  
+		//----------------------- PERCENT YIELD -----------------------------------
+		  
+		  String percent_yield = "";
+		  ArrayList<String> percYield = test_the_chemical_equation.yieldPercent();
+		  for (int index = 0; index < percYield.size(); index = index +2) {
+			  percent_yield = percent_yield + String.format("%.2f %s of %s \n",Double.parseDouble(percYield.get(index+1)),"%",percYield.get(index));
+		  }
+		  test.update_percent_yield(percent_yield);
+		  
+		  test.start(primaryStage);
+	
+		  
+	  //This else if is where the user has left the gram inputs empty
+	  }else if (molecule_related_errors == 0 && gram_blank_boxes == (amounts.get(0) + amounts.get(1)))  {
+		  
+		  //close the reaction window
+		  reaction_stage.close();
+		  
+		  //prepare to make a new project_view window with only 1 label changed (balanced)
+		  Stage primaryStage = new Stage();
+		  Main test = new Main();
+		  
+		  //Check if balanced or not using Reactions class
+		  Reaction test_the_chemical_equation = new Reaction(
+				  reaction_amount_molecules,reaction_molecules,
+				  product_amount_molecules,product_molecules,
+				  gram_reactants,gram_products);
+		  
+		  //----------------------- REACTION STRING -----------------------------------
+		  test.setReaction(test_the_chemical_equation.toString());
+		  
+		  
+		  //----------------------- BALANCED -----------------------------------
 		  //test_the_chemical_equation contains every relevant array list in the proper order;
 		  boolean balanced_or_not = test_the_chemical_equation.balancedReaction();
 		  
@@ -338,17 +422,13 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  
 		  //Prints the number of each error (i.e. so the user can make the proper adjustment)
 		  
-		  
 		  errorLabel.setText("Error(s): " + accumulated_errors.toString());
 		  
-		  /*For Dev purposes
-		  System.out.println("---------------------");
-		  System.out.println("User Errors:");
-		  for (String x : accumulated_errors) {
-			  System.out.println(x);
-		  }
-		  System.out.println("---------------------");
-		  */
+		  //reset
+		  gram_blank_boxes = 0;
+		  //gram_invalid_input_errors = 0;
+		  molecule_related_errors = 0;
+		  
 	  }  
 	}	
 }
