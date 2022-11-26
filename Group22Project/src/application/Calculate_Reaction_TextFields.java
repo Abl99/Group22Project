@@ -137,7 +137,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    	if (valid_input) {
 	    		reaction_molecules.add(user_inputs.get(x));
 	    	}else {
-	    		
+
 	    		//avoid repeat errors
 	    		if (!user_inputs.get(x).equals("null value")) {
 	    			error_list.add("1x Invalid Reaction Molecule");
@@ -355,7 +355,10 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  //Molecule possible errors
 		  int null_molecule_textfield = 0;
 		  int invalid_reaction_amount = 0;
+		  int invalid_reaction_molecule = 0;
+		  
 		  int invalid_product_amount = 0;
+		  int invalid_product_molecule = 0;
 		  
 		  //Gram possible errors
 		  int null_gram_textfield = 0;
@@ -363,6 +366,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		  int invalid_product_gram_amount = 0;
 		  
 		  //All these if statements are just for counting errors so that user gets a cleaner error message
+		  //This will most likely have to be broken up into methods due to extensive use of if statements
 		  for (String x : error_list) {
 			  
 			  if (x.equals("1x Empty TextField in Molecules Section")) {
@@ -371,8 +375,14 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 			  }else if (x.equals("1x Invalid Reaction Amount")) {
 				  invalid_reaction_amount++;
 				  
-			  }else if (x.equals("1x Invalid Product Molecule")) {
+			  }else if (x.equals("1x Invalid Reaction Molecule")) {
+				  invalid_reaction_molecule++;
+		      
+			  }else if(x.equals("1x Invalid Product Amount")) {
 				  invalid_product_amount++;
+				  
+			  }else if (x.equals("1x Invalid Product Molecule")) {
+				  invalid_product_molecule++;
 				  
 			  }else if (x.equals("1x Empty TextField in Gram Section")) {
 				  null_gram_textfield++;
@@ -393,8 +403,16 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 			  accumulated_errors.add(String.format("%dx Invalid Reaction Amount", invalid_reaction_amount));
 		  }
 		  
+		  if (!(invalid_reaction_molecule == 0)) {
+			  accumulated_errors.add(String.format("%dx Invalid Reaction Molecule", invalid_reaction_molecule));
+		  }
+		  
 		  if (!(invalid_product_amount == 0)){
-			  accumulated_errors.add(String.format("%dx Invalid Product Molecule", invalid_product_amount));
+			  accumulated_errors.add(String.format("%dx Invalid Product Amount", invalid_product_amount));
+		  }
+		  
+		  if (!(invalid_product_molecule == 0)) {
+			  accumulated_errors.add(String.format("%dx Invalid Product Molecule", invalid_product_molecule));
 		  }
 		  
 		  if (!(null_gram_textfield == 0)){
