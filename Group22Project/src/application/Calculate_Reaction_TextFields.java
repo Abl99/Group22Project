@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
+public class Calculate_Reaction_TextFields{
 	//TextField_Validity_Check extended reaction so almost every method written so far is available 
 	
 	private int gram_blank_boxes = 0;
@@ -87,7 +87,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    for (TextField x : my_textfields) {
 	    	
 	    	//From TextField_Validity_Check, it will return false if a text field is null and that text field will not be recorded
-	    	valid_input = check_if_null(x);
+	    	valid_input = TextField_Validity_Check.check_if_null(x);
 	    	
 	    	if (valid_input) {
 	    		user_inputs.add(x.getText());
@@ -111,7 +111,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    for (int x = 0; x < amounts.get(0)*2; x += 2) {
 	    	
 	    	//From TextField_Validity_Check
-	    	valid_input = check_if_int(user_inputs.get(x));
+	    	valid_input = TextField_Validity_Check.check_if_int(user_inputs.get(x));
 	    	
 	    	if (valid_input) {
 	    		reaction_amount_molecules.add(Integer.parseInt(user_inputs.get(x)));
@@ -132,7 +132,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    	//reaction_molecules.add(user_inputs.get(x));
 	    	
 	    	//From TextField_Validity_Check
-	    	valid_input = molecule_check(user_inputs.get(x));
+	    	valid_input = TextField_Validity_Check.molecule_check(user_inputs.get(x));
 	 
 	    	if (valid_input) {
 	    		reaction_molecules.add(user_inputs.get(x));
@@ -150,7 +150,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    for (int x = 0; x < amounts.get(1)*2; x += 2) {
 	    	
 	    	//From TextField_Validity_Check
-	    	valid_input = check_if_int(user_inputs.get(x + amounts.get(0)*2));
+	    	valid_input = TextField_Validity_Check.check_if_int(user_inputs.get(x + amounts.get(0)*2));
 	    	
 	    	if (valid_input) {
 	    		product_amount_molecules.add(Integer.parseInt(user_inputs.get(x + amounts.get(0)*2)));
@@ -171,7 +171,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    	
 
 	    	//From TextField_Validity_Check
-	    	valid_input = molecule_check(user_inputs.get(x + amounts.get(0)*2));
+	    	valid_input = TextField_Validity_Check.molecule_check(user_inputs.get(x + amounts.get(0)*2));
 	    	
 	    	if (valid_input) {
 	    		product_molecules.add(user_inputs.get(x + amounts.get(0)*2));
@@ -200,7 +200,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    
 	    for (TextField x : gram_textfields) {
 	    	
-	    	valid_input = check_if_null(x);
+	    	valid_input = TextField_Validity_Check.check_if_null(x);
 	    	
 	    	if (valid_input) {
 	    		gram_inputs.add(x.getText());
@@ -219,7 +219,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		for (int x = 0; x < amounts.get(0); x++) {
 			
 			//From TextField_Validity_Check
-			valid_input = check_if_double(gram_inputs.get(x));
+			valid_input = TextField_Validity_Check.check_if_double(gram_inputs.get(x));
 			
 			if (valid_input) {
 				gram_reactants.add(Double.parseDouble(gram_inputs.get(x)));	
@@ -236,7 +236,7 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 		for (int x = 0; x < amounts.get(1); x++) {
 			
 			//From TextField_Validity_Check
-			valid_input = check_if_double(gram_inputs.get(x + amounts.get(0)));
+			valid_input = TextField_Validity_Check.check_if_double(gram_inputs.get(x + amounts.get(0)));
 			
 			if (valid_input) {
 				gram_products.add(Double.parseDouble(gram_inputs.get(x + amounts.get(0))));

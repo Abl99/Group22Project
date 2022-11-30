@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 public class TextField_Validity_Check{
 
 	//method that checks if a text field is null, returns true if not null
-	protected boolean check_if_null(TextField to_test) {
+	protected static boolean check_if_null(TextField to_test) {
 		
 		if (to_test.getText().isEmpty() || to_test.getText().equals("")) {
 			return false;
@@ -17,7 +17,7 @@ public class TextField_Validity_Check{
 	}
 	
 	//method that checks if a String is an int value, returns true is it is a int
-	protected boolean check_if_int(String to_test){
+	protected static boolean check_if_int(String to_test){
 		
 		try {
 			
@@ -38,7 +38,7 @@ public class TextField_Validity_Check{
 	}
 	
 	//method that checks if a String is a double
-	protected boolean check_if_double(String to_test) {
+	protected static boolean check_if_double(String to_test) {
 		try {
 			
 			Double test = Double.parseDouble(to_test);
@@ -57,7 +57,7 @@ public class TextField_Validity_Check{
 	}
 	
 	//This method serves to see if it is a valid molecule
-	protected boolean molecule_check(String to_test) {
+	protected static boolean molecule_check(String to_test) {
 		Molecule test = new Molecule(to_test);
 		ArrayList<String> test_array = test.getMoleculeArray();
 		
