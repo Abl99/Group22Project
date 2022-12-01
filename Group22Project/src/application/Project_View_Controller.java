@@ -163,7 +163,6 @@ public class Project_View_Controller{
     	
     	String test2 = molecule_input.getText().toLowerCase().replaceAll("[0-9]", "");
     	
-    	System.out.println(test);
     	if (test.length() >= 1 && test2.length() == 0) {
     		error_molecule_label.setText("Invalid Molecule");
     		molecule_NAME.setText("");

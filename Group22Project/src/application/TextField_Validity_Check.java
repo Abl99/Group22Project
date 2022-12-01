@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javafx.scene.control.TextField;
 
 //This class and its method will check if a text field is a valid input
-public class TextField_Validity_Check extends Reaction{
+public class TextField_Validity_Check{
 
 	//method that checks if a text field is null, returns true if not null
 	protected boolean check_if_null(TextField to_test) {
