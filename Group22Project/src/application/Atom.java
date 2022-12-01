@@ -141,6 +141,13 @@ public class Atom{
     "oganesson","Og",
     "ununennium", "Uue"));
 	
+	
+	/**
+	 * @param element_to_check: Checks if a given string is a valid element or not (uses all_elements).
+	 * @return the string "invalid element" if the string parameter is not an element. If it is an element, it will return
+	 * the element that it is in the form it was given (put capitalized). 
+	 */
+	
 	protected String Test(String element_to_check) {
 		
 		//will assume it is not digit 
@@ -186,6 +193,11 @@ public class Atom{
 		return "invalid element";
 	}
 	
+	/**
+	 * 
+	 * @param symbol: takes an element symbol and returns it's name. If element name already, just returns itself. 
+	 * @return string: the name of the element. 
+	 */
 	
 	protected String getElement(String symbol) {
 		
@@ -214,6 +226,11 @@ public class Atom{
 		return "ERROR IN GET ELEMENT";
 	}
 	
+	/**
+	 * 
+	 * @param element: takes the element name, and gives the symbol. If a symbol already, just returns itself. 
+	 * @return string: element in symbol form. 
+	 */
 	
 	protected String getSymbol(String element) {
 	
@@ -236,6 +253,13 @@ public class Atom{
 		//This should not be returned
 		return "ERROR IN GET SYMBOL";
 	}
+	
+	/**
+	 * 
+	 * @param value: an element or a symbol (will be converted to element regardless). 
+	 * @param selected_trait: searches the JSON document for specific information on that element and returns it as a string. 
+	 * @return string: the specific element information that parameter requests (i.e. atomic "number" is 2). 
+	 */
 	
 	private String get_Element_Traits (String value, String selected_trait) {
 		//needs to be valid element/symbol
@@ -267,7 +291,6 @@ public class Atom{
 			}catch (ClassCastException x) {
 				
 				try {
-					
 					return Double.toString( (double) element_traits.get(selected_trait));
 				
 				}catch (ClassCastException y) {

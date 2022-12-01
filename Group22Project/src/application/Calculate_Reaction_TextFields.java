@@ -22,6 +22,15 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	
 	private int molecule_related_errors = 0;
 	
+	/**
+	 * Converts a Node array to HBox Array (if any HBoxes are present in the Node)
+	 * Looks for HBoxes in a Node arraylist and puts those into their own arraylist. This is useful for getting relevant
+	 * information from the Node arraylist.
+	 * 
+	 * @param node_array: a node array.
+	 * @return HBox Arraylist: an arraylist made up Hboxes (if any in Node). 
+	 */
+	
 	//Takes all the Hboxes from the Node Array, and makes a H box Array list from them
 	private ArrayList<HBox> Node_to_Hbox_Array(ArrayList<Node> node_array) {
 		
@@ -38,6 +47,14 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    }
 		return Hboxes;
 	}
+	
+	/**
+	 * Converts an HBox arraylist into textfield arraylist.
+	 * Looks for textfields in HBox arraylist and puts those into their own arraylist.
+	 * 
+	 * @param Hboxes: a HBox arraylist.
+	 * @return Textfield arraylist: an arraylist made up of Textfields (if any are in the HBox arraylist). 
+	 */
 	
 	//Takes all the text fields from an H box Array and makes a Text box Array list from them
 	private ArrayList<TextField> Hbox_to_TextField_Array (ArrayList<HBox> Hboxes){
@@ -58,6 +75,26 @@ public class Calculate_Reaction_TextFields extends TextField_Validity_Check{
 	    
 		return my_textfields;
 	}
+	
+	/**
+	 * Purpose of method:
+	 * To break up the VBox and HBoxes of reaction_view_controller and get all the text fields from them. Once I get the
+	 * textfields, I can convert them to Strings and store them in an ArrayList <String> in which the contents is checked 
+	 * for any input errors. After which the ArrayList<String> is sorted and fed into the reaction class. This will return
+	 * important details that will be reflected in the project_view output. 
+	 * 
+	 * @param reaction_stage: this is the stage created in Project_View_Controller to make the stage for Reaction_View_Controller.
+	 * We need this specific stage so that we can close it in this method when the user inputs all valid inputs
+	 * @param amounts: this is an int arraylist that was created in Project_View_Controlle to hold the amount of reactants and the 
+	 * number of products the user inputed. This information helps sort out what information belongs to reactant, and what belongs to
+	 * product. 
+	 * @param main_box: this is the main VBox of Reaction_View Controller that holds numerous HBoxes and textfields belonging to 
+	 * molecules. This will be broken up into textfields in this class, checked for errors, then fed into reaction class for output 
+	 * @param grams. This is the main VBox for Grams. It was simplier to split up the Vboxes for these as sorting would be more
+	 * complicated if they were included in the same VBox. Similar to above, this VBox holds all gram details and is broken up and fed
+	 * to reaction class for outputs involving grams.
+	 * @param errorLabel: this label is from the Reaction_View_Controller and should update if the user inputed an invalid input.
+	 */
 	
 	//Main method
 	public void Textfield_Calculator(Stage reaction_stage, ArrayList<Integer> amounts, VBox main_box, VBox grams, Label errorLabel){
